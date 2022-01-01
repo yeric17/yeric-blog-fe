@@ -1,0 +1,44 @@
+@font-face {
+    font-family: 'icons';
+    src: url('../fonts/icomoon.woff') format('woff'),
+        url('../fonts/icomoon.ttf') format('truetype'),
+        url('../fonts/icomoon.svg') format('svg'),
+        url('../fonts/icomoon.eot') format('embedded-opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+[class^="icon-"], [class*=" icon-"] {
+    font-family: 'icons';
+    font-style: normal;
+    font-weight: normal;
+    font-size: inherit;
+}
+
+.icon-arrow-circle-right:before {
+    content: "\e931";
+}
+.icon-arrow-circle-left:before {
+    content: "\e930";
+}
+.icon-like:before {
+    content: "\e953";
+}
+.icon-message-square:before {
+    content: "\e940";
+    font-family: 'icons';
+}
+.icon-menu:before {
+    content: "\e92c";
+}
+.icon-info-circle:before {
+    content: "\e960";
+}
+.icon-tick-square1:before {
+    content: "\e94f";
+}
+.icon-arrow-down:before {
+    content: "\e933";
+}
+
