@@ -85,6 +85,7 @@
             </div>
         {/if}
         <Interaction data={{
+            name: $user?.name,
             post_id: data.post_id,
             comment_id: data.comment_id,
             user_id: userId,

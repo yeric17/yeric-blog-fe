@@ -63,6 +63,7 @@ Loading...
                 </div>
                 <div class="post-page_interaction">            
                     <Interaction data={{
+                        name: $user?.name,
                         post_id: post.id,
                         user_id: $user?.id,
                         entity_type: 'post',
