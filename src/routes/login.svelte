@@ -29,10 +29,12 @@
     }
 
     async function handleLogin(){
-        let isLogin = await Login(userLogin)
-        if(isLogin){
+        let login = await Login(userLogin)
+        if(login.ok){
             goto('/')
+            return
         }
+        console.log(login)
     }
 </script>
 
