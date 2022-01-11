@@ -14,6 +14,7 @@
     import {user} from "$stores/user";
     import CommentBlog from "$components/CommentBlog.svelte";
     import {onMount} from "svelte";
+
     export let comment_id = "";
 
     export let post_id = "";

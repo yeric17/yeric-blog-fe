@@ -16,6 +16,7 @@
     import {user} from '$stores/user';
     import moment from 'moment';
     import 'moment/locale/pt-br';
+    import {DateFormat} from "$lib/utils";
 
     import UserAvatar from '$components/UserAvatar.svelte';
     import Interaction from '$components/Interaction.svelte';
@@ -56,7 +57,11 @@ Loading...
     <section class="post-page_content">
         <div class="post-page_header">
             <h1 class="post-page_title">{post.title}</h1>
-            <span class="post-page_date">{moment(post.created_at).format('MMMM Do YYYY')}</span>
+            <span class="post-page_date">{DateFormat(post.created_at,'es',{
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            })}</span>
             <div class="post-page_info">            
                 <div class="post-page_author">
                     <UserAvatar userName={post.author.name} userAvatar={post.author.picture} />
