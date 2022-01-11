@@ -73,7 +73,7 @@
 <main class="contact-container">
     <form class="contact-form" on:submit|preventDefault={handleSubmit}>
         <h1 class="contact-form_title">Contacto</h1>
-        <p class="contact-form_info">Gracias aprecio mucho tu interes en querer contactarme.</p>
+        <p class="contact-form_info">Muchas gracias, aprecio mucho tu interes en querer contactarme.</p>
         <div class="contact-form_input-section">
             <TextField id="contactEmail" bind:success={formSuccess.email} validated={true} bind:value={formData.email}>Correo electrónico</TextField>
             <TextField id="contactName" bind:success={formSuccess.name} validated={true} bind:value={formData.name}>Nombre</TextField>
