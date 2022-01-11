@@ -6,6 +6,7 @@
     import moment from 'moment';
     import Comment from '$components/Comment.svelte';
     import {user} from '$stores/user';
+    import {DateFormat} from "$lib/utils";
 
     export let post = {
         id : '',
@@ -29,6 +30,7 @@
         console.log(linkPost);
         window.location.href = linkPost;
     }
+
 </script>
 
 
@@ -39,7 +41,11 @@
     <div class="post-banner_content">
         <h4 class="post-banner_title" on:click={goLink}>{post.title}</h4>
         <span class="post_date">
-            {moment(post.created_at).format('MMMM Do YYYY h:mm:ss a')}
+            {DateFormat(post.created_at,'es',{
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            })}
         </span>
         <p class="post-banner_text">
             {post.resume}
