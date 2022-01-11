@@ -41,4 +41,15 @@
 .icon-arrow-down:before {
     content: "\e933";
 }
-
+.icon-facebook:before {
+    content: "\e966";
+}
+.icon-linkedin:before {
+    content: "\e941";
+}
+.icon-twitter:before {
+    content: "\e94d";
+}
+.icon-github:before {
+    content: "\e949";
+}
