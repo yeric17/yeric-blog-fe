@@ -2,16 +2,6 @@
     import {createEventDispatcher} from 'svelte';
     const dispacher = createEventDispatcher();
 
-
-    // export let options = {
-    //     id: '',
-    //     name: '',
-    //     placeholder: '',
-    //     required: true,
-    //     autocomplete: "",
-    //     validated: false,
-    //     pattern: null,
-    // }
     export let id = '';
     export let name = '';
     export let placeholder = '';
