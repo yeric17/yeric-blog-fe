@@ -11,7 +11,6 @@
 		}
 		return {
 			props: {
-				posts,
 				postBanner,
 			},
 		};
@@ -21,14 +20,13 @@
 	
     import {onMount} from 'svelte';
 	import {user} from '$stores/user';
-
+	import {posts} from '$stores/posts';
 	import Loader from '$components/Loader.svelte';
 	import UserAvatar from '$components/UserAvatar.svelte';
 	import Interaction from '$components/Interaction.svelte';
 	import PostBanner from '$components/PostBanner.svelte';
 	import PostCard from '$components/PostCard.svelte';
 
-	export let posts;
 	export let postBanner;
 	
 
@@ -50,13 +48,15 @@
 		<PostBanner likeMe={LikeMe(postBanner)} post={postBanner}/>
 		{/if}
     </section>
+	{#if $posts.length > 0}
 	<section class="posts-list">
 		<div class="posts-list_wrapper">
-		{#each posts as post}
+		{#each $posts as post}
 			<PostCard likeMe={LikeMe(post)} post={post} userId={$user.id}/>
 		{/each}
 		</div>
 	</section>
+	{/if}
 </main>
 
 <style>

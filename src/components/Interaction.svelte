@@ -68,7 +68,7 @@
     <span class="interaction_likes" on:click={handleLikes}>
         <span class="icon-like">
         </span>
-        <span class="interaction_likes_count">{likeCount > 0?likeCount:''}</span>
+        <span class="interaction_likes_count">{data.likes?.length > 0?data.likes.length:''}</span>
     </span>
     {#if isCommenting}
         <Comment 
