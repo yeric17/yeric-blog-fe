@@ -4,19 +4,26 @@ import { writable } from "svelte/store";
 const posts = writable([]);
 
 const getPosts = async () => {
-    const response = await fetch("http://localhost:7070/posts");
-    const json = await response.json();
 
-    if(json && json.success) {
-        let postsMap = json.data.map(post => {
-            post.content = JSON.parse(post.content);
-            post.resume = post.content.filter(c=> c.type === "text")[0].value.substring(0, 100) + "...";
-           
-            return post
-        })
-        console.log(postsMap)
-        posts.set(postsMap);
+    try{
+        const response = await fetch("http://localhost:7070/posts");
+        const json = await response.json();
+    
+        if(json && json.success) {
+            let postsMap = json.data.map(post => {
+                post.content = JSON.parse(post.content)
+                post.resume = post.content.find(element => element.type === 'text').value.substring(0, 100) + '...'
+                return post
+            })
+            console.log(postsMap)
+            posts.set(postsMap);
+            return postsMap;
+        }
     }
+    catch(e) {
+        console.log(e)
+    }
+    return [];
 };
 
 const addPost = async (post) => {

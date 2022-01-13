@@ -1,17 +1,14 @@
 <script context="module">
-	import {Auth} from "../stores/user";
+	import {Auth} from "$stores/user";
+	import {getPosts} from '$stores/posts';
 	export const load = async function({fetch}){
-		const res = await fetch('http://localhost:7070/posts');
-		const json = await res.json();
-		let posts = json.data
-		posts = posts.map(post => {
-			post.content = JSON.parse(post.content)
-			post.resume = post.content.find(element => element.type === 'text').value.substring(0, 100) + '...'
-			return post
-		})
-		const postBanner = posts.sort(function(a, b){
-			return b.likes - a.likes
-		})[0]
+		const posts = await getPosts();
+		let postBanner = null;
+		if(posts.length > 0){	
+			postBanner = posts.sort(function(a, b){
+				return b.likes - a.likes
+			})[0]
+		}
 		return {
 			props: {
 				posts,
@@ -24,7 +21,6 @@
 	
     import {onMount} from 'svelte';
 	import {user} from '$stores/user';
-	import {getStores} from '$app/stores'
 
 	import Loader from '$components/Loader.svelte';
 	import UserAvatar from '$components/UserAvatar.svelte';
@@ -50,7 +46,9 @@
 
 <main class="posts">
     <section class="posts_banner">
+		{#if postBanner}
 		<PostBanner likeMe={LikeMe(postBanner)} post={postBanner}/>
+		{/if}
     </section>
 	<section class="posts-list">
 		<div class="posts-list_wrapper">
