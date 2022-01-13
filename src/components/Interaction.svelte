@@ -14,7 +14,7 @@
         likes: null,
         comments: 0,
     };
-
+    export let activeLikes = false;
     export let likeMe = false;
 
     let likeCount = 0;
@@ -65,11 +65,13 @@
         <span class="icon-message-square"></span>
         <span class="interaction_comments_count">{data.comments > 0?data.comments:''}</span>
     </span>
+    {#if activeLikes}
     <span class="interaction_likes" on:click={handleLikes}>
         <span class="icon-like">
         </span>
         <span class="interaction_likes_count">{data.likes?.length > 0?data.likes.length:''}</span>
     </span>
+    {/if}
     {#if isCommenting}
         <Comment 
         on:cancel={()=>isCommenting = false} 
