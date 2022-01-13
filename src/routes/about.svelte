@@ -15,7 +15,7 @@
 			<div class="about_banner_text">
 				<h1>Hola, Me llamo</h1>
 				<h2>Carlos Yeric Fonseca Rios</h2>
-				<p>Soy un desarrollador web y de videojuegos colombiano. Me interesa todo lo relacionado con el mundo de la programación, quiero poder contribuir con mi conocimiento a la comunidad y en el camino continuar aprendiendo más de este mundo del código</p>
+				<p>Soy un desarrollador web y de videojuegos. Me interesa todo lo relacionado con el mundo de la programación, quiero poder contribuir con mi conocimiento a la comunidad y en el camino continuar aprendiendo más de este mundo del código</p>
 			</div>
 			<div class="about_banner_social">
 				<SocialLink type="linkedin"></SocialLink>
@@ -36,7 +36,7 @@
 				<div class="about_blog_tec_item">
 					<h3>Go</h3>
 					<img src="http://localhost:7070/images/go.png" alt="go">
-					<p>El backend de esta desarrollado con Go y la ayuda de un framework para el lenguaje llamado Gin, con el cual es mas fácil implementar un API</p>
+					<p>El backend de esta desarrollado con Go, mediante el uso de un framework para el lenguaje llamado Gin</p>
 				</div>
 				<div class="about_blog_tec_item">
 					<h3>Postgres</h3>
@@ -67,7 +67,7 @@
 			"image"
 			"text"
 			"social";
-		gap: var(--spacing-md);
+		gap: var(--spacing-lg);
 	}
 	.about_banner_text{
 		align-self: end;
@@ -100,16 +100,27 @@
 		left: 50%;
 		width: 170px;
 		height: 170px;
-		border-radius: 50%;
+		border-radius: 10px;
 		background: var(--color-secondary);
 		z-index: 3;
-		transform: translateX(-50%);
+		transform: translateX(-40%);
 	}
-
+	.about_banner_image::after{
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 10rem;
+		width: 100px;
+		height: 100px;
+		border-radius: 10px;
+		background: var(--color-primary);
+		z-index: 3;
+		
+	}
 	.about_banner_image img{
 		max-height: 200px;
 		position: relative;
-		border-radius: 200px;
+		border-radius: 20px;
 		z-index: 5;
 	}
 
@@ -192,8 +203,13 @@
 		}
 		.about_banner_image::before{
 			
-			width: 250px;
-			height: 250px;
+			width: 300px;
+			height: 150px;
+		}
+		.about_banner_image::after{
+			
+			width: 200px;
+			height: 150px;
 		}
 		.about_blog_tec{
 			grid-template-columns: repeat(3, 1fr);
