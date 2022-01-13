@@ -2,13 +2,15 @@
 
     import {user,Logout} from '$stores/user';
     import {goto} from '$app/navigation'
+    import {page} from '$app/stores'
+
     let default_avatar = 'http://aquiporti.ec/dreamlab/wp-content/uploads/2020/02/default.jpg';
-    
     import {scale} from 'svelte/transition';
 
     export let visible = false;
 
     function handleLinkClick(){
+        console.log($page)
         visible = false;
     }
     async function handleLogout(){
@@ -21,7 +23,7 @@
 <aside class="aside-nav" transition:scale={{duration:300}}>
     <section class="aside-nav_header">
         <div class="user_avatar">
-            <img src="{$user.avatar_url?$user.avatar_url:default_avatar}" alt="user_name">
+            <img src="{$user.authenticated?$user.picture:default_avatar}" alt="user_name">
         </div>
         <div class="user_name">
             <h3>{$user.name?$user.name:''}</h3>
@@ -33,28 +35,28 @@
     <section class="navigation">
         <ul class="nav_list">
             <li class="nav_item">
-                <a href="/" class="nav_link" on:click={handleLinkClick}>
+                <a class:active={$page.url.pathname === "/"} href="/" class="nav_link" on:click={handleLinkClick}>
                     <span class="nav_link_text">Blog</span>
                 </a>
             </li>
             <li class="nav_item">
-                <a href="/about" class="nav_link" on:click={handleLinkClick}>
+                <a class:active={$page.url.pathname === "/about"} href="/about" class="nav_link" on:click={handleLinkClick}>
                     <span class="nav_link_text">¿Quien soy?</span>
                 </a>
             </li>
             <li class="nav_item">
-                <a href="/contact" class="nav_link" on:click={handleLinkClick}>
+                <a class:active={$page.url.pathname === "/contact"} href="/contact" class="nav_link" on:click={handleLinkClick}>
                     <span class="nav_link_text">Contacto</span>
                 </a>
             </li>
             {#if !$user.authenticated}
             <li class="nav_item">
-                <a href="/login" class="nav_link" on:click={handleLinkClick}>
+                <a class:active={$page.url.pathname === "/login"} href="/login" class="nav_link" on:click={handleLinkClick}>
                     <span class="nav_link_text">Login</span>
                 </a>
             </li>
             <li class="nav_item">
-                <a href="/register" class="nav_link" on:click={handleLinkClick}>
+                <a class:active={$page.url.pathname === "/register"} href="/register" class="nav_link" on:click={handleLinkClick}>
                     <span class="nav_link_text">Registro</span>
                 </a>
             </li>
@@ -106,6 +108,8 @@
     .user_avatar img {
         width: 100%;
         height: 100%;
+        object-fit: cover;
+        background-color: var(--color-white);
     }
     .user_name {
         padding-right: var(--spacing-sm);
@@ -134,6 +138,11 @@
     .nav_item a:hover {
         color: var(--color-primary-text);
         background-color: var(--color-primary-light);
+    }
+    .nav_item a.active {
+        background-color: var(--color-secondary-light);
+        color: var(--color-secondary-text);
+        box-shadow: inset 0 0 1px 2px rgba(255, 255, 255, 0.3);
     }
     .btn-icon {
         color: var(--color-primary-text);

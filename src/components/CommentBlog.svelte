@@ -162,7 +162,7 @@
         
     }
     .comment_avatar img{
-        background-color: var(--color-avatar);
+        background-color: var(--color-white);
         border: 2px solid transparent;
         width: 3rem;
         height: 3rem;

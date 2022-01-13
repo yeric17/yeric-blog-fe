@@ -21,6 +21,8 @@
         width: 2rem;
         height: 2rem;
         object-fit: cover;
+        background-color: white;
+        border: 1px solid #ccc;
     }
 
     .avatar_name {
