@@ -51,7 +51,7 @@
 <style>
 
 	.about_banner_container{
-		background: var(--color-white);
+		/* background: var(--color-white); */
 		padding-top: var(--spacing-xxl);
 		padding-bottom: var(--spacing-xxl);
 		padding-left: var(--spacing-sm);
@@ -132,7 +132,7 @@
 		grid-area: social;
 	}
 	.about_blog{
-		background: var(--color-white);
+		/* background: var(--color-white); */
 		padding-top: var(--spacing-xxl);
 		padding-bottom: var(--spacing-xxl);
 		padding-left: var(--spacing-sm);

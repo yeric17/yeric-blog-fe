@@ -6,6 +6,7 @@
     import {fade} from 'svelte/transition'
     import {page} from '$app/stores'
     import DropArea from '$components/DropArea.svelte'
+    import MediaQuery from '$components/MediaQuery.svelte'
 
     /* svelte components */
     import AsideNav from '$components/AsideNav.svelte';
@@ -15,7 +16,7 @@
     let default_avatar = 'http://aquiporti.ec/dreamlab/wp-content/uploads/2020/02/default.jpg';
 
     let editPhotoMode = false;
-
+    let mobile = false;
     function goLogin() {
         goto('/login');
     }
@@ -27,16 +28,31 @@
 </script>
 
 <header class="header">
-    <button class="btn-icon" on:click={() => showNav = !showNav}>
-        <span class="icon-menu"></span>
-    </button>
-    <nav class="desk-nav">
-        <ul class="desk-nav_list">
-            <li class:active={$page.url.pathname === "/"}  class="desk-nav_list_item"><a href="/">Blog</a></li>
-            <li class:active={$page.url.pathname === "/about"} class="desk-nav_list_item"><a href="/about">Acerca de mi</a></li>
-            <li class:active={$page.url.pathname === "/contact"} class="desk-nav_list_item"><a href="/contact">Contacto</a></li>
-        </ul>
-    </nav>
+    <MediaQuery is="md-">
+        <div class="header_logo">
+            <a href="/">
+                <img src="http://localhost:7070/images/yericdev_logo_mobile.png" alt="">
+            </a>
+        </div>
+        <button class="btn-icon" on:click={() => showNav = !showNav}>
+            <span class="icon-menu"></span>
+        </button>
+    </MediaQuery>
+    <MediaQuery is="lg+">    
+        <div class="header_logo">
+            <a href="/">
+                <img src="http://localhost:7070/images/yericdev_logo.png" alt="">
+            </a>
+        </div>
+
+        <nav class="desk-nav">
+            <ul class="desk-nav_list">
+                <li class:active={$page.url.pathname === "/"}  class="desk-nav_list_item"><a href="/">Blog</a></li>
+                <li class:active={$page.url.pathname === "/about"} class="desk-nav_list_item"><a href="/about">Acerca de mi</a></li>
+                <li class:active={$page.url.pathname === "/contact"} class="desk-nav_list_item"><a href="/contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </MediaQuery>
     <div class="header_section_nav-buttons">
         {#if !$user.authenticated}
         <Button btnType="primary-variant" on:click={goLogin}>Ingresar</Button>
@@ -55,15 +71,16 @@
 <style>
     .header {
         display: grid;
-        grid-template-columns: auto 1fr auto;
+        grid-template-columns: auto 1fr auto auto;
         align-items: center;
-        justify-items: start;
         background: var(--color-secondary);
         position: relative;
         width: 100%;
         height: 70px;
         gap: var(--spacing-lg);
         z-index: var(--z-index-lv1);
+        padding-left: var(--spacing-md);
+        padding-right: var(--spacing-md);
     }
     .btn-icon{
         color: var(--color-gray);
@@ -72,12 +89,13 @@
         position: fixed;
         top: var(--spacing-sm);
         left: var(--spacing-sm);
-        z-index: var(--z-index-lv1);
+        z-index: var(--z-index-lv3);
     }
     .header_section_nav-buttons{
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-lg);
+        justify-self: end;
     }
     .desk-nav {
         height: 100%;

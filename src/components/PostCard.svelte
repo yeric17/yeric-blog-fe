@@ -32,6 +32,12 @@
     <span class="post-card_image" class:editable={$user.authenticated && $user.id === post.author.id} on:click={()=>{editImageMode = true}}>
         {#if editImageMode}
         <DropArea/>
+        <button class="btn-icon" on:click={(event)=> {
+            event.stopPropagation();
+            editImageMode = false
+        }}>
+            <span class="icon-close-circle"></span>
+        </button>
         {:else}
         <img src="{post.image}" alt="">
         {/if}
@@ -84,7 +90,7 @@
         width: 100%;
         height: 200px;
         overflow: hidden;
-
+        position: relative;
     }
     .post-card_image img{
         width: 100%;
@@ -94,9 +100,13 @@
     .post-card_image.editable{
         cursor: pointer;
     }
-
-    .post-card_link{
-        color: var(--color-primary);
-        font-weight: 600;
+    .btn-icon{
+        position: absolute;
+        top: var(--spacing-sm);
+        right: var(--spacing-sm);
+        z-index: 100;
+        cursor: pointer;
     }
+
+
 </style>

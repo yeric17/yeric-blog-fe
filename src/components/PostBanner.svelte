@@ -98,6 +98,7 @@
         background-image: var(--banner-image);
         background-size: cover;
         background-position: center;
+        min-height: 250px;
     }
 
 
@@ -105,13 +106,14 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
-        padding: var(--spacing-md);
+        
         grid-area: content;
     }
 
     .post-banner_title {
         font-family: var(--font-secondary);
-        font-size: 60px;
+        font-size: var(--font-size-xxl);
+        padding-top: var(--spacing-lg);
         font-weight: 600;
         color: #514451;
     }
@@ -132,7 +134,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-md);
-        padding: var(--spacing-md);
+
         align-items: end;
         justify-items: end;
         grid-area: footer;
@@ -148,6 +150,7 @@
 
     @media (min-width: 768px) {
         .post-banner {
+            --font-size-xxl: 48px;
             grid-template-columns: 1fr 1fr;
             grid-template-areas: 
                 "image content"

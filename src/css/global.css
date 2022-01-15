@@ -45,9 +45,6 @@ html, body{
 	padding: var(--spacing-xs);
 	font-size: var(--font-size-lg);
 }
-.btn-icon > *{
-	pointer-events: none;
-}
 
 a{
 	text-decoration: none;

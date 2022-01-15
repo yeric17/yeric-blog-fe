@@ -60,3 +60,6 @@
 .icon-tag:before {
     content: "\e92d";
 }
+.icon-close-circle:before {
+    content: "\e908";
+}

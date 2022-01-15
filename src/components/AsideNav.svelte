@@ -29,7 +29,7 @@
             <h3>{$user.name?$user.name:''}</h3>
         </div>
         <button class="btn-icon" on:click={() => visible = false}>
-            <span class="icon-arrow-circle-left"></span>
+            <span class="icon-close-circle"></span>
         </button>
     </section>
     <section class="navigation">
@@ -96,7 +96,7 @@
         background-color: var(--color-primary-light);
         box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.15),
                     0 2px 0 0 var(--color-primary-light),
-                    inset 0 0 1px 2px rgba(255, 255, 255, 0.2);
+                    inset 0 1.5px 0 0 rgba(255, 255, 255, 0.3);
         border-top-left-radius: 10px;
         border-top-right-radius: 10px;
     }
@@ -141,17 +141,19 @@
         background-color: var(--color-primary-light);
     }
     .nav_item a.active {
-        background-color: var(--color-secondary-light);
+        background-color: var(--color-primary);
         color: var(--color-secondary-text);
-        box-shadow: inset 0 0 1px 2px rgba(255, 255, 255, 0.3);
+        
     }
     .btn-icon {
         color: var(--color-primary-text);
+        border-radius: 2px;
+    }
+    .btn-icon:hover {
+        background-color: var(--color-primary-dark);
     }
     .nav_link_text {
         pointer-events: none;
     }
-    .icon-arrow-circle-left{
-        pointer-events: none;
-    }
+
 </style>
