@@ -84,6 +84,7 @@
         box-shadow: 0 2px 0 0 var(--color-gray-light),
                     0 4px 2px 0 rgba(0, 0, 0, 0.1);
         transform-origin: top left;
+        
     }
 
     .aside-nav_header {

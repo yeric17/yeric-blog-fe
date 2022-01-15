@@ -7,7 +7,7 @@ html, body{
 	padding: 0;
 	font-family: var(--font-primary);
 	font-size: var(--font-size-base);
-	background-color: rgb(206, 206, 206);
+	background-color: #F5F5F5;
 	height: 100%;
 	width: 100%;
 }
@@ -24,6 +24,7 @@ html, body{
 	box-shadow: var(--shadow-lv3);
 	transition: all 0.2s ease-in-out;
 	min-width: 6.5rem;
+	width: 100%;
 	font-weight: 600;
 	min-height: 2.5rem;
 	border-radius: 8px;

@@ -4,6 +4,7 @@
     import {user} from '$stores/user'
     import {goto} from '$app/navigation'
     import {fade} from 'svelte/transition'
+    import {page} from '$app/stores'
     import DropArea from '$components/DropArea.svelte'
 
     /* svelte components */
@@ -29,28 +30,20 @@
     <button class="btn-icon" on:click={() => showNav = !showNav}>
         <span class="icon-menu"></span>
     </button>
+    <nav class="desk-nav">
+        <ul class="desk-nav_list">
+            <li class:active={$page.url.pathname === "/"}  class="desk-nav_list_item"><a href="/">Blog</a></li>
+            <li class:active={$page.url.pathname === "/about"} class="desk-nav_list_item"><a href="/about">Acerca de mi</a></li>
+            <li class:active={$page.url.pathname === "/contact"} class="desk-nav_list_item"><a href="/contact">Contacto</a></li>
+        </ul>
+    </nav>
     <div class="header_section_nav-buttons">
         {#if !$user.authenticated}
-        <Button on:click={goLogin}>Ingresar</Button>
+        <Button btnType="primary-variant" on:click={goLogin}>Ingresar</Button>
         <Button btnType="secondary-variant" on:click={goRegister}>Registrarse</Button>
         {/if}
     </div>
-    <div class:editable={$user.authenticated} class="user_avatar" on:click|preventDefault={()=>{
-        if($user.authenticated){
-            editPhotoMode = !editPhotoMode;
-        }
-    }}>
-        <img src="{$user.authenticated?$user.picture:default_avatar}" alt="user_name">
-        {#if editPhotoMode}
-            <div class="modal_drop-area" transition:fade={{duration:300}}>
-                <button class="modal_drop-area_close-btn" on:click|preventDefault={(event)=>{
-                    event.stopPropagation();
-                    editPhotoMode = false
-                }}>x</button>
-                <DropArea apiUrl={`http://localhost:7070/users/upload?name=${$user.id}`}/>
-            </div>
-        {/if}
-    </div>
+
 </header>
 {#if showNav}
     <div class="aside-bar_container">
@@ -62,38 +55,19 @@
 <style>
     .header {
         display: grid;
-        grid-template-columns: 1fr auto auto;
+        grid-template-columns: auto 1fr auto;
         align-items: center;
-        padding: var(--spacing-sm);
-        background: #fff;
-        border-bottom: 1px solid #eee;
-        width: 100%;
-        gap: var(--spacing-md);
-    }
-
-    .user_avatar {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        width: 2rem;
-        height: 2rem;
-        border-radius: 50%;
-        background: #eee;
+        justify-items: start;
+        background: var(--color-secondary);
         position: relative;
-    }
-    .user_avatar.editable{
-        cursor: pointer;
-    }
-    .user_avatar.editable:hover{
-        border: 1px solid #ccc;
-    }
-    .user_avatar img {
         width: 100%;
-        height: 100%;
-        border-radius: 50%;
-        object-fit: cover;
+        height: 70px;
+        gap: var(--spacing-lg);
+        z-index: var(--z-index-lv1);
     }
-
+    .btn-icon{
+        color: var(--color-gray);
+    }
     .aside-bar_container {
         position: fixed;
         top: var(--spacing-sm);
@@ -105,31 +79,59 @@
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-lg);
     }
-
-    .modal_drop-area {
+    .desk-nav {
+        height: 100%;
+    }
+    .desk-nav_list{
+        height: 100%;
+        align-items: flex-end;
+        display: flex;
+        gap: var(--spacing-md);
+        font-size: var(--font-size-lg);
+        color: var(--color-gray);
+        text-align: center;
+    }
+    .desk-nav_list_item{
+        position: relative;
+        min-width: 100px;
+        padding-bottom: var(--spacing-md);
+    }
+    /* .desk-nav_list_item::after{
+        content: "";
+        display: block;
+        width: 100%;
+        height: 0;
+        background: var(--color-primary);
+        margin-top: var(--spacing-sm);
         position: absolute;
-        top: 0;
-        right: 0;
-        width: 300px;
-        height: 300px;
-        background: var(--color-white);
-        z-index: var(--z-index-lv2);
-        box-shadow: var(--shadow-lv4);
-        border: var(--spacing-md) solid var(--color-secondary-light);
+        bottom: 0;
+        left: 50%;
+        transform: translate(-50%, 50%)
     }
 
-    .modal_drop-area_close-btn {
+    .desk-nav_list_item.active::after{
+        height: 1px;
+    } */
+    .desk-nav_list_item::before{
+        content: "";
         position: absolute;
-        top: .5rem;
-        right: .5rem;
-        width: 1.5rem;
-        height: 1.5rem;
-        background: var(--color-danger);
-        color: var(--color-white);
-        border:none;
-        border-radius: 2px;
-        cursor: pointer;
+        bottom: 0;
+        left: 50%;
+        display: block;
+        height: 14px;
+        width: 14px;
+        background: var(--color-primary);
+        transform: translate(-50%, 50%) rotate(45deg);
+        box-shadow: 0 0 0 1.5px rgba(0, 0, 0, 0.1),
+                0 0 0 1.5px var(--color-primary-dark),
+                inset 0 0 0 .5px rgba(255, 255, 255, 0.45);
+        opacity: 0;
     }
+
+    .desk-nav_list_item.active::before{
+        opacity: 1;
+    }
+
 
     @media (min-width: 768px) {
         .header{

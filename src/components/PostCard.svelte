@@ -1,6 +1,7 @@
 <script>
     import UserAvatar from './UserAvatar.svelte';
     import Interaction from './Interaction.svelte';
+    import DropArea from './DropArea.svelte';
     import {user} from '$stores/user';
 
     
@@ -23,16 +24,20 @@
     export let userId = null;
 
     export let likeMe = false;
+    let editImageMode = false;
 
 </script>
 
 <article class="post-card">
-    <span class="post-card_image">
+    <span class="post-card_image" class:editable={$user.authenticated && $user.id === post.author.id} on:click={()=>{editImageMode = true}}>
+        {#if editImageMode}
+        <DropArea/>
+        {:else}
         <img src="{post.image}" alt="">
+        {/if}
     </span>
-    <h3 class="post-card_title">{post.title}</h3>
+    <h3 class="post-card_title"><a sveltekit:prefetch href="/blog/{post.id}">{post.title}</a></h3>
     <p class="post-card_content">{post.resume}</p>
-    <a sveltekit:prefetch class="post-card_link" href="/blog/{post.id}">Leer más</a>
     <div class="post-card_footer">
         <UserAvatar userName={post.author.name} userAvatar={post.author.picture}/>
         <Interaction likeMe={likeMe} data={{
@@ -47,6 +52,8 @@
     </div>
 </article>
 
+
+
 <style>
     .post-card{
         display: inline-flex;
@@ -54,10 +61,8 @@
         align-items: center;
         justify-content: center;
         border-radius: 10px;
-        background-color: #fff;
         gap: var(--spacing-md);
-        box-shadow: var(--shadow-lv2);
-        padding: var(--spacing-md);
+    
     }
     .post-card_footer{
         display: flex;
@@ -65,6 +70,15 @@
         align-items: center;
         justify-content: space-between;
         
+    }
+    .post-card_title{
+        color: var(--color-secondary);
+        cursor: pointer;
+        text-align: left;
+        width: 100%;
+    }
+    .post-card_title:hover{
+        color: var(--color-secondary-light);
     }
     .post-card_image{
         width: 100%;
@@ -76,6 +90,9 @@
         width: 100%;
         height: 100%;
         object-fit: cover;
+    }
+    .post-card_image.editable{
+        cursor: pointer;
     }
 
     .post-card_link{

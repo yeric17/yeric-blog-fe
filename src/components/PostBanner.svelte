@@ -7,13 +7,14 @@
     import Comment from '$components/Comment.svelte';
     import {user} from '$stores/user';
     import {DateFormat} from "$lib/utils";
+    import Button from '$components/Button.svelte';
 
     export let post = {
         id : '',
         title: '',
         content: [],
         resume: '',
-        image: 'https://joshcollinsworth.com/images/post_images/introducing_svelte.png',
+        image: 'http://localhost:7070/images/svelte.png',
         author: {
             id: '',
             name: '',
@@ -35,11 +36,11 @@
 
 
 <article class="post-banner">
-    <div class="post-banner_image" on:click={goLink}>
-        <img src="{post.image}" alt="imagen del post" />
+    <div class="post-banner_image" on:click={goLink} style={`--banner-image: url(http://localhost:7070/images/svelte.png);`}>
+        
     </div>
     <div class="post-banner_content">
-        <h4 class="post-banner_title" on:click={goLink}>{post.title}</h4>
+        <h4 class="post-banner_title"><a href="/blog/{post.id}">{post.title}</a></h4>
         <span class="post_date">
             {DateFormat(post.created_at,'es',{
                 year: 'numeric',
@@ -50,7 +51,9 @@
         <p class="post-banner_text">
             {post.resume}
         </p>
-        <a sveltekit:prefetch href="{linkPost}" class="post-banner_link">Leer más</a>
+        <div class="btn-wrapper">
+            <Button btnType="primary-variant" on:click={goLink}>Leer más</Button>
+        </div>
     </div>
     <div class="post-banner_footer">
         <div class="footer_author">
@@ -80,44 +83,23 @@
             "image"
             "content"
             "footer";
-        gap: var(--spacing-md);
-        box-shadow: var(--shadow-lv3);
+        gap: var(--spacing-lg);
         max-width: var(--max-width);
-        border: 1px solid var(--color-primary-light);
-        border-radius: var(--border-radius-lg);
-        background-color: var(--color-white);
         margin-left: auto;
         margin-right: auto;
         position: relative;
         z-index: 0;
         
-        
-    }
-
-
-    .post-banner:hover {
-        box-shadow: var(--shadow-lv4);
-    }
-    .post-banner:hover::after {
-        opacity: 1;
     }
     .post-banner_image {
-        border-radius: var(--border-radius-lg);
+        --banner-image: url('{post.image}');
         grid-area: image;
         position: relative;
+        background-image: var(--banner-image);
+        background-size: cover;
+        background-position: center;
     }
-    img {
-        width: 100%;
-        object-fit: cover;
-        height: 100%;
-    }
-    .post-banner_image  img {
-        width: 100%;
-        height: 100%;
-        max-height: 300px;
-        object-fit: cover;
-        border-radius: var(--border-radius-lg);
-    }
+
 
     .post-banner_content {
         display: grid;
@@ -128,20 +110,22 @@
     }
 
     .post-banner_title {
-        font-size: var(--font-size-xxl);
-        font-weight: var(--font-weight-bold);
-        color: var(--color-primary-dark);
+        font-family: var(--font-secondary);
+        font-size: 60px;
+        font-weight: 600;
+        color: #514451;
     }
-
+    .post-banner_title:hover {
+        color: var(--color-secondary);
+    }
     .post-banner_text {
         font-size: var(--font-size-md);
         color: var(--color-secondary);
     }
 
-    .post-banner_link {
-        font-size: var(--font-size-md);
-        color: var(--color-primary-dark);
-        text-decoration: none;
+    .btn-wrapper{
+        width: 180px;
+        margin: auto;
     }
 
     .post-banner_footer{

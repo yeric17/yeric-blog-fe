@@ -30,7 +30,7 @@
     font-family: 'icons';
 }
 .icon-menu:before {
-    content: "\e92c";
+    content: "\e950";
 }
 .icon-info-circle:before {
     content: "\e960";
@@ -52,4 +52,11 @@
 }
 .icon-github:before {
     content: "\e949";
+}
+.icon-javascript:before {
+    content: "\e961";
+}
+
+.icon-tag:before {
+    content: "\e92d";
 }

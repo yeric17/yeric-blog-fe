@@ -23,10 +23,7 @@
     
     box-shadow: 0 1px 0 1.5px rgba(0, 0, 0, 0.1),
                 0px 1px 0px 1.5px var(--color-primary-dark),
-                inset 0px 0px .5px 1px rgba(255, 255, 255, 0.45),
-                inset 0px 0px .5px 1px var(--color-primary);
-
-    
+                inset 0px 1.5px .2px 0px rgba(255, 255, 255, 0.45);
 }
 .btn-primary:hover{
     background-color: var(--color-primary-dark);
@@ -35,12 +32,11 @@
     background-color: var(--color-primary-dark);
 }
 .btn-primary-variant{
-    background-color: var(--color-white);
+    background-color: #F7DEDC;
     color: var(--color-primary);
-    border: 1.5px solid var(--color-primary);
-    box-shadow: 0px 1px 0px 1px var(--color-primary-dark),
-            0px 2px 2px 2px rgba(0, 0, 0, 0.3),
-            inset 0px 0px 1px 1px var(--color-primary-light);
+    box-shadow: 0 1px 0 1.5px rgba(0, 0, 0, 0.1),
+            0px 1px 0px 1.5px var(--color-primary-dark),
+            inset 0px 1.5px .2px 0px rgba(255, 255, 255, 0.45);
 }
 .btn-primary-variant:hover{
     background-color: var(--color-primary);
@@ -57,9 +53,9 @@
 .btn-secondary-variant{
     background-color: var(--color-gray-light);
     color: var(--color-secondary);
-    box-shadow: 0px 1px 0px 1px #939393,
-                0px 2px 2px 2px rgba(0, 0, 0, 0.3),
-                inset 0px 0px 1px 1px var(--color-white);
+    box-shadow: 0 1px 0 1.5px rgba(0, 0, 0, 0.1),
+            0px 1px 0px 1.5px var(--color-secondary-dark),
+            inset 0px 1.5px .2px 0px rgba(255, 255, 255, 0.45);
 }
 .btn-secondary-variant:hover{
     background-color: var(--color-secondary);

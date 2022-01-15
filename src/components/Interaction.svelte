@@ -109,7 +109,6 @@
     }
     .interaction_comments {
         color: var(--color-secondary);
-        margin-right: var(--spacing-md);
         
         display: flex;
         align-items: center;
