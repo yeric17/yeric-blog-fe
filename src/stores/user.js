@@ -2,8 +2,7 @@ import { writable } from "svelte/store";
 import {goto} from "$app/navigation";
 import { browser } from "$app/env";
 import { addNotification } from "$stores/notifications";
-import { duration } from "moment";
-
+import { API_HOST } from "$stores/config";
 
 const user = writable({
     authenticated: false
@@ -18,7 +17,7 @@ const UpdateUser = function(newUser) {
 const Login =  async function(user) {
     try{
 
-        let response = await fetch("http://localhost:7070/users/login", {
+        let response = await fetch(`${API_HOST}/users/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -72,7 +71,7 @@ async function Auth() {
         if (!token) {
             return;
         }
-        let response = await fetch("http://localhost:7070/users/auth", {
+        let response = await fetch(`${API_HOST}/users/auth`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -94,7 +93,7 @@ async function Auth() {
 }
 
 async function Register(user) {
-    let response = await fetch("http://localhost:7070/users/register", {
+    let response = await fetch(`${API_HOST}/users/register`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

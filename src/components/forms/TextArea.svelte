@@ -74,7 +74,7 @@
         left: var(--spacing-sm);
         transform: translateY(-50%);
         transition: all 0.3s ease;
-        color: var(--color-gray);
+        color: var(--color-gray-light);
     }
     .text-area_label.focus{
         top: -1.2rem;

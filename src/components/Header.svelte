@@ -1,10 +1,11 @@
 
 
 <script>
-    import {user} from '$stores/user'
+    import {user,Logout} from '$stores/user'
     import {goto} from '$app/navigation'
-    import {fade} from 'svelte/transition'
+    import {slide} from 'svelte/transition'
     import {page} from '$app/stores'
+    import {API_HOST} from '$stores/config'
     import DropArea from '$components/DropArea.svelte'
     import MediaQuery from '$components/MediaQuery.svelte'
 
@@ -15,8 +16,7 @@
     let showNav = false;
     let default_avatar = 'http://aquiporti.ec/dreamlab/wp-content/uploads/2020/02/default.jpg';
 
-    let editPhotoMode = false;
-    let mobile = false;
+    let showAvatarNav = false;
     function goLogin() {
         goto('/login');
     }
@@ -25,23 +25,34 @@
         goto('/register');
     }
 
+    function toggleNav() {
+        showNav = !showNav;
+    }
+
+    function handleLogOut(event){
+        event.stopPropagation();
+        Logout();
+        showAvatarNav = false;
+        goto('/');
+    }
+
 </script>
 
 <header class="header">
     <MediaQuery is="md-">
         <div class="header_logo">
             <a href="/">
-                <img src="http://localhost:7070/images/yericdev_logo_mobile.png" alt="">
+                <img src={`${API_HOST}/images/yericdev_logo_mobile.png`} alt="">
             </a>
         </div>
-        <button class="btn-icon" on:click={() => showNav = !showNav}>
+        <button class="btn-icon" on:click={toggleNav}>
             <span class="icon-menu"></span>
         </button>
     </MediaQuery>
     <MediaQuery is="lg+">    
         <div class="header_logo">
             <a href="/">
-                <img src="http://localhost:7070/images/yericdev_logo.png" alt="">
+                <img src={`${API_HOST}/images/yericdev_logo.png`} alt="">
             </a>
         </div>
 
@@ -59,7 +70,21 @@
         <Button btnType="secondary-variant" on:click={goRegister}>Registrarse</Button>
         {/if}
     </div>
-
+    {#if $user.authenticated}
+    <div class:editable={$user.authenticated} class="user_avatar" on:click|preventDefault={(event)=>{
+        event.stopPropagation();
+      
+        showAvatarNav = !showAvatarNav;
+        
+        }}>
+        <img src="{$user.picture}" alt="user_name">
+        {#if showAvatarNav}
+            <div class="user_avatar_menu" transition:slide={{duration:300}}>
+                <button class="btn-avatar" on:click={Logout}>Cerrar sesión</button>
+            </div>
+        {/if}
+    </div>
+    {/if}
 </header>
 {#if showNav}
     <div class="aside-bar_container">
@@ -149,7 +174,36 @@
     .desk-nav_list_item.active::before{
         opacity: 1;
     }
-
+    .user_avatar{
+        height: 40px;
+        width: 40px;
+        position: relative;
+    }
+    .user_avatar_menu{
+        position: absolute;
+        bottom: 0;
+        right:0;
+        min-width: 100px;
+        transform: translate(0, 100%);
+    }
+    .user_avatar_menu button{
+        background: var(--color-secondary-light);
+        color: var(--color-white);
+        font-size: var(--font-size-md);
+        padding: var(--spacing-sm);
+        border: none;
+        border-radius: var(--border-radius-sm);
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    .user_avatar img{
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 50%;
+        background-color: var(--color-gray);
+    }
 
     @media (min-width: 768px) {
         .header{

@@ -4,7 +4,6 @@
     import Interaction from './Interaction.svelte';
     import {user} from '$stores/user';
     import CommentBlog from './CommentBlog.svelte';
-    import moment from 'moment';
 
     export let data = {
         post_id: '',

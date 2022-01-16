@@ -23,12 +23,12 @@
     let parentComment = null;
 
     onMount(async function(){
-        let parentResp = await fetch(`http://localhost:7070/comments/id/${comment_id}`);
+        let parentResp = await fetch(`${API_HOST}/comments/id/${comment_id}`);
         let parentJson = await parentResp.json();
         console.log(parentJson);
         parentComment = parentJson.data;
 
-        let response = await fetch(`http://localhost:7070/comments?entity_type=comment&post_id=${post_id}&comment_id=${comment_id}`);
+        let response = await fetch(`${API_HOST}/comments?entity_type=comment&post_id=${post_id}&comment_id=${comment_id}`);
         let data = await response.json();
 
         comments = data.data;

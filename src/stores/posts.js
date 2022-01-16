@@ -1,12 +1,13 @@
 import { writable } from "svelte/store";
+import {API_HOST} from "$stores/config";
 
 
 const posts = writable([]);
 
 const getPosts = async () => {
-
+    
     try{
-        const response = await fetch("http://localhost:7070/posts");
+        const response = await fetch(`${API_HOST}/posts`);
         const json = await response.json();
     
         if(json && json.success) {
@@ -27,7 +28,7 @@ const getPosts = async () => {
 };
 
 const addPost = async (post) => {
-    const response = await fetch("http://localhost:7070/posts", {
+    const response = await fetch(`${API_HOST}/posts`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -44,7 +45,7 @@ const addPost = async (post) => {
 };
 
 const addLike = async (like) => {
-    const response = await fetch(`http://localhost:7070/posts/like`, {
+    const response = await fetch(`${API_HOST}/posts/like`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json"

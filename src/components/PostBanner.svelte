@@ -3,18 +3,18 @@
     import UserAvatar from './UserAvatar.svelte';
     import Interaction from './Interaction.svelte';
     import {addLike} from '$stores/posts';
-    import moment from 'moment';
     import Comment from '$components/Comment.svelte';
     import {user} from '$stores/user';
     import {DateFormat} from "$lib/utils";
     import Button from '$components/Button.svelte';
+    import {API_HOST} from '$stores/config';
 
     export let post = {
         id : '',
         title: '',
         content: [],
         resume: '',
-        image: 'http://localhost:7070/images/svelte.png',
+        image: `${API_HOST}/images/svelte.png`,
         author: {
             id: '',
             name: '',
@@ -36,7 +36,7 @@
 
 
 <article class="post-banner">
-    <div class="post-banner_image" on:click={goLink} style={`--banner-image: url(http://localhost:7070/images/svelte.png);`}>
+    <div class="post-banner_image" on:click={goLink} style={`--banner-image: url(${API_HOST}/images/svelte.png);`}>
         
     </div>
     <div class="post-banner_content">
@@ -106,7 +106,8 @@
         display: grid;
         grid-template-columns: 1fr;
         gap: var(--spacing-md);
-        
+        padding-left: var(--spacing-sm);
+		padding-right: var(--spacing-sm);
         grid-area: content;
     }
 
@@ -134,7 +135,8 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-md);
-
+        padding-left: var(--spacing-sm);
+		padding-right: var(--spacing-sm);
         align-items: end;
         justify-items: end;
         grid-area: footer;

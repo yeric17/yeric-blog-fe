@@ -18,7 +18,6 @@
 </script>
 <script>
 	
-    import {onMount} from 'svelte';
 	import {user} from '$stores/user';
 	import {posts} from '$stores/posts';
 	import Loader from '$components/Loader.svelte';
@@ -82,9 +81,8 @@
 		position: relative;
 		width: 100%;
 		padding-bottom: var(--spacing-lg);
+		padding-top: var(--spacing-lg);
 		background-color: var(--color-gray);
-		padding-left: var(--spacing-sm);
-		padding-right: var(--spacing-sm);
 	}
 	.posts-list {
 		padding-top: var(--spacing-lg);
@@ -99,7 +97,7 @@
 	.posts-list_wrapper {
 		display: grid;
 		grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-		grid-gap: var(--spacing-lg);
+		grid-gap: var(--spacing-xl);
 		justify-content: center;
 		align-items: center;
 	}
@@ -114,7 +112,7 @@
 		display: flex;
 		flex-wrap: wrap;
 		gap: var(--spacing-sm);
-		margin-bottom: var(--spacing-sm);
+		padding-bottom: var(--spacing-xxl);
 	}
 	.search input{
 		display: flex;

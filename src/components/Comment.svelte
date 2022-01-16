@@ -3,6 +3,7 @@
     import Button from './Button.svelte';
     import {scale} from 'svelte/transition';
     import { createEventDispatcher } from 'svelte';
+    import {API_HOST} from '$stores/config';
 
 	const dispatch = createEventDispatcher();
 
@@ -20,7 +21,7 @@
         e.preventDefault();
         dispatch('submit', value);
         
-        let response = await fetch('http://localhost:7070/posts/comment', {
+        let response = await fetch(`${API_HOST}/posts/comment`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

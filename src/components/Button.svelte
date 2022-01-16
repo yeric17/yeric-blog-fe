@@ -33,6 +33,7 @@
 }
 .btn-primary-variant{
     background-color: #F7DEDC;
+    
     color: var(--color-primary);
     box-shadow: 0 1px 0 1.5px rgba(0, 0, 0, 0.1),
             0px 1px 0px 1.5px var(--color-primary-dark),

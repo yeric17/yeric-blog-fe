@@ -27,7 +27,7 @@
         
         errorMessage = false
 
-        let response = await fetch('http://localhost:7070/contact', {
+        let response = await fetch(`${API_HOST}/contact`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -92,7 +92,7 @@
 
 <style>
     .contact-container {
-        max-width: var(--max-width);
+        max-width: 600px;
         margin: 0 auto;
         padding-top: var(--spacing-xl);
     }

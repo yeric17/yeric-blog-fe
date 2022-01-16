@@ -14,8 +14,6 @@
 <script>
     import {onMount} from 'svelte';
     import {user} from '$stores/user';
-    import moment from 'moment';
-    import 'moment/locale/pt-br';
     import {DateFormat} from "$lib/utils";
 
     import UserAvatar from '$components/UserAvatar.svelte';
@@ -31,14 +29,14 @@
     let post = null;
     let comments = [];
     onMount(() => {
-        blogPromise = fetch(`http://localhost:7070/posts/id/${id}`)
+        blogPromise = fetch(`${API_HOST}/posts/id/${id}`)
             .then(res => res.json())
             .then(blog => {
                 post = blog.data;
                 post.content = JSON.parse(post.content);
                 console.log(post)
         })
-        commentsPromise = fetch(`http://localhost:7070/comments?entity_type=post&post_id=${id}`)
+        commentsPromise = fetch(`${API_HOST}/comments?entity_type=post&post_id=${id}`)
             .then(res => res.json())
             .then(json => {
                 comments = json.data;
