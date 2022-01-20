@@ -19,7 +19,7 @@
     import UserAvatar from '$components/UserAvatar.svelte';
     import Interaction from '$components/Interaction.svelte';
     import CommentBlog from '$components/CommentBlog.svelte';
-
+    import {API_HOST} from '$stores/config';
 
     export let id
 
@@ -36,7 +36,7 @@
                 post.content = JSON.parse(post.content);
                 console.log(post)
         })
-        commentsPromise = fetch(`${API_HOST}/comments?entity_type=post&post_id=${id}`)
+        commentsPromise = fetch(`${API_HOST}/comments?entity_type=post&parent_id=${id}`)
             .then(res => res.json())
             .then(json => {
                 comments = json.data;
@@ -77,19 +77,28 @@ Loading...
                 </div>
             </div>
         </div>
-        {#each post.content as part}
-            {#if part.type === 'text'}
-                <p class="post-page_text">{part.value}</p>
-            {/if}
-            {#if part.type === 'image'}
-                <div class="post-page_image-container">
-                    <img class="post-page_image" src={part.value} alt="postimage" />
-                </div>
-            {/if}
-            {#if part.type === 'subtitle'}
-                <h2 class="post-page_subtitle">{part.value}</h2>
-            {/if}
-        {/each}
+        <div class="post-page_content_list">
+            {#each post.content as part}
+                {#if part.type === 'text'}
+                    <p class="post-page_text">{@html part.value}</p>
+                {/if}
+                {#if part.type === 'image'}
+                    <div class="post-page_image-container">
+                        <img class="post-page_image" src={part.value} alt="postimage" />
+                    </div>
+                {/if}
+                {#if part.type === 'subtitle'}
+                    <h2 class="post-page_subtitle">{part.value}</h2>
+                {/if}
+                {#if part.type === 'code'}
+                    <pre class="post-page_code">
+                        <code>
+                            {part.value}
+                        </code>
+                    </pre>
+                {/if}
+            {/each}
+        </div>
     </section>
     {#if comments?.length > 0}
     <section class="post-page_comments">
@@ -218,5 +227,16 @@ Loading...
         padding-left : var(--spacing-md);
         color: var(--color-secondary-dark);
         width: 100%;
+    }
+    .post-page_content_list{
+        max-width: var(--max-width);
+    }
+    code{
+        line-break: auto;
+        overflow: hidden;
+        display: block;
+        width: 100%;
+        background-color: var(--color-gray-light);
+        padding: var(--spacing-md);
     }
 </style>

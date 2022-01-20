@@ -60,6 +60,12 @@
                     <span class="nav_link_text">Registro</span>
                 </a>
             </li>
+            {:else if $user.authenticated && $user.role_id === 1}
+                <li class="nav_item">
+                    <a class:active={$page.url.pathname === "/addpost"} href="/addpost" class="nav_link" on:click={handleLinkClick}>
+                        <span class="nav_link_text">Crear Post</span>
+                    </a>
+                </li>
             {:else}
             <li class="nav_item">
                 <a href="#" class="nav_link" on:click={handleLogout}>

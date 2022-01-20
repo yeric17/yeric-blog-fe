@@ -37,6 +37,9 @@
             success = true;
         }
     }
+    function handleChange(event){
+        dispacher('change', event);
+    }
 </script>
 
 <label class="text-area" for={id} class:error={hasError} class:success={success}>
@@ -47,7 +50,7 @@
                 <span class="required-text">[Opcional]</span>
             {/if}
         </span>
-        <textarea class="text-area_input" name={name} id={id} cols="30" rows="10" bind:value={value} on:focus={onFocus} on:blur={onBlur}  on:input={Validate}></textarea>
+        <textarea class="text-area_input" name={name} id={id} cols="30" rows="10" bind:value={value} on:focus={onFocus} on:blur={onBlur}  on:input={Validate} on:change={handleChange}></textarea>
     </div>
     {#if hasError}
         <span class="error-message"><i class="fas fa-exclamation-circle"></i> {errorMessage}</span>

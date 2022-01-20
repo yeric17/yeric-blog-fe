@@ -11,7 +11,7 @@
 </script>
 
 
-<button class="btn btn-{btnType}" on:click={handleClick}>
+<button class="btn btn-{btnType}" on:click|preventDefault={handleClick}>
 <slot>
 </slot>
 </button>

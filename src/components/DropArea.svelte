@@ -10,11 +10,8 @@
     export let complementUrl = null;
     export let fileUrl = [];
     export let method = 'POST';
-    export let fileName = 'file';
+    
     let tempUrl = [];
-
-
-
 
     
     let hover = false;
@@ -43,33 +40,23 @@
     async function handleSubmit(event){
         event.preventDefault();
         
-        let reader = new FileReader();
-
-        reader.onload = function(e) {
-            tempUrl.push(e.target.result);
-            dispacher('dummy', tempUrl);
-        }
-
-        //each input.files
-        for(let i = 0; i < input.files.length; i++){
-            let file = input.files[i];
-            reader.readAsDataURL(file);
-        }
-
-
         if(!awaitUpload){
+            let reader = new FileReader();
+
+            reader.readAsDataURL(input.files[0]);
+
+            reader.onload = function(event){
+                dispacher('dummy-image',event.target.result);
+            }
 
             let response = await fetch(getUrl(), {
                 method: method,
                 body: new FormData(form),
-                // headers: {
-                //     'Content-Type': 'multipart/form-data;boundary=<calculated when request is sent>'
-                // }
             });
-
+            console.log(response);
             let json = await response.json();
 
-            if(json.code === 200){
+            if(json.success){
                 addNotification({message: 'file uploaded', type: 'success', duration: 2000});
                 fileUrl = json.data;
                 dispacher('uploaded', fileUrl);
@@ -79,18 +66,23 @@
             }
         }
         else{
+            let reader = new FileReader();
+
+            reader.readAsDataURL(input.files[0]);
+
+            reader.onload = function(event){
+                dispacher('dummy-image',event.target.result);
+            }
             const callback =  async function (complement) {
-                let response = await fetch(fileUrl + complement, {
+
+                let response = await fetch(getUrl(), {
                     method: method,
                     body: new FormData(form),
-                    // headers: {
-                    //     'Content-Type': 'multipart/form-data;boundary=<calculated when request is sent>'
-                    // }
                 });
 
                 let json = await response.json();
 
-                if(json.code === 200){
+                if(json.success){
                     addNotification({message: 'file uploaded', type: 'success', duration: 2000});
                     fileUrl = json.data;
                     dispacher('uploaded', fileUrl);
@@ -98,7 +90,7 @@
                 else{
                     addNotification({message: 'file did not upload', type: 'error', duration: 2000});
                 }
-                return json;
+                return json.data;
             }
 
             dispacher('uploading', callback);
@@ -131,7 +123,9 @@
     <input id="{id}" class="input-file" type="file" name="file" on:change|preventDefault={handleChange} />
     <label for="{id}" class="drop-area {hover?'hover':''}" on:dragenter|preventDefault={()=>hover=true} on:dragover|preventDefault={()=>hover=true} on:dragleave|preventDefault={()=>hover=false} on:drop|preventDefault={handleDrop}>
         <div class="drop-area_text">
-            <span>Arrastre y suelte archivos aquí, o de clic <span class="icon-text">&#xe912;</span></span>
+            <slot>
+                <span>Arrastre y suelte archivos aquí, o de clic <span class="icon-text">&#xe912;</span></span>
+            </slot>
         </div>
     </label>
 </form>

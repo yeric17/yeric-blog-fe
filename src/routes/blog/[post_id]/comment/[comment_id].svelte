@@ -1,6 +1,6 @@
 <script context="module">
     export const load = async ({params,url}) => {
-        const comment_id = params.id;
+        const comment_id = params.comment_id;
         const post_id = params.post_id;
         return {
             props: {
@@ -14,6 +14,7 @@
     import {user} from "$stores/user";
     import CommentBlog from "$components/CommentBlog.svelte";
     import {onMount} from "svelte";
+    import {API_HOST} from "$stores/config";
 
     export let comment_id = "";
 
@@ -28,7 +29,7 @@
         console.log(parentJson);
         parentComment = parentJson.data;
 
-        let response = await fetch(`${API_HOST}/comments?entity_type=comment&post_id=${post_id}&comment_id=${comment_id}`);
+        let response = await fetch(`${API_HOST}/comments?entity_type=comment&parent_id=${comment_id}`);
         let data = await response.json();
 
         comments = data.data;

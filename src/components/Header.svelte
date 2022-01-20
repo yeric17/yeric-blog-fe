@@ -1,6 +1,7 @@
 
 
 <script>
+    import {clickOutside} from '$lib/click-outside';
     import {user,Logout} from '$stores/user'
     import {goto} from '$app/navigation'
     import {slide} from 'svelte/transition'
@@ -17,6 +18,8 @@
     let default_avatar = 'http://aquiporti.ec/dreamlab/wp-content/uploads/2020/02/default.jpg';
 
     let showAvatarNav = false;
+    let editAvatar = false;
+
     function goLogin() {
         goto('/login');
     }
@@ -34,6 +37,12 @@
         Logout();
         showAvatarNav = false;
         goto('/');
+    }
+
+    function handleClickOutside(event) {
+        showNav = false;
+        showAvatarNav = false;
+        console.log('click outside');
     }
 
 </script>
@@ -61,6 +70,9 @@
                 <li class:active={$page.url.pathname === "/"}  class="desk-nav_list_item"><a href="/">Blog</a></li>
                 <li class:active={$page.url.pathname === "/about"} class="desk-nav_list_item"><a href="/about">Acerca de mi</a></li>
                 <li class:active={$page.url.pathname === "/contact"} class="desk-nav_list_item"><a href="/contact">Contacto</a></li>
+                {#if $user.authenticated && $user.role_id == 1}
+                    <li class:active={$page.url.pathname === "/addpost"} class="desk-nav_list_item"><a href="/addpost">Crear Post</a></li>
+                {/if}
             </ul>
         </nav>
     </MediaQuery>
@@ -77,17 +89,22 @@
         showAvatarNav = !showAvatarNav;
         
         }}>
-        <img src="{$user.picture}" alt="user_name">
+        {#if editAvatar}
+            <DropArea apiUrl={`${API_HOST}/users/upload?name=${$user.id}`}><span class="icon-text">&#xe912;</span></DropArea>
+        {:else}
+            <img src={$user.picture || default_avatar} alt="userAvatar">
+        {/if}
         {#if showAvatarNav}
-            <div class="user_avatar_menu" transition:slide={{duration:300}}>
+            <div class="user_avatar_menu" transition:slide={{duration:300}} use:clickOutside on:click-outside={handleClickOutside}>
                 <button class="btn-avatar" on:click={Logout}>Cerrar sesión</button>
+                <button class="btn-avatar" on:click={()=>{editAvatar = true}}>Editar foto</button>
             </div>
         {/if}
     </div>
     {/if}
 </header>
 {#if showNav}
-    <div class="aside-bar_container">
+    <div class="aside-bar_container" use:clickOutside on:click-outside={handleClickOutside}>
         <AsideNav bind:visible={showNav} user={$user}/>
     </div>
 {/if}
@@ -178,6 +195,7 @@
         height: 40px;
         width: 40px;
         position: relative;
+        cursor: pointer;
     }
     .user_avatar_menu{
         position: absolute;
@@ -204,7 +222,13 @@
         border-radius: 50%;
         background-color: var(--color-gray);
     }
-
+    .btn-avatar{
+        width: 100%;
+        text-align: left;
+    }
+    .btn-avatar:hover{
+        background-color: var(--color-secondary-light);
+    }
     @media (min-width: 768px) {
         .header{
             padding-left: var(--spacing-xl);

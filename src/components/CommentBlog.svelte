@@ -4,6 +4,7 @@
     import Interaction from './Interaction.svelte';
     import {user} from '$stores/user';
     import CommentBlog from './CommentBlog.svelte';
+    import {DateFormat} from '$lib/utils';
 
     export let data = {
         post_id: '',
@@ -72,7 +73,7 @@
     </div>
     <div class="comment_user-info">
         <span class="user-name">{data.name}</span>
-        <span class="comment-date">{moment(data.date).format("DD/MM/YYYY - HH:mm")}</span>
+        <span class="comment-date">{DateFormat(data.date)}</span>
     </div>
     <div class="comment-body">
         <p>{data.content}</p>

@@ -36,7 +36,7 @@
 
 
 <article class="post-banner">
-    <div class="post-banner_image" on:click={goLink} style={`--banner-image: url(${API_HOST}/images/svelte.png);`}>
+    <div class="post-banner_image" on:click={goLink} style={`--banner-image: url('${post.image}');`}>
         
     </div>
     <div class="post-banner_content">

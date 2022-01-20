@@ -20,6 +20,7 @@
 	
 	import {user} from '$stores/user';
 	import {posts} from '$stores/posts';
+	import {onMount} from 'svelte';
 	import Loader from '$components/Loader.svelte';
 	import UserAvatar from '$components/UserAvatar.svelte';
 	import Interaction from '$components/Interaction.svelte';
@@ -29,12 +30,8 @@
 
 	export let postBanner;
 	
-	let filterCategoies = [
-		'javascript',
-		'css',
-		'html',
-		'react',
-		'go',
+	let filterCategories = [
+	
 	]
 
 	function LikeMe(post){
@@ -43,6 +40,18 @@
 		}
 		return false;
 	}
+
+	onMount(async function(){
+		$posts.forEach(post => {
+			if(post.categories){
+				post.categories.forEach(category => {
+					if(!filterCategories.includes(category)){
+						filterCategories = [...filterCategories,category];
+					}
+				})
+			}
+		})
+	})
 </script>
 <svelte:head>
 	<title>Blog</title>
@@ -59,7 +68,7 @@
 	<section class="posts-list">
 		<div class="posts_nav">
 			<div class="posts_filters">
-				{#each filterCategoies as filter}
+				{#each filterCategories as filter}
 				<Category>{filter}</Category>
 				{/each}
 			</div>
