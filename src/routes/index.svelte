@@ -1,25 +1,32 @@
 <script context="module">
-	import {Auth} from "$stores/user";
-	import {getPosts} from '$stores/posts';
+	export const prerender = true;
+	
+	import {API_HOST} from '$stores/config';
 	export const load = async function({fetch}){
-		const posts = await getPosts();
-		let postBanner = null;
-		if(posts.length > 0){	
-			postBanner = posts.sort(function(a, b){
-				return b.likes - a.likes
-			})[0]
+		const result = await fetch(`${API_HOST}/posts`);
+
+		if(result.ok){
+			const json = await result.json();
+			const posts = json.data.map(post => {
+                post.content = JSON.parse(post.content)
+                post.resume = post.content.find(element => element.type === 'text').value.substring(0, 100) + '...'
+                return post
+            })
+			
+			return {
+				props: {
+					posts
+				}
+			}	
 		}
 		return {
-			props: {
-				postBanner,
-			},
+			props: {},
 		};
 	} 
 </script>
 <script>
 	
 	import {user} from '$stores/user';
-	import {posts} from '$stores/posts';
 	import {onMount} from 'svelte';
 	import Loader from '$components/Loader.svelte';
 	import UserAvatar from '$components/UserAvatar.svelte';
@@ -28,22 +35,17 @@
 	import PostCard from '$components/PostCard.svelte';
 	import Category from '$components/Category.svelte';
 
-	export let postBanner;
+	export let posts;
 	
 	let filterCategories = [
 	
 	]
 
-	function LikeMe(post){
-		if($user.authenticated){
-			return post.likes && post.likes.some(like => like.author_id == $user.id);
-		}
-		return false;
-	}
 
 	onMount(async function(){
-		if($posts.length > 0){
-			$posts.forEach(post => {
+		//TODO: create service in backen to get categories used in posts
+		if(posts.length > 0){
+			posts.forEach(post => {
 				if(post.categories){
 					post.categories.forEach(category => {
 						if(!filterCategories.includes(category)){
@@ -62,11 +64,11 @@
 
 <main class="posts">
     <section class="posts_banner">
-		{#if postBanner}
-		<PostBanner likeMe={LikeMe(postBanner)} post={postBanner}/>
+		{#if posts[0]}
+		<PostBanner post={posts[0]}/>
 		{/if}
     </section>
-	{#if $posts.length > 0}
+	{#if posts.length > 0}
 	<section class="posts-list">
 		<div class="posts_nav">
 			<div class="posts_filters">
@@ -79,8 +81,8 @@
 			</div>
 		</div>
 		<div class="posts-list_wrapper">
-		{#each $posts as post}
-			<PostCard likeMe={LikeMe(post)} post={post} userId={$user.id}/>
+		{#each posts as post}
+			<PostCard post={post} userId={$user.id}/>
 		{/each}
 		</div>
 	</section>

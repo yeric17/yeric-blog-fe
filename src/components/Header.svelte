@@ -154,7 +154,11 @@
     .desk-nav_list_item{
         position: relative;
         min-width: 100px;
-        padding-bottom: var(--spacing-md);
+        height: 40px;
+    }
+    .desk-nav_list_item a{
+        height: 100%;
+        display: block;
     }
     /* .desk-nav_list_item::after{
         content: "";

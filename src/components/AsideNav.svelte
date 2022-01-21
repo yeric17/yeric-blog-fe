@@ -147,7 +147,7 @@
         background-color: var(--color-primary-light);
     }
     .nav_item a.active {
-        background-color: var(--color-primary);
+        background-color: var(--color-primary-light);
         color: var(--color-secondary-text);
         
     }

@@ -1,12 +1,34 @@
 <script context="module">
-    import {Auth} from "$stores/user";
-    export const load = async ({params}) => {
-        let isAuth = await Auth();
-        const id = params.id;
+
+    import {API_HOST} from '$stores/config';
+
+    export const prerender = true;
+
+    export const load = async ({params, fetch}) => {
+        const post_id = params.post_id;
+
+        const [postResponse, commentResponse] = await Promise.allSettled([
+            fetch(`${API_HOST}/posts/id/${post_id}`),
+            fetch(`${API_HOST}/comments?entity_type=post&parent_id=${post_id}`)
+        ])
+
+        let post = null;
+        let comments = null;
+
+        if (postResponse.status === 'fulfilled') {
+            const jsonPost = await  postResponse.value.json();
+            post = jsonPost.data;
+            post.content = JSON.parse(post.content);
+        }
+
+        if (commentResponse.status === 'fulfilled') {
+            const jsonComment = await commentResponse.value.json();
+            comments = jsonComment.data;
+        }
         return {
             props: {
-               id,
-               authenticated: isAuth
+                comments,
+                post
             },
         };
     };
@@ -19,39 +41,17 @@
     import UserAvatar from '$components/UserAvatar.svelte';
     import Interaction from '$components/Interaction.svelte';
     import CommentBlog from '$components/CommentBlog.svelte';
-    import {API_HOST} from '$stores/config';
-
-    export let id
 
 
-    let blogPromise = Promise.resolve()
-    let commentsPromise = Promise.resolve()
-    let post = null;
-    let comments = [];
-    onMount(() => {
-        blogPromise = fetch(`${API_HOST}/posts/id/${id}`)
-            .then(res => res.json())
-            .then(blog => {
-                post = blog.data;
-                post.content = JSON.parse(post.content);
-                console.log(post)
-        })
-        commentsPromise = fetch(`${API_HOST}/comments?entity_type=post&parent_id=${id}`)
-            .then(res => res.json())
-            .then(json => {
-                comments = json.data;
-                console.log(comments)
-            })
-    })
+    export let post = null;
+    export let comments = [];
+
 </script>
 
 <svelte:head>
     <title>Blog Post</title>
 </svelte:head>
 <main class="post-page">
-{#await blogPromise}
-Loading...
-{:then _}
     <section class="post-page_content">
         <div class="post-page_header">
             <h1 class="post-page_title">{post.title}</h1>
@@ -104,9 +104,6 @@ Loading...
     <section class="post-page_comments">
         <h2 class="post-page_comments-title">Comentarios</h2>
         <div class="post-page_comments-wrapper">
-        {#await commentsPromise}
-        Loading...
-        {:then _}
             {#each comments as comment}
                 <div class="post-page_comment">
                     <CommentBlog data={{
@@ -123,11 +120,11 @@ Loading...
                     userId={$user.id} />
                 </div>
             {/each}
-        {/await}
+
         </div>
     </section>
     {/if}
-{/await}
+
 </main>
 
 <style>

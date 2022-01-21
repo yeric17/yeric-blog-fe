@@ -3,13 +3,11 @@
     import {Auth} from "$stores/user";
     export const load = async function(){
         let isAuth = await Auth();
-        if(isAuth){
-            return {
-                authendication: true
-            }
-        }
+        
         return {
-            authendication: false
+            props: {
+                authenticated: isAuth
+            }
         }
     }
 </script>
@@ -20,12 +18,16 @@
     import {notifications,addNotification} from '$stores/notifications';
     import Toast from '$components/Toast.svelte';
     import { fly } from 'svelte/transition';
-    import '../css/fonts.css';
-    import '../css/forms.css';
-    import '../css/icons.css';
-    import '../css/variables.css';
-    import '../css/global.css';
+    import '$css/fonts.css';
+    import '$css/forms.css';
+    import '$css/icons.css';
+    import '$css/variables.css';
+    import '$css/global.css';
+
+    export let authenticated = null;
 </script>
+
+{#if authenticated === true || authenticated === false}
 
 <Header></Header>
 
@@ -59,7 +61,7 @@
     {/each}
     {/if}
 </div>
-
+{/if}
 <style>
     .main{
         display: grid;
