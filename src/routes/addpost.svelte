@@ -23,7 +23,7 @@
     let codeLangs = [
         "html",
         "css",
-        "js",
+        "javascript",
         "php",
         "sql",
         "json",

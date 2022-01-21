@@ -8,8 +8,12 @@ const config = {
 				alias: {
 					$stores: path.resolve('src/stores'),
 					$components: path.resolve('src/components'),
+					$css: path.resolve('src/css'),
 				}
-			}
+			},
+			optimizeDeps: {
+				include: ["highlight.js/lib/core"],
+			},
 		},
 		adapter: adapter(),
 

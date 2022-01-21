@@ -67,25 +67,31 @@ async function Logout() {
 
 async function Auth() {
     if(browser) {
-        let token = localStorage.getItem("token");
-        if (!token) {
-            return;
-        }
-        let response = await fetch(`${API_HOST}/users/auth`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                "Authorization": token
+        try{
+
+            let token = localStorage.getItem("token");
+            if (!token) {
+                return;
             }
-        });
-        let data = await response.json();
-        console.log("===================> auth", data);
-    
-        if (data.success) {
-            let userData = data.data;
-            userData.authenticated = true;
-            UpdateUser(data.data);
-            return true
+            let response = await fetch(`${API_HOST}/users/auth`, {
+                method: "GET",
+                headers: {
+                    "Content-Type": "application/json",
+                    "Authorization": token
+                }
+            });
+            let data = await response.json();
+            console.log("===================> auth", data);
+        
+            if (data.success) {
+                let userData = data.data;
+                userData.authenticated = true;
+                UpdateUser(data.data);
+                return true
+            }
+        }
+        catch(error) {
+            console.log("===================> auth error", error);
         }
     }
         

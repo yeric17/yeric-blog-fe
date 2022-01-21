@@ -1,16 +1,19 @@
 import { readable, derived, writable, get } from 'svelte/store';
+import { browser } from "$app/env";
 
 const docDim = readable({width:0,height:0}, set => {
-    set({
-        width: document.documentElement.clientWidth,
-        height: document.documentElement.clientHeight,
-    });
-    window.addEventListener('resize', () => {
+    if(browser){
         set({
             width: document.documentElement.clientWidth,
             height: document.documentElement.clientHeight,
         });
-    });
+        window.addEventListener('resize', () => {
+            set({
+                width: document.documentElement.clientWidth,
+                height: document.documentElement.clientHeight,
+            });
+        });
+    }
 });
 
 const defaultBreakPoints = [

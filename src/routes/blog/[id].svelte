@@ -229,14 +229,16 @@ Loading...
         width: 100%;
     }
     .post-page_content_list{
+        width: 100%;
         max-width: var(--max-width);
     }
-    code{
-        line-break: auto;
-        overflow: hidden;
-        display: block;
-        width: 100%;
+    pre{
         background-color: var(--color-gray-light);
+    }
+    code{
+        white-space: pre-wrap;
+        overflow-x : auto;
         padding: var(--spacing-md);
+        display: block;
     }
 </style>

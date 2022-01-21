@@ -28,19 +28,24 @@ const getPosts = async () => {
 };
 
 const addPost = async (post) => {
-    const response = await fetch(`${API_HOST}/posts`, {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(post)
-    });
-
-    const json = await response.json();
-
-    if(json && json.success) {
-        posts.update(posts => [...posts, json.data]);
-        return posts;
+    try {
+        const response = await fetch(`${API_HOST}/posts`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(post)
+        });
+    
+        const json = await response.json();
+    
+        if(json && json.success) {
+            posts.update(posts => [...posts, json.data]);
+            return posts;
+        }
+    }
+    catch(e) {
+        console.log(e)
     }
 };
 

@@ -42,15 +42,17 @@
 	}
 
 	onMount(async function(){
-		$posts.forEach(post => {
-			if(post.categories){
-				post.categories.forEach(category => {
-					if(!filterCategories.includes(category)){
-						filterCategories = [...filterCategories,category];
-					}
-				})
-			}
-		})
+		if($posts.length > 0){
+			$posts.forEach(post => {
+				if(post.categories){
+					post.categories.forEach(category => {
+						if(!filterCategories.includes(category)){
+							filterCategories = [...filterCategories,category];
+						}
+					})
+				}
+			})
+		}
 	})
 </script>
 <svelte:head>
