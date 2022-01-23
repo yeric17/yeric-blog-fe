@@ -71,7 +71,7 @@ async function Auth() {
 
             let token = localStorage.getItem("token");
             if (!token) {
-                return;
+                return {ok:false, message: "No hay token"};
             }
             let response = await fetch(`${API_HOST}/users/auth`, {
                 method: "GET",
@@ -86,16 +86,18 @@ async function Auth() {
             if (data.success) {
                 let userData = data.data;
                 userData.authenticated = true;
-                UpdateUser(data.data);
-                return true
+                UpdateUser(userData);
+                return {ok:true, message: "Auth Successful", data: userData};
             }
         }
         catch(error) {
             console.log("===================> auth error", error);
         }
+        return {ok:false, message: "Error del servidor"};
     }
-        
-    return false;
+    else {
+        return {ok:false, message: "No hay token"};
+    }
 }
 
 async function Register(user) {

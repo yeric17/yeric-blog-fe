@@ -9,6 +9,7 @@
     export let data = {
         post_id: '',
         comment_id: '',
+        parent_id: '',
         name: '',
         avatar: '',
         content: '',
@@ -51,13 +52,12 @@
         includeChilds = true;
     }
     function handleComment(event){
-        goto(`/blog/${data.post_id}/comment/${data.comment_id}`);
+        goto(`/blog/comments/${data.comment_id}`);
     }
 </script>
 
 
 <article class:mainComment class="comment{data.link_comments && data.link_comments !== ''?' has-childs':''}{isChild?' child-comment':''}" transition:slide={{duration:300}} on:click|preventDefault={(event)=>{
-
     if(hasChilds){
         handleComment(event);
     }
@@ -76,7 +76,7 @@
         <span class="comment-date">{DateFormat(data.date)}</span>
     </div>
     <div class="comment-body">
-        <p>{data.content}</p>
+        <p>{data.comment_id} {data.content}</p>
     </div>
     <div class="comment-footer">
         {#if data.link_comments && data.link_comments !== ''}
@@ -86,11 +86,10 @@
         {/if}
         <Interaction data={{
             name: $user?.name,
-            post_id: data.post_id,
-            comment_id: data.comment_id,
             user_id: userId,
+            post_id: data.post_id,
+            parent_id: data.comment_id,
             entity_type: 'comment',
-            likes: data.likes,
             comments: data.comments,
         }}
         on:comment-success={handleCommentSuccess}/>
@@ -100,7 +99,6 @@
 {#if showChilds}
     {#each comments as comment, index}
         <CommentBlog data={{
-            post_id: data.post_id,
             comment_id: comment.id,
             name: comment.author.name,
             avatar: comment.author.picture,

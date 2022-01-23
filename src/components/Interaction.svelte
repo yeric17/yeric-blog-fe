@@ -7,9 +7,10 @@
 
     export let data = {
         name: '',
-        post_id: '',
-        comment_id : '',
-        user_id : '',
+        post_id: null,
+        parent_id: null,
+        comment_id : null,
+        user_id : null,
         entity_type: 'post',
         likes: null,
         comments: 0,
@@ -81,6 +82,7 @@
             name: data.name,
             author_id: data.user_id,
             post_id: data.post_id,
+            parent_id: data.parent_id,
             comment_id: data.comment_id,
             entity_type: data.entity_type,
         }} />

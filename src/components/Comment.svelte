@@ -12,8 +12,8 @@
     export let data = {
         name: '',
         author_id: '',
-        post_id: '',
-        comment_id: '',
+        post_id: null,
+        parent_id: null,
         entity_type:  '',  
     }
 
@@ -29,9 +29,9 @@
             body: JSON.stringify({
                 author_id: data.author_id,
                 content: value,
-                post_id: data.post_id,
-                comment_id: data.comment_id,
+                parent_id: data.parent_id,
                 entity_type: data.entity_type,
+                post_id: data.post_id,
             })
         });
 

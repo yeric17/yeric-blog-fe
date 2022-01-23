@@ -3,25 +3,37 @@
 	
 	import {API_HOST} from '$stores/config';
 	export const load = async function({fetch}){
-		const result = await fetch(`${API_HOST}/posts`);
+		const [fetchPosts,fetchCategories] = await Promise.allSettled(
+			[
+				fetch(`${API_HOST}/posts`),
+				fetch(`${API_HOST}/posts/categories`)
+			]
+		);
 
-		if(result.ok){
-			const json = await result.json();
-			const posts = json.data.map(post => {
+		let posts = [];
+		let categories = [];
+
+		if(fetchPosts.status === 'fulfilled'){
+			const json = await fetchPosts.value.json();
+			posts = json.data.map(post => {
                 post.content = JSON.parse(post.content)
                 post.resume = post.content.find(element => element.type === 'text').value.substring(0, 100) + '...'
                 return post
             })
-			
-			return {
-				props: {
-					posts
-				}
-			}	
 		}
+
+		if(fetchCategories.status === 'fulfilled'){
+			const json = await fetchCategories.value.json();
+			categories = json.data
+		}
+
 		return {
-			props: {},
-		};
+			props: {
+				posts,
+				categories
+			}
+		}	
+
 	} 
 </script>
 <script>
@@ -37,25 +49,8 @@
 
 	export let posts;
 	
-	let filterCategories = [
-	
-	]
+	export let categories = []
 
-
-	onMount(async function(){
-		//TODO: create service in backen to get categories used in posts
-		if(posts.length > 0){
-			posts.forEach(post => {
-				if(post.categories){
-					post.categories.forEach(category => {
-						if(!filterCategories.includes(category)){
-							filterCategories = [...filterCategories,category];
-						}
-					})
-				}
-			})
-		}
-	})
 </script>
 <svelte:head>
 	<title>Blog</title>
@@ -72,8 +67,8 @@
 	<section class="posts-list">
 		<div class="posts_nav">
 			<div class="posts_filters">
-				{#each filterCategories as filter}
-				<Category>{filter}</Category>
+				{#each categories as filter}
+				<Category>{filter.name}</Category>
 				{/each}
 			</div>
 			<div class="search">

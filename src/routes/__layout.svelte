@@ -2,11 +2,12 @@
 <script context="module">
     import {Auth} from "$stores/user";
     export const load = async function(){
-        let isAuth = await Auth();
-        
+        let response = await Auth();
+        let user = {};
+        console.log(response);
         return {
             props: {
-                authenticated: isAuth
+                authenticated: response.ok
             }
         }
     }
@@ -28,6 +29,7 @@
 </script>
 
 {#if authenticated === true || authenticated === false}
+
 
 <Header></Header>
 

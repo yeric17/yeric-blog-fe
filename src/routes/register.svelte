@@ -2,7 +2,7 @@
     import {Auth} from "$stores/user";
     export const load = async function(){
         let isAuth = await Auth();
-        if(isAuth){
+        if(isAuth.ok){
             return {
                 status: 302,
                 redirect: "/"
