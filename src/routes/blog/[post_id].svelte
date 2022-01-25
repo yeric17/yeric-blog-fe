@@ -120,7 +120,7 @@
                         comments: comment.comments.count,
                         link_comments: comment.comments.link
                     }}
-                    userId={$user.id} />
+                    />
                 </div>
             {/each}
 

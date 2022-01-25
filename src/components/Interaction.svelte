@@ -2,21 +2,21 @@
 <script>
 	import { createEventDispatcher } from 'svelte';
     import {addLike} from '$stores/posts';
+    import {addNotification} from '$stores/notifications';
+    import {session} from '$app/stores';
     import Comment from '$components/Comment.svelte';
 	const dispatch = createEventDispatcher();
 
     export let data = {
-        name: '',
         post_id: null,
         parent_id: null,
         comment_id : null,
-        user_id : null,
         entity_type: 'post',
         likes: null,
         comments: 0,
     };
     export let activeLikes = false;
-    export let likeMe = false;
+
 
     let likeCount = 0;
     let isCommenting = false;
@@ -25,7 +25,7 @@
         e.stopPropagation();
         
         let like = {
-            author_id: data.user_id,
+            author_id: $session.user.id,
             entity_id: data.entity_type == 'post' ? data.post_id : data.comment_id,
             entity_type: data.entity_type,
         }
@@ -34,7 +34,6 @@
 
         if(confirm){
             dispatch('like', data);
-            likeMe = true;
             data.likes = [...data.likes, like];
             likeCount = data.likes.length;
             console.log(like)
@@ -79,8 +78,8 @@
         on:submit={()=>isCommenting = false}
         on:success={handleSuccess}
         data={{
-            name: data.name,
-            author_id: data.user_id,
+            name: $session.user.name,
+            author_id: $session.user.id,
             post_id: data.post_id,
             parent_id: data.parent_id,
             comment_id: data.comment_id,

@@ -2,7 +2,7 @@
     import {slide} from 'svelte/transition';
     import {goto} from "$app/navigation"
     import Interaction from './Interaction.svelte';
-    import {user} from '$stores/user';
+    import {session} from '$app/stores';
     import CommentBlog from './CommentBlog.svelte';
     import {DateFormat} from '$lib/utils';
 
@@ -19,7 +19,6 @@
         link_comments: null,
     }
 
-    export let userId = null;
     export let mainComment = false;
 
     let comments = [];
@@ -85,8 +84,8 @@
             </div>
         {/if}
         <Interaction data={{
-            name: $user?.name,
-            user_id: userId,
+            name: $session.user?.name,
+            user_id: $session.user?.id,
             post_id: data.post_id,
             parent_id: data.comment_id,
             entity_type: 'comment',

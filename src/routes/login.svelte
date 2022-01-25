@@ -1,17 +1,14 @@
 <script context="module">
     import {Auth} from "../stores/user";
-    export const load = async function(){
-        let isAuth = await Auth();
-        if(isAuth.ok){
+    export const load = async function({session}){
+        if(session.user && session.user.authenticated){
             return {
                 status: 302,
                 redirect: "/"
             }
         }
         return {
-            body: {
-                authenticated: isAuth
-            }
+            status: 200,
         }
     }
 </script>
@@ -22,19 +19,23 @@
     import PasswordField from '$components/forms/PasswordField.svelte'
     import Button from '$components/Button.svelte'
     import {goto} from '$app/navigation'
-    import {Login} from '$stores/user'
     let userLogin = {
         email: '',
         password: ''
     }
 
     async function handleLogin(){
-        let login = await Login(userLogin)
+        let login = await fetch('/api/login', {
+            method: 'POST',
+            body: JSON.stringify(userLogin),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        })
         if(login.ok){
             goto('/')
-            return
+            window.location.reload()
         }
-        console.log(login)
     }
 </script>
 

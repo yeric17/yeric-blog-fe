@@ -2,7 +2,7 @@
 
 <script>
     import {clickOutside} from '$lib/click-outside';
-    import {user,Logout} from '$stores/user'
+    import {session} from '$app/stores'
     import {goto} from '$app/navigation'
     import {slide} from 'svelte/transition'
     import {page} from '$app/stores'
@@ -32,11 +32,10 @@
         showNav = !showNav;
     }
 
-    function handleLogOut(event){
-        event.stopPropagation();
-        Logout();
-        showAvatarNav = false;
+    async function handleLogout(event){
+        await fetch("api/logout");
         goto('/');
+        window.location.reload();
     }
 
     function handleClickOutside(event) {
@@ -70,33 +69,38 @@
                 <li class:active={$page.url.pathname === "/"}  class="desk-nav_list_item"><a href="/">Blog</a></li>
                 <li class:active={$page.url.pathname === "/about"} class="desk-nav_list_item"><a href="/about">Acerca de mi</a></li>
                 <li class:active={$page.url.pathname === "/contact"} class="desk-nav_list_item"><a href="/contact">Contacto</a></li>
-                {#if $user.authenticated && $user.role_id == 1}
+                {#if $session.user.authenticated && $session.user.role_id == 1}
                     <li class:active={$page.url.pathname === "/addpost"} class="desk-nav_list_item"><a href="/addpost">Crear Post</a></li>
                 {/if}
             </ul>
         </nav>
     </MediaQuery>
     <div class="header_section_nav-buttons">
-        {#if !$user.authenticated}
+        {#if !$session.user.authenticated}
         <Button btnType="primary-variant" on:click={goLogin}>Ingresar</Button>
         <Button btnType="secondary-variant" on:click={goRegister}>Registrarse</Button>
         {/if}
     </div>
-    {#if $user.authenticated}
-    <div class:editable={$user.authenticated} class="user_avatar" on:click|preventDefault={(event)=>{
+    {#if $session.user.authenticated}
+    <div class:editable={$session.user.authenticated} class="user_avatar" on:click|preventDefault={(event)=>{
         event.stopPropagation();
       
         showAvatarNav = !showAvatarNav;
         
         }}>
         {#if editAvatar}
-            <DropArea apiUrl={`${API_HOST}/users/upload?name=${$user.id}`}><span class="icon-text">&#xe912;</span></DropArea>
+            <div class="drop-area_container">
+                <DropArea apiUrl={`${API_HOST}/users/upload?name=${$session.user.id}`} on:uploaded={()=>{
+                    window.location.reload();
+                }
+                }></DropArea>
+            </div>
         {:else}
-            <img src={$user.picture || default_avatar} alt="userAvatar">
+            <img src={$session.user.picture || default_avatar} alt="userAvatar">
         {/if}
         {#if showAvatarNav}
             <div class="user_avatar_menu" transition:slide={{duration:300}} use:clickOutside on:click-outside={handleClickOutside}>
-                <button class="btn-avatar" on:click={Logout}>Cerrar sesión</button>
+                <button class="btn-avatar" on:click={handleLogout}>Cerrar sesión</button>
                 <button class="btn-avatar" on:click={()=>{editAvatar = true}}>Editar foto</button>
             </div>
         {/if}
@@ -105,7 +109,7 @@
 </header>
 {#if showNav}
     <div class="aside-bar_container" use:clickOutside on:click-outside={handleClickOutside}>
-        <AsideNav bind:visible={showNav} user={$user}/>
+        <AsideNav bind:visible={showNav} user={$session.user}/>
     </div>
 {/if}
 

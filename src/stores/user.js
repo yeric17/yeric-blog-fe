@@ -14,46 +14,45 @@ const UpdateUser = function(newUser) {
     user.set(newUser);
 }
 
-const Login =  async function(user) {
-    try{
-
-        let response = await fetch(`${API_HOST}/users/login`, {
+const Login = function(user) {
+        fetch(`${API_HOST}/users/login`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify(user)
-        });
-        let data = await response.json();
-        console.log("===================> login", data);
-    
-        if (data.success) {
-            let userData = data.data;
-            userData.authenticated = true;
-            UpdateUser(userData);
-            localStorage.setItem("token", data.token);
-            addNotification({type: "success", message: "Ha ingresado correctamente", duration: 5000});
-            return {ok:true, message: "Login Successful"}
-        }
+        }).then(response => response.json())
+        .then(data => {
+        
+            console.log("===================> login", data);
+        
+            if (data.success) {
+                let userData = data.data;
+                userData.authenticated = true;
+                UpdateUser(userData);
+                
+                addNotification({type: "success", message: "Ha ingresado correctamente", duration: 5000});
+                return {ok:true, message: "Login Successful"}
+            }
 
-        let notificationMessage = "";
-        if(data.message.includes("email not confirmed")) {
-            notificationMessage = "Por favor confirme su correo electrónico";
-        }
-        else if(data.message.includes("password")) {
-            notificationMessage = "Usuario y/o Contraseña incorrecta";
-        }
-        else {
-            notificationMessage = "Usuario y/o Contraseña incorrecta";
-        }
-        addNotification({type:"error", message: notificationMessage, duration: 5000});
-        return {ok:false, message: data.message};
-    }
-    catch(error) {
-        console.log("===================> login error", error);
-        addNotification({type:"error", message: "Error del servidor", duration: 5000});
-        return {ok:false, message: error.message}
-    }
+            let notificationMessage = "";
+            if(data.message.includes("email not confirmed")) {
+                notificationMessage = "Por favor confirme su correo electrónico";
+            }
+            else if(data.message.includes("password")) {
+                notificationMessage = "Usuario y/o Contraseña incorrecta";
+            }
+            else {
+                notificationMessage = "Usuario y/o Contraseña incorrecta";
+            }
+            addNotification({type:"error", message: notificationMessage, duration: 5000});
+            return {ok:false, message: data.message};
+        })
+        .catch(error => {
+            console.log("===================> login error", error);
+            addNotification({type:"error", message: "Error del servidor", duration: 5000});
+            return {ok:false, message: error.message}
+        });
 }
 
 async function Logout() {
@@ -65,39 +64,34 @@ async function Logout() {
     goto("/");
 }
 
-async function Auth() {
-    if(browser) {
-        try{
+function Auth() {
+    // let token = localStorage.getItem("token");
+    // if (!token) {
+    //     return {ok:false, message: "No hay token"};
+    // }
+    // fetch(`${API_HOST}/users/auth`, {
+    //     method: "GET",
+    //     headers: {
+    //         "Content-Type": "application/json",
+    //         "Authorization": token
+    //     }
+    // })
+    // .then(response => response.json())
+    // .then(data => {
+   
+    //     console.log("===================> auth", data);
 
-            let token = localStorage.getItem("token");
-            if (!token) {
-                return {ok:false, message: "No hay token"};
-            }
-            let response = await fetch(`${API_HOST}/users/auth`, {
-                method: "GET",
-                headers: {
-                    "Content-Type": "application/json",
-                    "Authorization": token
-                }
-            });
-            let data = await response.json();
-            console.log("===================> auth", data);
-        
-            if (data.success) {
-                let userData = data.data;
-                userData.authenticated = true;
-                UpdateUser(userData);
-                return {ok:true, message: "Auth Successful", data: userData};
-            }
-        }
-        catch(error) {
-            console.log("===================> auth error", error);
-        }
-        return {ok:false, message: "Error del servidor"};
-    }
-    else {
-        return {ok:false, message: "No hay token"};
-    }
+    //     if (data.success) {
+    //         let userData = data.data;
+    //         userData.authenticated = true;
+    //         UpdateUser(userData);
+    //         return {ok:true, message: "Auth Successful", data: userData};
+    //     }
+    // })
+    // .catch(error => {
+    //     return {ok:false, message: "Error del servidor"};
+    // });
+
 }
 
 async function Register(user) {

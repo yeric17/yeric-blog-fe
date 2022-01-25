@@ -1,17 +1,13 @@
 <script context="module">
-    import {Auth} from "$stores/user";
-    export const load = async function(){
-        let isAuth = await Auth();
-        if(isAuth.ok){
+    export const load = async function({session}){
+        if(session.user && session.user.authenticated){
             return {
                 status: 302,
                 redirect: "/"
             }
         }
         return {
-            body: {
-                authenticated: isAuth
-            }
+            status: 200,
         }
     }
 </script>

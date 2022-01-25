@@ -1,13 +1,11 @@
 
 <script context="module">
-    import {Auth} from "$stores/user";
-    export const load = async function(){
-        let response = await Auth();
-        let user = {};
-        console.log(response);
+    import {API_HOST} from "$stores/config";
+    export const load = async function({session}){
+        let user = session.user;
         return {
             props: {
-                authenticated: response.ok
+                user,
             }
         }
     }
@@ -25,10 +23,10 @@
     import '$css/variables.css';
     import '$css/global.css';
 
-    export let authenticated = null;
+    export let user = null;
 </script>
 
-{#if authenticated === true || authenticated === false}
+{#if user.authenticated === true || user.authenticated === false}
 
 
 <Header></Header>

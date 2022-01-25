@@ -2,13 +2,15 @@
 	export const prerender = true;
 	
 	import {API_HOST} from '$stores/config';
-	export const load = async function({fetch}){
+	export const load = async function({fetch, session}){
 		const [fetchPosts,fetchCategories] = await Promise.allSettled(
 			[
 				fetch(`${API_HOST}/posts`),
 				fetch(`${API_HOST}/posts/categories`)
 			]
 		);
+
+		let user = session.user;
 
 		let posts = [];
 		let categories = [];
@@ -30,7 +32,8 @@
 		return {
 			props: {
 				posts,
-				categories
+				categories,
+				user
 			}
 		}	
 
@@ -38,7 +41,6 @@
 </script>
 <script>
 	
-	import {user} from '$stores/user';
 	import {onMount} from 'svelte';
 	import Loader from '$components/Loader.svelte';
 	import UserAvatar from '$components/UserAvatar.svelte';
@@ -48,6 +50,7 @@
 	import Category from '$components/Category.svelte';
 
 	export let posts;
+	export let user;
 	
 	export let categories = []
 
@@ -77,7 +80,7 @@
 		</div>
 		<div class="posts-list_wrapper">
 		{#each posts as post}
-			<PostCard post={post} userId={$user.id}/>
+			<PostCard post={post} userId={user.id}/>
 		{/each}
 		</div>
 	</section>
