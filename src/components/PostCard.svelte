@@ -23,7 +23,7 @@
 
     export let userId = null;
 
-    export let likeMe = false;
+
     let editImageMode = false;
 
 </script>
@@ -46,7 +46,7 @@
     <p class="post-card_content">{post.resume}</p>
     <div class="post-card_footer">
         <UserAvatar userName={post.author.name} userAvatar={post.author.picture}/>
-        <Interaction likeMe={likeMe} data={{
+        <Interaction  data={{
             name: $user.name,
             post_id: post.id,
             comment_id: null,

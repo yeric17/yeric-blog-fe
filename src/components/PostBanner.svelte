@@ -24,7 +24,6 @@
         likes: null,
         created_at: ''
     };
-    export let likeMe = false;
     $: linkPost = '/blog/' + post.id;
     
     function goLink(){
@@ -60,7 +59,7 @@
             <UserAvatar userName="{post.author.name}"  userAvatar={post.author.picture}></UserAvatar>
         </div>
         <div class="footer_interactions">
-            <Interaction likeMe={likeMe} data={{
+            <Interaction data={{
                 name: $user.name,
                 post_id: post.id,
                 comment_id: null,

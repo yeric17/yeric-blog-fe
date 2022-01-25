@@ -237,6 +237,20 @@
     .btn-avatar:hover{
         background-color: var(--color-secondary-light);
     }
+
+    .drop-area_container{
+        position: fixed;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);        
+        width: 30vw;
+        height: 30vw;
+        background-color: white;
+        border: var(--spacing-md) solid var(--color-primary-light);
+        box-shadow: var(--shadow-lv4);
+        
+    }
+
     @media (min-width: 768px) {
         .header{
             padding-left: var(--spacing-xl);

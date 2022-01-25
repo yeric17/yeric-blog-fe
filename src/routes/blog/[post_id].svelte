@@ -26,8 +26,6 @@
             comments = jsonComment.data;
         }
 
-        console.log(comments)
-
         return {
             props: {
                 comments,

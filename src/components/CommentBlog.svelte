@@ -75,7 +75,7 @@
         <span class="comment-date">{DateFormat(data.date)}</span>
     </div>
     <div class="comment-body">
-        <p>{data.comment_id} {data.content}</p>
+        <p>{data.content}</p>
     </div>
     <div class="comment-footer">
         {#if data.link_comments && data.link_comments !== ''}
@@ -114,7 +114,7 @@
 
 <style>
     .comment{
-        --color-avatar: var(--color-primary);
+        --color-avatar: var(--color-secondary);
         --border-color: var(--color-gray-light);
         background-color: #fff;
         position: relative;
@@ -195,7 +195,7 @@
     }
     .user-name{
         font-size: 1.1em;
-        color: var(--color-avatar);
+        color: var(--color-primary);
     }
     .comment-date{
         font-size: 1em;

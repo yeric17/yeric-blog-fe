@@ -43,8 +43,18 @@
     function handleComments(e){
         e.preventDefault();
         e.stopPropagation();
-        dispatch('comment', data);
-        isCommenting = !isCommenting;
+
+        if($session.user.authenticated){
+            isCommenting = !isCommenting;
+            dispatch('comment', data);
+        }
+        else{
+            addNotification({
+                type: 'error',
+                message: 'Debe iniciar sesión para comentar',
+                duration: 3000,
+            });
+        }
     }
 
     function handleSuccess(){
@@ -53,14 +63,11 @@
         dispatch('success-comment', data);
     }
 
-    function LikeMe(){
-        if(!data.likes) return false
-        return data.likes.find(like => like.author_id == data.user_id)
-    }
+
     
 </script>
 
-<div class="interaction{LikeMe()?' like-me':''}">
+<div class="interaction">
     <span class="interaction_comments" on:click={handleComments}>
         <span class="icon-message-square"></span>
         <span class="interaction_comments_count">{data.comments > 0?data.comments:''}</span>
@@ -130,9 +137,7 @@
     .interaction_comments_count{
         padding-left: var(--spacing-sm);
     }
-    .interaction.like-me .interaction_likes{
-        color: var(--color-primary);
-    }
+
     .icon-like{
         pointer-events: none;
     }
