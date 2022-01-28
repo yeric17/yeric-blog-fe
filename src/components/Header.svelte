@@ -50,7 +50,7 @@
     <MediaQuery is="md-">
         <div class="header_logo">
             <a href="/">
-                <img src={`${API_HOST}/images/yericdev_logo_mobile.png`} alt="">
+                <img src={`/yericdev_logo_mobile.png`} alt="">
             </a>
         </div>
         <button class="btn-icon" on:click={toggleNav}>
@@ -60,7 +60,7 @@
     <MediaQuery is="lg+">    
         <div class="header_logo">
             <a href="/">
-                <img src={`${API_HOST}/images/yericdev_logo.png`} alt="">
+                <img src={`/yericdev_logo.png`} alt="">
             </a>
         </div>
 

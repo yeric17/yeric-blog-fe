@@ -12,21 +12,29 @@ export const handle = async function({ event, resolve }) {
 		cookie = ParseCookie(cookie);
 		let token = cookie.token;
 		if (token) {
-			let response = await fetch(`${API_HOST}/users/auth`, {
+			fetch(`${API_HOST}/users/auth`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
 					"Authorization": token
 				}
-			});
-			if(response.ok){
-				let data = await response.json();
+			}).then(response => {			
+				if(!response.ok){
+					console.log(response);
+				}
+				return response.json();
+			})
+			.then(data => {
 				if(data.success){
 					let user = data.data;
 					user.authenticated = true;
 					event.locals.user = user;
 				}
-			}
+			})
+			.catch(err => {
+				console.log(err);
+			});
+			
 		}
 	}
 	

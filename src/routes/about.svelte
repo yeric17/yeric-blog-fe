@@ -11,7 +11,7 @@
 	<div class="about_banner_container">
 		<div class="about_banner">
 			<div class="about_banner_image">
-				<img src={`${API_HOST}/images/about_banner.png`} alt="about banner">
+				<img src={"/about_banner.png"} alt="about banner">
 			</div>
 			<div class="about_banner_text">
 				<h1>Hola, Me llamo</h1>
@@ -31,17 +31,17 @@
 			<div class="about_blog_tec">
 				<div class="about_blog_tec_item">
 					<h3>SvelteKit</h3>
-					<img src={`${API_HOST}/images/svelte.png`} alt="svelte">
+					<img src={`/svelte.png`} alt="svelte">
 					<p>La base del frontend del blog esta construida bajo Sveltekit un framework de svelte, que permite construir aplicaciones basadas en esta tecnología muy rápido</p>
 				</div>
 				<div class="about_blog_tec_item">
 					<h3>Go</h3>
-					<img src={`${API_HOST}/images/go.png`} alt="go">
+					<img src={`/go.png`} alt="go">
 					<p>El backend de esta desarrollado con Go, mediante el uso de un framework para el lenguaje llamado Gin</p>
 				</div>
 				<div class="about_blog_tec_item">
 					<h3>Postgres</h3>
-					<img src={`${API_HOST}/images/postgres.png`} alt="postgres">
+					<img src={`/postgres.png`} alt="postgres">
 					<p>La base de datos del blog esta gestionada mediante Postgres</p>
 				</div>
 			</div>
