@@ -1,7 +1,7 @@
 import {API_HOST} from '$stores/config';
 
-export async function post({body}){
-    
+export async function post({request}){
+    let body = await request.json();
     let response = await fetch(`${API_HOST}/users/login`, {
         method: "POST",
         headers: {

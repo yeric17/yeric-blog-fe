@@ -1,4 +1,6 @@
-const MODE = 'development';
-const API_HOST = MODE === 'development'?'http://localhost:7070':'http://localhost:7070';
+const MODE = import.meta.env.VITE_MODE;
+const API_HOST = MODE === 'dev'? import.meta.env.VITE_API_HOST_DEV : import.meta.env.VITE_API_HOST_PROD;
+
+
 
 export { API_HOST };

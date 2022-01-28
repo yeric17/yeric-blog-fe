@@ -53,6 +53,7 @@
     <title>Blog Post</title>
 </svelte:head>
 <main class="post-page">
+    {#if post}
     <section class="post-page_content">
         <div class="post-page_header">
             <h1 class="post-page_title">{post.title}</h1>
@@ -101,6 +102,7 @@
             {/each}
         </div>
     </section>
+    {/if}
     {#if comments?.length > 0}
     <section class="post-page_comments">
         <h2 class="post-page_comments-title">Comentarios</h2>

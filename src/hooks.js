@@ -2,16 +2,13 @@
 // import { v4 as uuid } from '@lukeed/uuid';
 import {ParseCookie} from '$lib/utils';
 import {API_HOST} from '$stores/config';
-import { identity } from 'svelte/internal';
 
-export const handle = async function({ request, resolve }) {
+export const handle = async function({ event, resolve }) {
 	
-	let cookie = request.headers.cookie;
-	const method = request.url.searchParams.get('_method');
-	if (method) {
-		request.method = method.toUpperCase();
-	}
-	if (cookie && request.method === 'GET') {
+	let cookie = event.request.headers.get('cookie');
+	const method = event.request.method;
+
+	if (cookie && method === 'GET') {
 		cookie = ParseCookie(cookie);
 		let token = cookie.token;
 		if (token) {
@@ -27,23 +24,23 @@ export const handle = async function({ request, resolve }) {
 				if(data.success){
 					let user = data.data;
 					user.authenticated = true;
-					request.locals.user = user;
+					event.locals.user = user;
 				}
 			}
 		}
 	}
 	
 
-	if (cookie && request.method === 'POST') {
+	if (cookie && method === 'POST') {
 		let user = ParseCookie(cookie).user;
 		if (user) {
 			let localUser = JSON.parse(user);
 			localUser.authenticated = true;
-			request.locals.user = localUser;
+			event.locals.user = localUser;
 		}
 	}
 	
-	const response = await resolve(request);
+	const response = await resolve(event);
 	
 	
 	return response;

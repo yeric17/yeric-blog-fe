@@ -34,7 +34,7 @@
         })
         if(login.ok){
             goto('/')
-            window.location.reload()
+            //window.location.reload()
         }
     }
 </script>

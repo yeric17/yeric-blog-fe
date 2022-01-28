@@ -1,23 +1,25 @@
-FROM node:17-alpine3.14
+FROM node:14.15.0 as build
 
+# install dependencies
 WORKDIR /app
-COPY package*.json .
-COPY ./static ./static
-RUN npm install
+COPY package.json package-lock.json ./
+RUN npm ci
 
+# Copy all local files into the image.
 COPY . .
 
-RUN npm run build && npm prune --production
+RUN npm run build
 
-
-FROM node:17-alpine3.14
+###
+# Only copy over the Node pieces we need
+# ~> Saves 35MB
+###
+FROM node:14.15.0
 
 WORKDIR /app
-COPY --from=builder /app/build ./build
-COPY --from=builder /app/node_modules ./node_modules
-COPY package*.json .
+COPY --from=build /app .
+COPY . .
 
-ENV PORT 6565
-EXPOSE 6565
 
+EXPOSE 3000
 CMD ["node", "build"]
