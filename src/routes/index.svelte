@@ -3,30 +3,38 @@
 	
 	import {API_HOST} from '$stores/config';
 	export const load = async function({fetch, session}){
-		const [fetchPosts,fetchCategories] = await Promise.allSettled(
-			[
-				fetch(`${API_HOST}/posts`),
-				fetch(`${API_HOST}/posts/categories`)
-			]
-		);
-
-		let user = session.user;
 
 		let posts = [];
 		let categories = [];
+		let user = session? session.user: null;
 
-		if(fetchPosts.status === 'fulfilled'){
-			const json = await fetchPosts.value.json();
-			posts = json.data.map(post => {
-                post.content = JSON.parse(post.content)
-                post.resume = post.content.find(element => element.type === 'text').value.substring(0, 100) + '...'
-                return post
-            })
-		}
+		try{
+			const [fetchPosts,fetchCategories] = await Promise.allSettled(
+				[
+					fetch(`${API_HOST}/posts`),
+					fetch(`${API_HOST}/posts/categories`)
+				]
+			);
 
-		if(fetchCategories.status === 'fulfilled'){
-			const json = await fetchCategories.value.json();
-			categories = json.data
+
+			if(fetchPosts.status === 'fulfilled'){
+				const json = await fetchPosts.value.json();
+				console.log(json)
+				if(json){
+					posts = json.data.map(post => {
+						post.content = JSON.parse(post.content)
+						post.resume = post.content.find(element => element.type === 'text').value.substring(0, 100) + '...'
+						return post
+					})
+				}
+			}
+
+			if(fetchCategories.status === 'fulfilled'){
+				const json = await fetchCategories.value.json();
+				categories = json.data
+			}
+		}catch(e){
+			console.log(e)
 		}
 
 		return {
@@ -62,11 +70,11 @@
 
 <main class="posts">
     <section class="posts_banner">
-		{#if posts[0]}
+		{#if posts.length > 0 && posts[0]}
 		<PostBanner post={posts[0]}/>
 		{/if}
     </section>
-	{#if posts.length > 0}
+	{#if posts?.length > 0}
 	<section class="posts-list">
 		<div class="posts_nav">
 			<div class="posts_filters">
@@ -80,7 +88,7 @@
 		</div>
 		<div class="posts-list_wrapper">
 		{#each posts as post}
-			<PostCard post={post} userId={user.id}/>
+			<PostCard post={post} userId={user?.id}/>
 		{/each}
 		</div>
 	</section>
