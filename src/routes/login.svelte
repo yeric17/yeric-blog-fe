@@ -34,6 +34,7 @@
         }).then(res => {
             if(res.ok){
                 goto('/')
+                window.location.reload()
             }
         }).catch(err => {
             console.log(err)

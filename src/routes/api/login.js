@@ -9,7 +9,6 @@ export async function post({request}){
         },
         body: JSON.stringify(body)
     });
-    console.log(response)
     if(response.status === 200){
         let data = await response.json();
 

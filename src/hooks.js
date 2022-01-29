@@ -11,7 +11,7 @@ export const handle = async function({ event, resolve }) {
 		cookie = ParseCookie(cookie);
 		let token = cookie.token;
 		if (token) {
-			fetch(`${API_HOST}/users/auth`, {
+			await fetch(`${API_HOST}/users/auth`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
