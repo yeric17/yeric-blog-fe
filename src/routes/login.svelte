@@ -24,18 +24,20 @@
         password: ''
     }
 
-    async function handleLogin(){
-        let login = await fetch('/api/login', {
+    function handleLogin(){
+        fetch('/api/login', {
             method: 'POST',
             body: JSON.stringify(userLogin),
             headers: {
                 'Content-Type': 'application/json'
             }
+        }).then(res => {
+            if(res.ok){
+                goto('/')
+            }
+        }).catch(err => {
+            console.log(err)
         })
-        if(login.ok){
-            goto('/')
-            //window.location.reload()
-        }
     }
 </script>
 

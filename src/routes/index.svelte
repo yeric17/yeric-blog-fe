@@ -8,11 +8,23 @@
 		let categories = [];
 		let user = session? session.user: null;
 
-		try{
+		
 			const [fetchPosts,fetchCategories] = await Promise.allSettled(
 				[
-					fetch(`${API_HOST}/posts`),
-					fetch(`${API_HOST}/posts/categories`)
+					fetch(`${API_HOST}/posts`,{
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						mode: 'no-cors'
+					}),
+					fetch(`${API_HOST}/posts/categories`,{
+						method: 'GET',
+						headers: {
+							'Content-Type': 'application/json'
+						},
+						mode: 'no-cors'
+					})
 				]
 			);
 
@@ -20,12 +32,12 @@
 			if(fetchPosts.status === 'fulfilled'){
 				const json = await fetchPosts.value.json();
 				console.log(json)
-				if(json){
+				if(json.data){
 					posts = json.data.map(post => {
 						post.content = JSON.parse(post.content)
-						post.resume = post.content.find(element => element.type === 'text').value.substring(0, 100) + '...'
+						post.resume = post.content.find(element => element.type === 'text').value.substring(0, 100) + '...';
 						return post
-					})
+					});
 				}
 			}
 
@@ -33,9 +45,7 @@
 				const json = await fetchCategories.value.json();
 				categories = json.data
 			}
-		}catch(e){
-			console.log(e)
-		}
+		
 
 		return {
 			props: {

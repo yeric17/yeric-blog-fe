@@ -213,6 +213,8 @@
 		max-width: var(--max-width);
 		margin: 0 auto;
 		padding-bottom: var(--spacing-xxl);
+		padding-left: var(--spacing-sm);
+		padding-right: var(--spacing-sm);
 	}
 	.about_exp_title{
 		font-size: var(--font-size-xxl);

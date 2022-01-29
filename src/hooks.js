@@ -7,7 +7,6 @@ export const handle = async function({ event, resolve }) {
 	
 	let cookie = event.request.headers.get('cookie');
 	const method = event.request.method;
-
 	if (cookie && method === 'GET') {
 		cookie = ParseCookie(cookie);
 		let token = cookie.token;
