@@ -1,91 +1,85 @@
 <script>
 	import SocialLink from '$components/SocialLink.svelte';
 	import {API_HOST} from '$stores/config.js';
+	import Container from '$components/Container.svelte';
 </script>
 
 <svelte:head>
-	<title>¿Quien soy?</title>
+	<title>Acerca de mi</title>
 </svelte:head>
 
-<section class="about">
-	<div class="about_banner_container">
-		<div class="about_banner">
-			<div class="about_banner_image">
-				<img src={"/about_banner.png"} alt="about banner">
-			</div>
-			<div class="about_banner_text">
-				<h1>Hola, Me llamo</h1>
-				<h2>Carlos Yeric Fonseca Rios</h2>
-				<p>Soy un desarrollador web y de videojuegos. Me interesa todo lo relacionado con el mundo de la programación, quiero poder contribuir con mi conocimiento a la comunidad y en el camino continuar aprendiendo más de este mundo del código.</p>
-			</div>
-			<div class="about_banner_social">
-				<SocialLink type="linkedin"></SocialLink>
-				<SocialLink type="twitter"></SocialLink>
-				<SocialLink type="github"></SocialLink>
-			</div>
-		</div>
-	</div>
-	<div class="about_blog">
-		<div class="about_blog_wrapper">		
-			<h2 class="about_blog_title">Tecnologías del Blog</h2>
-			<div class="about_blog_tec">
-				<div class="about_blog_tec_item">
-					<h3>SvelteKit</h3>
-					<img src={`/svelte.png`} alt="svelte">
-					<p>La base del frontend del blog esta construida bajo Sveltekit un framework de svelte, que permite construir aplicaciones basadas en esta tecnología muy rápido</p>
+<Container>
+	<section class="about">
+		<div class="about_banner_container">
+			<div class="about_banner">
+				<div class="about_banner_image">
+					<img src={"/about_banner.png"} alt="about banner">
 				</div>
-				<div class="about_blog_tec_item">
-					<h3>Go</h3>
-					<img src={`/go.png`} alt="go">
-					<p>El backend de esta desarrollado con Go, mediante el uso de un framework para el lenguaje llamado Gin</p>
+				<div class="about_banner_text">
+					<h1>Hola, Me llamo</h1>
+					<h2>Carlos Yeric Fonseca Rios</h2>
+					<p>Soy un desarrollador web y de videojuegos. Me interesa todo lo relacionado con el mundo de la programación, quiero poder contribuir con mi conocimiento a la comunidad y en el camino continuar aprendiendo más de este mundo del código.</p>
 				</div>
-				<div class="about_blog_tec_item">
-					<h3>Postgres</h3>
-					<img src={`/postgres.png`} alt="postgres">
-					<p>La base de datos del blog esta gestionada mediante Postgres</p>
+				<div class="about_banner_social">
+					<SocialLink type="linkedin"></SocialLink>
+					<SocialLink type="twitter"></SocialLink>
+					<SocialLink type="github"></SocialLink>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="about_exp">
+		<div class="about_blog">
+			<div class="about_blog_wrapper">		
+				<h2 class="about_blog_title">Tecnologías del Blog</h2>
+				<div class="about_blog_tec">
+					<div class="about_blog_tec_item">
+						<h3>SvelteKit</h3>
+						<img src={`/svelte.png`} alt="svelte">
+						<p>La base del frontend del blog esta construida bajo Sveltekit un framework de svelte, que permite construir aplicaciones basadas en esta tecnología muy rápido</p>
+					</div>
+					<div class="about_blog_tec_item">
+						<h3>Go</h3>
+						<img src={`/go.png`} alt="go">
+						<p>El backend de esta desarrollado con Go, mediante el uso de un framework para el lenguaje llamado Gin</p>
+					</div>
+					<div class="about_blog_tec_item">
+						<h3>Postgres</h3>
+						<img src={`/postgres.png`} alt="postgres">
+						<p>La base de datos del blog esta gestionada mediante Postgres</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="about_exp">
 
-		<h2 class="about_exp_title">Experiencia</h2>
-		<div class="about_exp_item">
-			<h3>JavaScript</h3>
-			<p>Hace mas de 6 años he trabajado con JavaScript en el desarrollo web, tanto en el backend como en el frontend. Es una de mis fortalezas, es uno de los lenguajes con los que he trabajado que más conozco y que me siento comodo</p>
-		</div>
-		<div class="about_exp_item">
-			<h3>Go</h3>
-			<p>Llevo alrededor de 2 años trabajando con el lenguaje, tiempo en el que he construido principalmente API para servir al frontend</p>
-		</div>
-		<div class="about_exp_item">
-			<h3>Postgres</h3>
-			<p>En este momento Postgres es la base de datos SQL que utilizo con mayor frecuencia, he aprendido bastante sobre el modelado de los datos junto con este lenguaje</p>
-		</div>
-		<div class="about_exp_item">
-			<h3>C#</h3>
-			<p>En mi carrera como Ingeniero de las Artes Digitales tome el camino del desarrollo de los videojuegos, por esta razón C# es uno de mis lenguajes favoritos, el cual he utilizado con el motor de videojuegos Unity, en donde he realizado juegos 2D, 3D, de realidad virtual y aumentada</p>
-		</div>
-		<div class="about_exp_item">
-			<h3>Svelte</h3>
-			<p>Svelte se esta convirtiendo en mi framework preferido para el desarrollo web, es por esta razón que todo este sitio web esta construido con el. Aun me encuentro en el camino de descubrir mas su potencial y espero poder desarrollar mas cosas increibles con esta gran herramienta</p>
-		</div>
+			<h2 class="about_exp_title">Experiencia</h2>
+			<div class="about_exp_item">
+				<h3>JavaScript</h3>
+				<p>Hace mas de 6 años he trabajado con JavaScript en el desarrollo web, tanto en el backend como en el frontend. Es una de mis fortalezas, es uno de los lenguajes con los que he trabajado que más conozco y que me siento comodo</p>
+			</div>
+			<div class="about_exp_item">
+				<h3>Go</h3>
+				<p>Llevo alrededor de 2 años trabajando con el lenguaje, tiempo en el que he construido principalmente API para servir al frontend</p>
+			</div>
+			<div class="about_exp_item">
+				<h3>Postgres</h3>
+				<p>En este momento Postgres es la base de datos SQL que utilizo con mayor frecuencia, he aprendido bastante sobre el modelado de los datos junto con este lenguaje</p>
+			</div>
+			<div class="about_exp_item">
+				<h3>C#</h3>
+				<p>En mi carrera como Ingeniero de las Artes Digitales tome el camino del desarrollo de los videojuegos, por esta razón C# es uno de mis lenguajes favoritos, el cual he utilizado con el motor de videojuegos Unity, en donde he realizado juegos 2D, 3D, de realidad virtual y aumentada</p>
+			</div>
+			<div class="about_exp_item">
+				<h3>Svelte</h3>
+				<p>Svelte se esta convirtiendo en mi framework preferido para el desarrollo web, es por esta razón que todo este sitio web esta construido con el. Aun me encuentro en el camino de descubrir mas su potencial y espero poder desarrollar mas cosas increibles con esta gran herramienta</p>
+			</div>
 
-	</div>
-</section>
+		</div>
+	</section>
+</Container>
 
 <style>
 
-	.about_banner_container{
-		/* background: var(--color-white); */
-		padding-top: var(--spacing-xxl);
-		padding-bottom: var(--spacing-xxl);
-		padding-left: var(--spacing-sm);
-		padding-right: var(--spacing-sm);
-	}
 	.about_banner{
-		max-width: var(--max-width);
-		margin: 0 auto;
 		display:grid;
 		width: 100%;
 		grid-template-columns: 1fr;
@@ -163,8 +157,6 @@
 		/* background: var(--color-white); */
 		padding-top: var(--spacing-xxl);
 		padding-bottom: var(--spacing-xxl);
-		padding-left: var(--spacing-sm);
-		padding-right: var(--spacing-sm);
 		border-top: 1px solid var(--color-gray-light);
 	}
 	.about_blog_wrapper{
@@ -181,7 +173,6 @@
 		display: grid;
 		grid-template-columns: 1fr;
 		grid-template-rows: auto auto 1fr;
-		padding: var(--spacing-md);
 		gap: var(--spacing-md);
 		align-items: start;
 	}
@@ -213,8 +204,6 @@
 		max-width: var(--max-width);
 		margin: 0 auto;
 		padding-bottom: var(--spacing-xxl);
-		padding-left: var(--spacing-sm);
-		padding-right: var(--spacing-sm);
 	}
 	.about_exp_title{
 		font-size: var(--font-size-xxl);

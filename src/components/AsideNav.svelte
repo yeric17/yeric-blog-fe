@@ -36,7 +36,7 @@
         <ul class="nav_list">
             <li class="nav_item">
                 <a class:active={$page.url.pathname === "/"} href="/" class="nav_link" on:click={handleLinkClick}>
-                    <span class="nav_link_text">¿Quien soy?</span>
+                    <span class="nav_link_text">Acerca de mi</span>
                 </a>
             </li>
             <li class="nav_item">
