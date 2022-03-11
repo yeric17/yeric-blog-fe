@@ -5,6 +5,11 @@
     export const prerender = true;
 
     export const load = async ({params, fetch}) => {
+        return {
+            status: 302,
+            redirect: "/"
+        }
+
         const post_id = params.post_id;
 
         const [postResponse, commentResponse] = await Promise.allSettled([

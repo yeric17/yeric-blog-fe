@@ -1,8 +1,13 @@
 <script context="module">
 	export const prerender = true;
-	
+	import {goto} from '$app/navigation';
 	import {API_HOST} from '$stores/config';
 	export const load = async function({fetch, session}){
+		
+		return {
+			status: 302,
+			redirect: "/"
+		}
 
 		let posts = [];
 		let categories = [];

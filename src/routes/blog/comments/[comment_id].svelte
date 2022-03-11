@@ -2,7 +2,10 @@
     import {API_HOST} from '$stores/config';
 
     export const load = async ({params}) => {
-
+        return {
+            status: 302,
+            redirect: "/"
+        }
         const comment_id = params.comment_id;
 
         const [responseParent,responseComments] = await Promise.allSettled([

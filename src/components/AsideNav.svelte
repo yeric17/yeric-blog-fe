@@ -36,12 +36,12 @@
         <ul class="nav_list">
             <li class="nav_item">
                 <a class:active={$page.url.pathname === "/"} href="/" class="nav_link" on:click={handleLinkClick}>
-                    <span class="nav_link_text">Blog</span>
+                    <span class="nav_link_text">¿Quien soy?</span>
                 </a>
             </li>
             <li class="nav_item">
-                <a class:active={$page.url.pathname === "/about"} href="/about" class="nav_link" on:click={handleLinkClick}>
-                    <span class="nav_link_text">¿Quien soy?</span>
+                <a class:active={$page.url.pathname === "/projects"} href="/projects" class="nav_link" on:click={handleLinkClick}>
+                    <span class="nav_link_text">Proyectos</span>
                 </a>
             </li>
             <li class="nav_item">
@@ -49,7 +49,7 @@
                     <span class="nav_link_text">Contacto</span>
                 </a>
             </li>
-            {#if !$user.authenticated}
+            <!-- {#if !$user.authenticated}
             <li class="nav_item">
                 <a class:active={$page.url.pathname === "/login"} href="/login" class="nav_link" on:click={handleLinkClick}>
                     <span class="nav_link_text">Login</span>
@@ -72,7 +72,7 @@
                     <span class="nav_link_text">Cerrar sesión</span>
                 </a>
             </li>
-            {/if}
+            {/if} -->
         </ul>
     </section>
 </aside>
