@@ -69,7 +69,7 @@
 	<title>Registro</title>
 </svelte:head>
 
-<main class="register-container">
+<section class="register-container">
     <section class="register_form">
         <h1 class="register_form_title">
             Crea una cuenta
@@ -108,7 +108,7 @@
         </div>
         {/if}
     </section>
-</main>
+</section>
 
 
 

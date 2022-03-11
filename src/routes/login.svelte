@@ -46,7 +46,7 @@
 	<title>Ingreso</title>
 </svelte:head>
 
-<main class="login-container">
+<section class="login-container">
     <div class="login-form">
         <h1 class="login_form_title">
             Ingresa con tu cuenta
@@ -63,7 +63,7 @@
             <p>¿No tienes una cuenta? <a class="register-link" href="/register">Regístrate</a></p>
         </div>
     </div>
-</main>
+</section>
 
 <style>
     .login-container{

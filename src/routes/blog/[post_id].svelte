@@ -57,7 +57,7 @@
 <svelte:head>
     <title>Blog Post</title>
 </svelte:head>
-<main class="post-page">
+<section class="post-page">
     {#if post}
     <section class="post-page_content">
         <div class="post-page_header">
@@ -133,7 +133,7 @@
     </section>
     {/if}
 
-</main>
+</section>
 
 <style>
     .post-page {

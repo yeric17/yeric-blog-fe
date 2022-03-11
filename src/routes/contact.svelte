@@ -70,7 +70,7 @@
 </svelte:head>
 
 
-<main class="contact-container">
+<section class="contact-container">
     <form class="contact-form" on:submit|preventDefault={handleSubmit}>
         <h1 class="contact-form_title">Contacto</h1>
         <p class="contact-form_info">Muchas gracias, aprecio mucho tu interes en querer contactarme.</p>
@@ -88,7 +88,7 @@
             {/if}
         </div>
     </form>
-</main>
+</section>
 
 <style>
     .contact-container {

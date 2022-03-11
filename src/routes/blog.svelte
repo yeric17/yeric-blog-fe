@@ -83,7 +83,7 @@
 </svelte:head>
 
 
-<main class="posts">
+<section class="posts">
     <section class="posts_banner">
 		{#if posts.length > 0 && posts[0]}
 		<PostBanner post={posts[0]}/>
@@ -108,7 +108,7 @@
 		</div>
 	</section>
 	{/if}
-</main>
+</section>
 
 <style>
 	.posts_banner {
