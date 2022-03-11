@@ -53,9 +53,11 @@
                 <img src={`/yericdev_logo_mobile.png`} alt="">
             </a>
         </div>
-        <button class="btn-icon" on:click={toggleNav}>
-            <span class="icon-menu"></span>
-        </button>
+        <div class="mobile-nav">
+            <button class="btn-icon" on:click={toggleNav}>
+                <span class="icon-menu"></span>
+            </button>
+        </div>
     </MediaQuery>
     <MediaQuery is="lg+">    
         <div class="header_logo">
@@ -66,21 +68,22 @@
 
         <nav class="desk-nav">
             <ul class="desk-nav_list">
-                <li class:active={$page.url.pathname === "/"}  class="desk-nav_list_item"><a href="/">Blog</a></li>
-                <li class:active={$page.url.pathname === "/about"} class="desk-nav_list_item"><a href="/about">Acerca de mi</a></li>
+                <!-- <li class:active={$page.url.pathname === "/"}  class="desk-nav_list_item"><a href="/">Blog</a></li> -->
+                <li class:active={$page.url.pathname === "/"} class="desk-nav_list_item"><a href="/">Acerca de mi</a></li>
+                <li class:active={$page.url.pathname === "/projects"} class="desk-nav_list_item"><a href="/projects">Proyectos</a></li>
                 <li class:active={$page.url.pathname === "/contact"} class="desk-nav_list_item"><a href="/contact">Contacto</a></li>
-                {#if $session.user.authenticated && $session.user.role_id == 1}
+                <!-- {#if $session.user.authenticated && $session.user.role_id == 1}
                     <li class:active={$page.url.pathname === "/addpost"} class="desk-nav_list_item"><a href="/addpost">Crear Post</a></li>
-                {/if}
+                {/if} -->
             </ul>
         </nav>
     </MediaQuery>
-    <div class="header_section_nav-buttons">
+    <!-- <div class="header_section_nav-buttons">
         {#if !$session.user.authenticated}
         <Button btnType="primary-variant" on:click={goLogin}>Ingresar</Button>
         <Button btnType="secondary-variant" on:click={goRegister}>Registrarse</Button>
         {/if}
-    </div>
+    </div> -->
     {#if $session.user.authenticated}
     <div class:editable={$session.user.authenticated} class="user_avatar" on:click|preventDefault={(event)=>{
         event.stopPropagation();
@@ -117,7 +120,7 @@
 <style>
     .header {
         display: grid;
-        grid-template-columns: auto 1fr auto auto;
+        grid-template-columns: auto 1fr auto;
         align-items: center;
         background: var(--color-secondary);
         position: relative;
@@ -137,14 +140,19 @@
         left: var(--spacing-sm);
         z-index: var(--z-index-lv3);
     }
-    .header_section_nav-buttons{
+    /* .header_section_nav-buttons{
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: var(--spacing-lg);
         justify-self: end;
-    }
+    } */
     .desk-nav {
         height: 100%;
+        justify-self: end;
+    }
+    .mobile-nav{
+        display: flex;
+        justify-content: flex-end;
     }
     .desk-nav_list{
         height: 100%;
