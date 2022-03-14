@@ -2,6 +2,7 @@
 	import SocialLink from '$components/SocialLink.svelte';
 	import {API_HOST} from '$stores/config.js';
 	import Container from '$components/Container.svelte';
+	
 </script>
 
 <svelte:head>
@@ -113,37 +114,20 @@
 		grid-area: image;
 		display: flex;
 		justify-content: center;
+		transform: rotate(45deg);
 		justify-self: start;
+		overflow: hidden;
+		width: 300px;
+		height: 300px;
 	}
-	.about_banner_image::before{
-		content: '';
-		position: absolute;
-		bottom: -1rem;
-		left: 0;
-		width: 170px;
-		height: 170px;
-		border-radius: 10px;
-		background: var(--color-secondary);
-		z-index: 3;
-		transform: translateX(1rem);
-	}
-	.about_banner_image::after{
-		content: '';
-		position: absolute;
-		top: 0;
-		left: 10rem;
-		width: 100px;
-		height: 100px;
-		border-radius: 10px;
-		background: var(--color-primary-light);
-		z-index: 3;
-		
-	}
+	
 	.about_banner_image img{
-		max-height: 200px;
+		height: 100%;
+		width: 100%;
 		position: relative;
-		border-radius: 20px;
+		object-fit: cover;
 		z-index: 5;
+		transform: rotate(-45deg);
 	}
 
 	.about_banner_social{
