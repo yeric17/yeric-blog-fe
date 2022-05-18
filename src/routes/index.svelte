@@ -9,7 +9,6 @@
 	<title>Acerca de mi</title>
 </svelte:head>
 
-<Container>
 	<section class="about">
 		<div class="about_banner_container">
 			<div class="about_banner">
@@ -17,17 +16,13 @@
 					<img src={"/about_banner.png"} alt="about banner">
 				</div>
 				<div class="about_banner_text">
-					<h1>Hola, Me llamo</h1>
-					<h2>Carlos Yeric Fonseca Rios</h2>
-					<p>Soy un desarrollador web y de videojuegos. Me interesa todo lo relacionado con el mundo de la programación, quiero poder contribuir con mi conocimiento a la comunidad y en el camino continuar aprendiendo más de este mundo del código.</p>
-				</div>
-				<div class="about_banner_social">
-					<SocialLink type="linkedin"></SocialLink>
-					<SocialLink type="twitter"></SocialLink>
-					<SocialLink type="github"></SocialLink>
+					<h1>Hello, I'm</h1>
+					<h2>YERIC</h2>
+					<span>Web And Game Developer</span>
 				</div>
 			</div>
 		</div>
+<Container>
 		<div class="about_blog">
 			<div class="about_blog_wrapper">		
 				<h2 class="about_blog_title">Tecnologías del Blog</h2>
@@ -75,39 +70,49 @@
 			</div>
 
 		</div>
-	</section>
 </Container>
+	</section>
 
 <style>
-
+	.about_banner_container{
+		background-color: var(--color-tertiary-dark);
+		background-image: url("/banner_image.png");
+		background-repeat: no-repeat;
+		background-size: cover;
+	}
 	.about_banner{
-		display:grid;
 		width: 100%;
-		grid-template-columns: 1fr;
-		grid-template-areas: 
-			"image"
-			"text"
-			"social";
-		gap: var(--spacing-lg);
-		
+		height: 100%;
+		min-height: 768px;
+		max-width: var(--max-width);
+		margin: 0 auto;
+		position: relative;
 	}
 	.about_banner_text{
 		align-self: end;
 		grid-area: text;
+		text-align: center;
+		position: absolute;
+		bottom: 2rem;
+		right: 2rem;
 	}
 	.about_banner_text h1{
-		font-size: var(--font-size-xxl);
-		color: var(--color-secondary);		
+		font-size: 3.5rem;
+		color: var(--color-gray);
+		font-weight: 300;	
 	}
 	.about_banner_text h2{
-		font-size: var(--font-size-xxl);
-		color: var(--color-primary);		
+		letter-spacing: 0.6rem;
+		color: var(--color-primary);
+		font-size: 6rem;
+		font-weight: 600;
+		text-shadow: 0px 0px 8px var(--color-accent);
 	}
-	.about_banner_text p{
-		font-size: var(--font-size-lg);
+	.about_banner_text span{
+		font-size: 1.6rem;
 		color: var(--color-secondary);
-		border-left: .5rem solid var(--color-primary);
-		padding-left: var(--spacing-md);	
+		font-weight: 500;
+		text-shadow: 0px 0px 2px var(--color-secondary);	
 	}
 	.about_banner_image{
 		position: relative;
@@ -130,13 +135,6 @@
 		transform: rotate(-45deg);
 	}
 
-	.about_banner_social{
-		display: grid;
-		grid-template-columns: repeat(3, 50px);
-		justify-items: start;
-		gap: var(--spacing-md);
-		grid-area: social;
-	}
 	.about_blog{
 		/* background: var(--color-white); */
 		padding-top: var(--spacing-xxl);
@@ -220,9 +218,6 @@
 		}
 		.about_banner_image{
 			grid-area: image;
-		}
-		.about_banner_social{
-			grid-area: social;
 		}
 		.about_banner_image img{
 			max-height: 300px;

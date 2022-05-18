@@ -48,7 +48,7 @@
 
 <style>
     .header{
-        background: var(--color-secondary);
+        background: linear-gradient(45deg, var(--color-white) 30%, var(--color-primary) 30%,var(--color-primary) 34%, var(--color-tertiary) 34%);
     }
   .header_container {
     display: grid;
@@ -188,12 +188,23 @@
     border: var(--spacing-md) solid var(--color-primary-light);
     box-shadow: var(--shadow-lv4);
   }
+  .header_logo{
+    height: 60px;
+    width: auto;
+  }
+  .header_logo img {
+    height: 60px;
+    object-fit: contain;
+    display: block;
+    z-index: 100;
+    position: relative;
+  }
 
   @media (min-width: 768px) {
-    .header_container {
+    /* .header_container {
       padding-left: var(--spacing-xl);
       padding-right: var(--spacing-xl);
-    }
+    } */
   }
 </style>
 
