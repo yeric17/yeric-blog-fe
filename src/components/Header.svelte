@@ -25,14 +25,6 @@
 	  url: "/projects"
 	},
 	{
-	  name: "Games",
-	  url: "/projects/games"
-	},
-		{
-	  name: "Web",
-	  url: "/projects/web"
-	},
-	{
 	  name: "Contacto",
 	  url: "/contact"
 	},
@@ -60,6 +52,7 @@
 	height: var(--header-height);
 	position: relative;
 	z-index: 300;
+	box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.2);
   }
   .header_container {
     display: grid;

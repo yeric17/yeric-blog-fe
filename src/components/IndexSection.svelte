@@ -51,24 +51,24 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 38px;
-        width: 38px;
+        height: 30px;
+        width: 30px;
         border-radius: 50%;
         transform: translateY(-50%);
     }
     .section_title.primary h2::before{
         content: "A";
-        right: 0;
+        right: .5rem;
         border: 1px solid white;
     }
     .section_title.secondary h2::before{
         content: "X";
-        left: 0;
+        left: .5rem;
         border: 1px solid white;
     }
     .section_title.tertiary h2::before{
         content: "Y";
-        right: 0;
+        right: .5rem;
         border: 1px solid white;
     }
     .section_title::before{

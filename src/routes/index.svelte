@@ -1,8 +1,29 @@
+<script context="module">
+  import {API_HOST} from "$stores/config";
+  export const load = async () => {
+    let response = await fetch(`${API_HOST}/projects`);
+    let projects = await response.json();
+    return {
+      props: {
+        projects
+      }
+    }
+  };
+</script>
+
+
 <script>
   import SocialLink from "$components/SocialLink.svelte";
   import Container from "$components/Container.svelte";
   import IndexSection from "$components/IndexSection.svelte";
   import TwinContainer from "$components/TwinContainer.svelte";
+  import TopicCard from "$components/TopicCard.svelte";
+  import Gallery from "$components/Gallery.svelte";
+  import ProjectCard from "$components/ProjectCard.svelte";
+
+  import {onMount} from "svelte";
+
+  export let projects = [];
 </script>
 
 <style>
@@ -104,6 +125,7 @@
     font-weight: 300;
     color: var(--color-gray);
     line-height: 1.5rem;
+    letter-spacing: 0.06rem;
   }
   .social-section{
     padding-top: 1rem;
@@ -165,9 +187,9 @@
         <img src={'/perfil_web.png'} alt="about banner" />
       </div>
       <div class="about_banner_text">
-        <h1>Hello, I'm</h1>
+        <h1>Hola, soy</h1>
         <h2>YERIC</h2>
-        <span>Web And Game Developer</span>
+        <span>Web y Game Developer</span>
       </div>
     </div>
   </div>
@@ -199,7 +221,25 @@
       </div>
     </TwinContainer>
   </IndexSection>
-  <IndexSection title="Especialidades" color="secondary">Lorem ipsum dolor sit amet consectetur adipisicing elit. A consequuntur consectetur eaque laboriosam voluptas molestias incidunt. Ullam, qui amet odio doloremque quisquam distinctio nostrum iste, expedita nobis, non dolorem adipisci.</IndexSection>
-  <IndexSection title="Proyectos" color="tertiary">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ab ad dolore asperiores similique nesciunt qui quis. Deserunt repudiandae inventore cumque laborum, exercitationem illum, suscipit, animi unde debitis eligendi hic. Facere?</IndexSection>
+  <IndexSection title="Especialidades" color="secondary">
+    <Container>    
+      <Gallery>
+        <TopicCard topic="games"></TopicCard>
+        <TopicCard topic="frontend"></TopicCard>
+        <TopicCard topic="backend"></TopicCard>
+      </Gallery>
+    </Container>
+  </IndexSection>
+  <IndexSection title="Proyectos" color="tertiary">
+    <Container>    
+      {#if projects.length > 0}
+      <Gallery maxwidth="200px">
+        {#each projects as project}
+          <ProjectCard project={project}></ProjectCard>
+        {/each}
+      </Gallery>
+      {/if}
+    </Container>
+  </IndexSection>
   <Container />
 </section>
