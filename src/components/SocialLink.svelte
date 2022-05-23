@@ -13,7 +13,7 @@
 
 <style>
     .social-icon{
-        font-size: 2em;
+        font-size: 3em;
         text-decoration: none;
         display: inline-block;
     }

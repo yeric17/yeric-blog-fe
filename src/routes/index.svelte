@@ -87,16 +87,29 @@
     height: 100%;
     object-fit: cover;
     object-position: center;
-    
-  }
 
+  }
+  .profile-container{
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .profile-container h3{
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: var(--color-white);
+    padding-bottom: 1.5rem;
+  }
+  .profile-container p{
+    font-size: 1rem;
+    font-weight: 300;
+    color: var(--color-gray);
+    line-height: 1.5rem;
+  }
+  .social-section{
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+  }
   @media (min-width: 768px) {
-    .about_banner {
-      grid-template-columns: 1fr 1fr;
-      grid-template-areas:
-        "image text"
-        "image social";
-    }
     .about_banner_text {
       align-self: center;
     }
@@ -124,6 +137,9 @@
       z-index: 1;
 
       animation: spaceship-animation 1s;
+    }
+    .profile-container{
+      padding:0;
     }
     @keyframes spaceship-animation {
       from {
@@ -170,10 +186,16 @@
   <IndexSection title="Perfil" color="primary">
     <TwinContainer>
       <div class="profile-container" slot="left">
-        hola
+        <h3>Personal</h3>
+        <p>
+          Soy una persona empática que le gusta inspirar una actitud de servicio, me encanta poder ayudar a las personas, pienso que es una experiencia que todos deberían vivir. Me destaco por ser alguien muy paciente, soy perseverante, en cambio de angustiarme con un problema, busco como podría solucionarlo. No pienso que exista algo que no pueda aprender, solo es necesario conocer como adaptar el conocimiento a la forma en que aprendo.
+        </p>
       </div>
       <div class="profile-container" slot="right">
-        hola
+        <h3>Profesional</h3>
+        <p>
+          Me encuentro estudiando el programa de Ingeniería en las Artes Digitales con énfasis en el desarrollo de videojuegos. Enfoco mi trabajo en la programación de mecánicas de juego, el desarrollo de inteligencia artificial en los personajes y los efectos especiales, pero también puedo diseñar interfaces de usuario, con un gran sentido de la usabilidad y del diseño. Los lenguajes de programación que uso son: C#, JavaScript y Go, manipulo bases de datos con MySQL o PostgreSQL. Adicional a esto, tengo gran capacidad con el desarrollo web y conozco tecnologías como HTML, CSS, Node y React.
+        </p>
       </div>
     </TwinContainer>
   </IndexSection>

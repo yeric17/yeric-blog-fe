@@ -5,6 +5,7 @@
 <style>
     .index-section {
         background-color: var(--color-gray);
+        position: relative;
     }
     .section_title{
         font-size: 2rem;
@@ -13,7 +14,11 @@
         height: 40px;
         display: flex;
         justify-content: center;
-        position: relative;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
     }
 
     .section_title h2{
@@ -27,10 +32,9 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        position: absolute;
+        position: relative;
         z-index: 20;
         bottom: 0;
-        transform: translateY(50%);
     }
     .section_title.primary h2{
         background-color: var(--color-primary);
@@ -70,12 +74,11 @@
     .section_title::before{
         content: "";
         position: absolute;
-        bottom: 0;
+        top: 50%;
         width: 50%;
         height: 2px;
         z-index: 10;
-        bottom: 0;
-        transform: translateY(50%);
+        transform: translateY(-50%);
     }
     .section_title.primary::before{
         background-color: var(--color-primary);
@@ -90,8 +93,8 @@
         left: 0;
     }
     .section_content{
-        padding-top: 3rem;
-        padding-bottom: 3rem;
+        padding-top: 4rem;
+        padding-bottom: 4rem;
     }
     .section_content.primary{
         background-color: var(--color-tertiary);
