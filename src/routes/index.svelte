@@ -28,7 +28,7 @@
 
 <style>
   .about_banner_container {
-    --spaceship-size: 460px;
+    --spaceship-size: 400px;
     background-color: var(--color-tertiary-dark);
 
     background-image: url("/banner_home_bg.png");
@@ -62,7 +62,7 @@
 
   .about_banner {
     width: 100%;
-    height: 768px;
+    height: 480px;
     max-width: var(--max-width);
     margin: 0 auto;
     position: relative;
@@ -129,14 +129,18 @@
   }
   .social-section{
     padding-top: 1rem;
-    padding-bottom: 1rem;
+    padding-bottom: 2rem;
+  }
+  .social-section_list{
+    display: flex;
+    gap: 1rem;
   }
   @media (min-width: 768px) {
     .about_banner_text {
       align-self: center;
     }
     .about_banner_image {
-      width: 100%;
+      width: 75%;
     }
     .about_banner_image::after {
       width: 200px;
@@ -149,7 +153,7 @@
       content: "";
       position: absolute;
       bottom: 1rem;
-      left: 65%;
+      left: 60%;
       width: var(--spaceship-size);
       height: calc(var(--spaceship-size) * 1.074);
       background-image: url("/spaceship.png");
@@ -169,7 +173,7 @@
         bottom: -10rem;
       }
       to {
-        left: 65%;
+        left: 60%;
         bottom: 1rem;
       }
     }
@@ -195,6 +199,7 @@
   </div>
   <section class="social-section">
     <Container>
+      <div class="social-section_list">
           <SocialLink
             type="linkedin"
           />
@@ -203,6 +208,7 @@
           />
           <SocialLink
             type="github"/>
+      </div>
     </Container>
   </section>
   <IndexSection title="Perfil" color="primary">

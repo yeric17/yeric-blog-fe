@@ -10,10 +10,10 @@
     --color-secondary-light: #00A0FF;
     --color-secondary-text: #FFF;
 
-    --color-tertiary: #12253b;
-    --color-tertiary-dark: #0F1F2D;
+    --color-tertiary: hsl(212, 53%, 15%);
+    --color-tertiary-dark: hsl(208, 50%, 12%);
     --color-tertiary-light: #1E3C5B;
-    --color-tertiary-text: #FFF;
+    --color-tertiary-text: hsl(0, 0%, 100%);
 
     --color-accent: #e7465e;
     --color-accent-dark: #c53b4f;

@@ -27,17 +27,62 @@
     import Container from '$components/Container.svelte';
     import Gallery from '$components/Gallery.svelte';
     import ProjectCard from '$components/ProjectCard.svelte';
+    import FilterTag from "$components/FilterTag.svelte";
 
     export let projects;
 </script>
 
-<Container>
-    <section class="projects">
-        <h2>Proyectos</h2>
-        <Gallery>
-            {#each projects as project}
-                <ProjectCard project={project} />
-            {/each}
-        </Gallery>
-    </section>
-</Container>
+
+<section class="projects">
+    <div class="projects_title">
+        <h2>
+            Proyectos
+        </h2>
+    </div>
+    <div class="projects_filter">
+        <Container>
+            <ul class="projects_filter_list">
+                <FilterTag tag="all" />
+                <FilterTag tag="game"/>
+                <FilterTag tag="web"/>
+                <FilterTag tag="frontend"/>
+                <FilterTag tag="backend"/>
+            </ul>
+        </Container>
+    </div>
+    <div class="gallery_container">
+        <Container>
+            <Gallery>
+                {#each projects as project}
+                    <ProjectCard project={project} />
+                {/each}
+            </Gallery>
+        </Container>
+    </div>
+</section>
+
+
+<style>
+    .projects_title{
+        text-align: center;
+        padding: 2rem 0;
+        color: var(--color-black);
+        border-bottom: 2px solid var(--color-primary);
+        margin: 0 auto;
+    }
+    .projects_title h2{
+        font-size: 2rem;
+        font-weight: 700;
+    }
+    .gallery_container{
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+        background-color: var(--color-tertiary-light);
+    }
+    .projects_filter_list{
+        display: flex;
+        gap: 1rem;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+</style>

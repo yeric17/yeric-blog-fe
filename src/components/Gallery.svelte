@@ -10,7 +10,7 @@
     .gallery {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(var(--maxwidth), 1fr));
-        grid-gap: 1rem;
+        grid-gap: 2rem;
         justify-items: center;
     }
 </style>
