@@ -233,7 +233,7 @@
   <IndexSection title="Proyectos" color="tertiary">
     <Container>    
       {#if projects.length > 0}
-      <Gallery maxwidth="200px">
+      <Gallery minwidth="200px">
         {#each projects as project}
           <ProjectCard project={project}></ProjectCard>
         {/each}
