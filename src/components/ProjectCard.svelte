@@ -1,11 +1,12 @@
 <script>
+    import FilterTag from '$components/FilterTag.svelte';
+
     export let project = {
         title: "",
         poster: "",
         tags: [],
         link: "",
     }
-
     const HandleLink = (e) => {
         e.preventDefault()
         window.open(project.link, "_blank")
@@ -23,15 +24,7 @@
     <div class="card_tags">
         <ul class="card_tag_list">
             {#each project.tags as tag}
-            <li 
-            class="card_tag_item" 
-            class:game={tag === 'game'}
-            class:web={tag === 'web'}
-            class:frontend={tag === 'frontend'}
-            class:backend={tag === 'backend'}
-            class:vfx={tag === 'vfx'}
-            class:ai={tag === 'AI'}
-            ><a href="/projects?filter-tag={tag}">{tag}</a></li>
+                <FilterTag tag={tag} />
             {/each}
         </ul>
     </div>
@@ -84,39 +77,6 @@
         padding-bottom: .5rem;
         padding-top: .5rem;
         gap: .5rem;
-    }
-    .card_tag_item{
-        width: 100%;
-        padding: .5rem 1rem;
-        padding-left: 1.5rem;
-        text-align: center;
-        background-color: var(--color-tertiary-dark);
-        border-radius: 100px;
-        box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.5);
-        position: relative;
-        cursor: pointer;
-        color: var(--color-white);
-    }
-    .card_tag_item::before{
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: .5rem;
-        width: .5rem;
-        height: .5rem;
-        background-color: var(--color-white);
-        border-radius: .5rem;
-        transform: translateY(-50%);
-        
-    }
-    .card_tag_item.game, .card_tag_item.vfx, .card_tag_item.ai{
-        background-color: var(--color-secondary);
-    }
-    .card_tag_item.web, .card_tag_item.frontend{
-        background-color: var(--color-primary);
-    }
-    .card_tag_item.backend{
-        background-color: var(--color-tertiary);
     }
 
 </style>
