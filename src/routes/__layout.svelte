@@ -14,6 +14,9 @@
 
 <script>
     import Header from '$components/Header.svelte';
+    import Container from '$components/Container.svelte';
+    import SocialLink from '$components/SocialLink.svelte';
+    import TwinContainer from '$components/TwinContainer.svelte';
     import {notifications,addNotification} from '$stores/notifications';
     import Toast from '$components/Toast.svelte';
     import { fly } from 'svelte/transition';
@@ -38,12 +41,20 @@
     <footer class="footer">
         <div class="footer_container">
             <div class="footer_nav">
-                <ul class="nav_list">
-                    <li class="nav_list_item"><a href="/contact" target="_blank">Contacto</a></li>
-                    <li class="nav_list_item"><a href="https://www.linkedin.com/in/yericfonseca" target="_blank">Linkedin</a></li>
-                    <li class="nav_list_item"><a href="https://twitter.com/yeric17" target="_blank">Twitter</a></li>
-                    <li class="nav_list_item"><a href="https://github.com/yeric17" target="_blank">Github</a></li>
-                </ul>
+                <Container>
+                    <SocialLink
+                        type="linkedin"
+                        color="white"
+                    />
+                    <SocialLink
+                        type="twitter"
+                        color="white"
+                    />
+                    <SocialLink
+                        type="github"
+                        color="white"
+                        />
+                </Container>
             </div>
         </div>
     </footer>
@@ -94,13 +105,4 @@
         margin: 0 auto;
     }
 
-    .nav_list {
-        list-style: none;
-        display: flex;
-        align-items: center;
-        gap: var(--spacing-md);
-    }
-    .nav_list_item:hover {
-        text-decoration: underline;
-    }
 </style>

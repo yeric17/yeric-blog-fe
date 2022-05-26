@@ -9,7 +9,7 @@
     }
     const HandleLink = (e) => {
         e.preventDefault()
-        window.open(project.link, "_blank")
+        window.open(project.link)
     }
 </script>
 

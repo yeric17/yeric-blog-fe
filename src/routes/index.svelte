@@ -28,7 +28,7 @@
 
 <style>
   .about_banner_container {
-    --spaceship-size: 400px;
+    --spaceship-size: 350px;
     background-color: var(--color-tertiary-dark);
 
     background-image: url("/banner_home_bg.png");
@@ -153,13 +153,13 @@
       content: "";
       position: absolute;
       bottom: 1rem;
-      left: 60%;
+      left: 65%;
       width: var(--spaceship-size);
       height: calc(var(--spaceship-size) * 1.074);
       background-image: url("/spaceship.png");
       background-repeat: no-repeat;
       background-size: cover;
-      transform: translateX(-50%) rotate(10deg);
+      transform: translateX(-50%) rotate(12deg);
       z-index: 1;
 
       animation: spaceship-animation 1s;
@@ -173,7 +173,7 @@
         bottom: -10rem;
       }
       to {
-        left: 60%;
+        left: 65%;
         bottom: 1rem;
       }
     }

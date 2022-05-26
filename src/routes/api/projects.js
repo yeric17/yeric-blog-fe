@@ -1,17 +1,19 @@
 const projects = [
     {
         id: "1",
-        title: 'Project 1',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
-        poster: 'https://source.unsplash.com/random/400x200',
+        title: "Space limits",
+        description: 'Space limits es un proyecto personal en desarrollo, que trata de sobrevivir en el espacio, con el fin de alcanzar nuevos limites para alcanzar nuevos retos cada vez mas desafiantes',
+        poster: '/space_limits_banner.png',
         link: '/projects/1',
         tags: ['game', 'vfx', 'AI'],
         createdAt: '2020-01-01',
         sections:[
             {
-                subtitle: 'Section 1',
-                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
-                image: 'https://source.unsplash.com/random/400x200'
+                subtitle: 'VFX',
+                items: [
+                    {type: 'image', src: '/space_limits_vfx.png'},
+                    {type: 'text', src: ''},
+                ]
             },
         ]
     },
@@ -47,6 +49,16 @@ const projects = [
             },
         ]
     },
+    {
+        id: "4",
+        title: 'Project 4',
+        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
+        poster: 'https://source.unsplash.com/random/400x200',
+        link: '/projects/4',
+        tags: ['game', 'AI'],
+        createdAt: '2020-01-01',
+    }
+
 
 ]
 

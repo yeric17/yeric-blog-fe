@@ -17,6 +17,7 @@
 </script>
 
 <script>
+    import Container from '$components/Container.svelte';
     export let project;
 </script>
 
@@ -27,9 +28,12 @@
 <section class="project">
     <div class="project_banner">
         <img src="{project.poster}" alt="{project.title}">
-
-        <h2>{project.title}</h2>
-        <p>{project.description}</p>
+        <div class="project_info">
+            <div class="info_text">
+                <h2>{project.title}</h2>
+                <p>{project.description}</p>
+            </div>
+        </div>
     </div>
 </section>
 
@@ -38,24 +42,65 @@
     .project_banner{
         height: 480px;
         position: relative;
+        background-image: var(--banner-image);
     }
     .project_banner img{
-        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
         width: 100%;
         height: 100%;
         object-fit: cover;
+        z-index: 50;
     }
 
-    .project_banner h2{
+    .project_info{
+        max-width: var(--max-width);
+        margin: 0 auto;
+        position: relative;
+        z-index: 100;
+        height: 100%;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: end;
+        padding-top: var(--spacing-md);
+        padding-bottom: var(--spacing-md);
+    }
+
+    .info_text {
+        --border-width: 4px;
+        background-color: rgba(18, 37, 59,.8);
+        padding: var(--spacing-md);
+        position: relative;
+    }
+    .info_text::before, .info_text::after {
+        content: "";
         position: absolute;
-        top: 3rem;
-        left: 4rem;
+        height: 80px;
+        width: 80px;
+        border-width: var(--border-width);
+        border-color: var(--color-secondary);
+    }
+    .info_text::before {
+        left: calc(-1 * var(--border-width));
+        bottom: calc(-1 * var(--border-width));
+        border-left-style: solid;
+        border-bottom-style: solid;
+    }
+    .info_text::after{
+        top: calc(-1 * var(--border-width));
+        right: calc(-1 * var(--border-width));
+        border-right-style: solid;
+        border-top-style: solid;
+    }
+    .info_text h2{
         font-size: 2rem;
-        font-weight: 500;
-        color: var(--color-primary);
-        background-color: var(--color-tertiary-dark);
-        padding: 2rem 2rem;
-        border: 4px solid var(--color-secondary);
-        text-shadow: 0 0 2px var(--color-primary);
+        font-weight: var(--font-weight-bold);
+        color: var(--color-white);
+    }
+
+    .info_text p{
+        font-size: var(--font-size-md);
+        color: var(--color-white);
     }
 </style>

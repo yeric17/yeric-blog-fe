@@ -140,7 +140,7 @@
 		height: 0;
 		border-bottom: var(--header-height) solid var(--color-white);
 		border-right: var(--header-height) solid transparent;      
-		right: 0;
+		right: .5px;
 		top: 0;
 		z-index: 100;
 		transform: translateX(100%);

@@ -20,30 +20,19 @@ class:all={tag === 'all'}
         text-align: center;
         background-color: var(--color-tertiary-dark);
         border-radius: 100px;
-        box-shadow: inset 0px 0px 10px 0px rgba(0,0,0,0.5);
         position: relative;
         cursor: pointer;
         color: var(--color-white);
-        max-width: 100px;
+        overflow: hidden;
+        width: auto;
     }
     .card_tag_item a{
-        padding: .5rem 1rem;
-        padding-left: 1.5rem;
         display: block;
+        max-width: 100px;
         width: 100%;
+        padding: .5rem 1rem;
     }
-    .card_tag_item::before{
-        content: "";
-        position: absolute;
-        top: 50%;
-        left: .5rem;
-        width: .5rem;
-        height: .5rem;
-        background-color: var(--color-white);
-        border-radius: .5rem;
-        transform: translateY(-50%);
-        
-    }
+
     .card_tag_item.game, .card_tag_item.vfx, .card_tag_item.ai{
         background-color: var(--color-secondary);
     }

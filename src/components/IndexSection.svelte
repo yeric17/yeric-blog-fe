@@ -51,25 +51,26 @@
         display: flex;
         justify-content: center;
         align-items: center;
-        height: 30px;
-        width: 30px;
+        height: 40px;
+        width: 40px;
         border-radius: 50%;
         transform: translateY(-50%);
+        background-size: 100% 100%;
     }
     .section_title.primary h2::before{
-        content: "A";
-        right: .5rem;
-        border: 1px solid white;
+        content: "";
+        background-image: url("/x_button.svg");
+        left: 0;
     }
     .section_title.secondary h2::before{
-        content: "X";
-        left: .5rem;
-        border: 1px solid white;
+        content: "";
+        right: 0;
+        background-image: url("/y_button.svg");
     }
     .section_title.tertiary h2::before{
-        content: "Y";
-        right: .5rem;
-        border: 1px solid white;
+        content: "";
+        left: 0;
+        background-image: url("/b_button.svg");
     }
     .section_title::before{
         content: "";

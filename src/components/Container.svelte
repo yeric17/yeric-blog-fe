@@ -8,6 +8,7 @@
         margin: 0 auto;
         padding-left: var(--spacing-sm);
         padding-right: var(--spacing-sm);
+        position: relative;
     }
 
     @media screen and (min-width: 1200px){
