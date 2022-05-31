@@ -21,7 +21,6 @@
   import Gallery from "$components/Gallery.svelte";
   import ProjectCard from "$components/ProjectCard.svelte";
 
-  import {onMount} from "svelte";
 
   export let projects = [];
 </script>

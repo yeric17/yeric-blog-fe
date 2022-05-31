@@ -35,6 +35,40 @@
             </div>
         </div>
     </div>
+    <div class="project_content">
+        
+        <Container>
+            {#each project.sections as section}
+                <article class="content_section">
+                    <h3>{section.title}</h3>
+                    {#if section.items != null && section.items != undefined}
+                    <div class="section_items">
+                        {#each section.items as item, idx}
+                            <div class="section_item">
+                                {#if idx%2== 0}
+                                    {#if item.type == "image"}
+                                        <img  src="{item.value}" alt="{item.value}">
+                                    {/if}
+                                    {#if item.type == "text"}
+                                        <p >{item.value}</p>
+                                    {/if}
+                                {:else}
+                                    {#if item.type == "image"}
+                                    <img src="{item.value}" alt="{item.value}">
+                                    {/if}
+                                    {#if item.type == "text"}
+                                        <p>{item.value}</p>
+                                    {/if}
+                                {/if}
+                            </div>
+                        {/each}
+                    </div>
+                    {/if}
+                </article>
+            {/each}
+        </Container>
+
+    </div>
 </section>
 
 
@@ -102,5 +136,42 @@
     .info_text p{
         font-size: var(--font-size-md);
         color: var(--color-white);
+    }
+    .project_content{
+        padding-top: 4rem;
+        padding-bottom: 4rem;
+    }
+    .content_section{
+        margin-bottom: var(--spacing-xl);
+    }
+    .content_section h3{
+        font-size: var(--font-size-xl);
+        font-weight: 600;
+        color: var(--color-secondary);
+        margin-bottom: var(--spacing-xl);
+        text-align: center;
+    }
+    .section_items{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 4rem;
+    }
+    .section_item{
+        max-width: 75ch;
+    }
+    .section_item img{
+        height: 100%;
+        max-height: 200px;
+        width: 100%;
+        object-fit: cover;
+    }
+    .section_item p{
+        width: 100%;
+    }
+
+    @media  (min-width: 768px){
+        .section_items{
+            grid-template-columns: 1fr 1fr;
+        }
     }
 </style>

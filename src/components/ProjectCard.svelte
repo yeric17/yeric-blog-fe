@@ -1,5 +1,6 @@
 <script>
     import FilterTag from '$components/FilterTag.svelte';
+    import {goto} from "$app/navigation"
 
     export let project = {
         title: "",
@@ -9,7 +10,8 @@
     }
     const HandleLink = (e) => {
         e.preventDefault()
-        window.open(project.link)
+        
+        goto(project.link)
     }
 </script>
 
