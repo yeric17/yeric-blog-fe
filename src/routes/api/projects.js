@@ -9,12 +9,21 @@ const projects = [
         createdAt: '2020-01-01',
         sections:[
             {
-                subtitle: 'VFX',
+                title: 'VFX (Visual Effect Graph)',
                 items: [
-                    {type: 'image', src: '/space_limits_vfx.png'},
-                    {type: 'text', src: ''},
+                    {type: 'image', value: '/space_limits_vfx.png'},
+                    {type: 'text', value: 'Para los effectos visuales del juego se trabaja sobre visual effect graph; una herramienta de Unity para crear efectos visuales.'},
                 ]
             },
+            {
+                title: 'Shader Graph',
+                items: [
+                    {type: 'text', value: 'En los shaders del juego se utiliza Shader Graph, se han creado los materiales para simular la propulsión de las naves'},
+                    {type: 'image', value: '/space_limits_shader_graph.png'},
+                    {type: 'image', value: '/space_limits_shader_graph_2.png'},
+                    {type: 'text', value: 'Tambien se ha utilizado para mostrar los impactos de las balas en el escudo de las naves'},
+                ]
+            }
         ]
     },
     {
@@ -27,7 +36,7 @@ const projects = [
         createdAt: '2020-01-01',
         sections:[
             {
-                subtitle: 'Section 1',
+                title: 'Section 1',
                 content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
                 image: 'https://source.unsplash.com/random/400x200'
             },
@@ -43,7 +52,7 @@ const projects = [
         createdAt: '2020-01-01',
         sections:[
             {
-                subtitle: 'Section 1',
+                title: 'Section 1',
                 content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
                 image: 'https://source.unsplash.com/random/400x200'
             },
