@@ -50,14 +50,14 @@
                                         <img  src="{item.value}" alt="{item.value}">
                                     {/if}
                                     {#if item.type == "text"}
-                                        <p >{item.value}</p>
+                                        <p >{@html item.value}</p>
                                     {/if}
                                 {:else}
                                     {#if item.type == "image"}
                                     <img src="{item.value}" alt="{item.value}">
                                     {/if}
                                     {#if item.type == "text"}
-                                        <p>{item.value}</p>
+                                        <p>{@html item.value}</p>
                                     {/if}
                                 {/if}
                             </div>
@@ -163,6 +163,7 @@
         height: 100%;
         max-height: 200px;
         width: 100%;
+        display: block;
         object-fit: cover;
     }
     .section_item p{

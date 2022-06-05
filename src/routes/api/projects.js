@@ -28,44 +28,21 @@ const projects = [
     },
     {
         id: "2",
-        title: 'Project 2',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
-        poster: 'https://source.unsplash.com/random/400x200',
+        title: 'Pagina de productos con React',
+        description: 'Diseño de una vista de producto con React',
+        poster: '/project_product_page.png',
         link: '/projects/2',
-        tags: ['backend', 'web'],
+        tags: ['backend', 'web','frontend'],
         createdAt: '2020-01-01',
         sections:[
             {
-                title: 'Section 1',
-                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
-                image: 'https://source.unsplash.com/random/400x200'
+                title: 'Información del proyecto',
+                items: [
+                    {type: 'text', value: 'Es una practica de desarrollo de una pagina de productos utilizando React, para crear una vista de producto con un carrusel de imagenes y carrito de compras. Se utilizo Vite como herramienta de frontend. <a class="link" target="_blank" href="https://react-product-page-ecru.vercel.app/">Ir al sitio del proyecto</a>'},
+                    {type: 'text', value: '<a  target="_blank" href="https://react-product-page-ecru.vercel.app/"><img src="/project_product_page.png" alt="page_link"/></a>'},  
+                ]
             },
         ]
-    },
-    {
-        id: "3",
-        title: 'Project 3',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
-        poster: 'https://source.unsplash.com/random/400x200',
-        link: '/projects/3',
-        tags: ['frontend', 'web'],
-        createdAt: '2020-01-01',
-        sections:[
-            {
-                title: 'Section 1',
-                content: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
-                image: 'https://source.unsplash.com/random/400x200'
-            },
-        ]
-    },
-    {
-        id: "4",
-        title: 'Project 4',
-        description: 'Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam, quos.',
-        poster: 'https://source.unsplash.com/random/400x200',
-        link: '/projects/4',
-        tags: ['game', 'AI'],
-        createdAt: '2020-01-01',
     }
 
 

@@ -223,6 +223,7 @@
         <p>
           Me encuentro estudiando el programa de Ingeniería en las Artes Digitales con énfasis en el desarrollo de videojuegos. Enfoco mi trabajo en la programación de mecánicas de juego, el desarrollo de inteligencia artificial en los personajes y los efectos especiales, pero también puedo diseñar interfaces de usuario, con un gran sentido de la usabilidad y del diseño. Los lenguajes de programación que uso son: C#, JavaScript y Go, manipulo bases de datos con MySQL o PostgreSQL. Adicional a esto, tengo gran capacidad con el desarrollo web y conozco tecnologías como HTML, CSS, Node y React.
         </p>
+        
       </div>
     </TwinContainer>
   </IndexSection>
