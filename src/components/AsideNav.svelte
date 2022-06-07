@@ -7,20 +7,8 @@
 
     export let visible = false;
 
-    const pages = [
-	{
-	  name: "Acerca de mi",
-	  url: "/"
-	},
-	{
-	  name: "Proyectos",
-	  url: "/projects"
-	},
-	{
-	  name: "Contacto",
-	  url: "/contact"
-	},
-  ];
+  
+    import { pages } from "$stores/pages";
 
 </script>
 

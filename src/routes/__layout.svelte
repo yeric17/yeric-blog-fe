@@ -14,10 +14,11 @@
 
 <script>
     import Header from '$components/Header.svelte';
-    import Container from '$components/Container.svelte';
     import SocialLink from '$components/SocialLink.svelte';
-    import TwinContainer from '$components/TwinContainer.svelte';
+    import { pages } from "$stores/pages";
+    import { page } from "$app/stores";
     import {notifications,addNotification} from '$stores/notifications';
+    import NavItem from "$components/NavItem.svelte";
     import Toast from '$components/Toast.svelte';
     import { fly } from 'svelte/transition';
     import '$css/fonts.css';
@@ -40,21 +41,49 @@
     </div>
     <footer class="footer">
         <div class="footer_container">
-            <div class="footer_nav">
-                <Container>
-                    <SocialLink
-                        type="linkedin"
-                        color="white"
-                    />
-                    <SocialLink
-                        type="twitter"
-                        color="white"
-                    />
-                    <SocialLink
-                        type="github"
-                        color="white"
-                        />
-                </Container>
+            <div class="footer_header">
+
+                <div class="footer_contact">
+                    <div class="footer_logo">
+                          <img class="footer_logo_img" src={`/yeric_dev_white_logo.svg`} alt="logo" />
+                    </div>
+                    <div class="footer_social">
+                     <div class="social-section_list">
+                         <SocialLink
+                           type="linkedin"
+                           color="white"
+                         />
+                         <SocialLink
+                           type="twitter"
+                           color="white"
+                         />
+                         <SocialLink
+                           type="github"
+                           color="white"
+                           />
+                     </div>
+                    </div>
+                    <div class="footer_contact-info">
+                        <span>yeric17@gmail.com</span>
+                    </div>
+                </div>
+                 <div class="footer_nav">
+                     <span class="footer_nav_title">Paginas del sitio</span>
+                     <ul class="footer_nav_list">
+                         {#each pages as pag}
+                             {#if (pag.protected && user && user.authenticated) || pag.protected === false}
+                                 <li
+                                     class:active={$page.url.pathname === pag.url}
+                                     class="footer_nav_list_item">
+                                     <a href={pag.url}>{pag.name}</a>
+                                 </li>
+                             {/if}
+                         {/each}
+                     </ul>
+                 </div>
+            </div>
+            <div class="footer_copyright">
+                <span>&copy; 2022 Carlos Yeric Fonseca Rios. All Rights Reserved</span>
             </div>
         </div>
     </footer>
@@ -93,16 +122,57 @@
 	}
 
     .footer {
-        background-color: var(--color-secondary-dark);
-        color:white;
-        padding-top: var(--spacing-xxl);
-        padding-bottom: var(--spacing-xxl);
-        padding-left: var(--spacing-sm);
-        padding-right: var(--spacing-sm);
+        background-color: var(--color-tertiary-dark);
+        color: var(--color-tertiary-text);
     }
     .footer_container {
         max-width: var(--max-width);
         margin: 0 auto;
     }
+    .footer_header{
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
+    }
+    .footer_contact{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
 
+    .social-section_list{
+        display: flex;
+        gap: 2rem;
+    }
+    .footer_logo_img{
+        width: 6rem;
+    }
+    .footer_copyright{
+        border-top: 1px solid var(--color-gray-dark);
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+        text-align: center;
+    }
+    .footer_nav{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        gap: 1rem;
+    }
+    .footer_nav_title{
+        font-size: 1.2rem;
+        font-weight: 600;
+        flex-grow: 1;
+    }
+    .footer_nav_list{
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        gap: .5rem;
+    }
+    .footer_nav_list_item.active{
+        
+        text-decoration: underline;
+    }
 </style>

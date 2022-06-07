@@ -1,11 +1,18 @@
 <script context="module">
-    import {API_HOST} from "$stores/config";
-    export const load = async ({fetch}) =>{
-        let response = await fetch(`api/contact`);
-        console.log(response)
-        let data = await response.json();
-        let contacts = data.data;
 
+    export const load = async ({fetch, session}) =>{
+        let response = await fetch(`api/contact`);
+        let user = session.user;
+        let json = await response.json();
+        let contacts = json.data.reverse();
+        
+        
+        if(user.role_id !== 1){
+            return {
+                status: 302,
+                redirect: "/"
+            }
+        }
         return {
             props:{
                 contacts
@@ -17,18 +24,73 @@
 
 <script>
     import Container from '$components/Container.svelte'
+    import Button from '$components/Button.svelte'
     export let contacts = [];
+
+    async function handleDelete(id){
+        const response = await fetch(`/api/contact?id=${id}`, {
+            method: 'DELETE'
+        })
+        console.log(response)
+        const json = await response.json();
+        if(json.success){
+            contacts = contacts.filter(contact => contact.id !== id)
+        }
+    }
 </script>
 
-<div>
+<div class="messages">
     <Container>
-    {#each contacts as contact}
-        <div>
-            <h5>{contact.name}</h5>
-            <p>{contact.email}</p>
-            <p>{contact.message}</p>
-        </div>
-    {/each}
+        <ul class="messages_list">
+            {#each contacts as contact}
+
+                <div class="message_item">
+                    <div class="message_from">
+                        <span class="message_author">{contact.name}</span>
+                        <span class="message_email">{contact.email}</span>
+                        <div class="button_delete_container">
+                            <Button on:click={handleDelete(contact.id)}>Eliminar</Button>
+                        </div>
+                    </div>
+                    <span class="message_content">{contact.message}</span>
+                </div>
+            {/each}
+        </ul>
     </Container>
 
 </div>
+
+<style>
+    .messages_list{
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .message_from{
+        display: flex;
+        background-color: var(--color-gray);
+        gap: 1rem;
+        justify-content: space-between;
+        align-items: flex-start;
+        border-bottom: 1px solid var(--color-gray-dark);
+        padding: 1rem;
+    }
+    .message_author{
+        background-color: var(--color-secondary);
+        color: var(--color-white);
+        padding: 0.5rem;
+        border-radius: 5px;
+    }
+    .message_email{
+
+        color: var(--color-secondary);
+        padding: 0.5rem;
+        border-radius: 5px;
+    }
+    .message_content{
+        display: block;
+        background-color: white;
+        padding: 1rem;
+    }
+</style>

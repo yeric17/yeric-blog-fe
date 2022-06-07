@@ -83,5 +83,8 @@
 </label>
 
 <style>
-
+    .text-field_input{
+        background-color: rgba(255,255,255,0.1);
+        color: var(--color-tertiary-text);
+    }
 </style>

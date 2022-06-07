@@ -247,5 +247,4 @@
       {/if}
     </Container>
   </IndexSection>
-  <Container />
 </section>

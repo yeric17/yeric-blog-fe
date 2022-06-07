@@ -44,3 +44,23 @@ export async function post({ request })  {
     }
     
 }
+
+export async function del(event) {
+    const id = event.url.searchParams.get('id');
+    const response = await fetch(`https://yeric-blog-api.herokuapp.com/contact/id/${id}`, {
+        method: "DELETE"
+    })
+    console.log(response)
+    if (response.ok) {
+        const data = await response.json();
+        return {
+            status: 200,
+            ok: true,
+            body: JSON.stringify(data)
+        }
+    }
+    return {
+        ...response,
+    }
+
+}

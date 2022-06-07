@@ -17,6 +17,10 @@
 </button>
 
 <style>
+.btn-primary, .btn-secondary{
+    font-size: 1.2rem;
+    letter-spacing: 1px;
+}
 .btn-primary{
     background-color: var(--color-primary);
     color: var(--color-primary-text);
