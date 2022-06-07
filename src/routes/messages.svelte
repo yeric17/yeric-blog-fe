@@ -49,7 +49,7 @@
                         <span class="message_author">{contact.name}</span>
                         <span class="message_email">{contact.email}</span>
                         <div class="button_delete_container">
-                            <Button on:click={handleDelete(contact.id)}>Eliminar</Button>
+                            <span class="icon-trash" on:click={handleDelete(contact.id)}></span>
                         </div>
                     </div>
                     <span class="message_content">{contact.message}</span>
@@ -75,6 +75,8 @@
         align-items: flex-start;
         border-bottom: 1px solid var(--color-gray-dark);
         padding: 1rem;
+        padding-right: 3rem;
+        position: relative;
     }
     .message_author{
         background-color: var(--color-secondary);
@@ -92,5 +94,26 @@
         display: block;
         background-color: white;
         padding: 1rem;
+    }
+    .button_delete_container{
+        position: absolute;
+        top: .5rem;
+        right: .5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+    }
+    .icon-trash{
+        padding: 1px;
+        font-size: 1rem;
+        background-color: var(--color-primary);
+        color: var(--color-white);
+        display: block;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 5px;
+        cursor: pointer;
     }
 </style>

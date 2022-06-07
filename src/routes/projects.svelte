@@ -79,6 +79,9 @@
         padding-bottom: 2rem;
         background-color: var(--color-tertiary-light);
     }
+    .projects_filter{
+        background-color: var(--color-tertiary-dark);
+    }
     .projects_filter_list{
         display: flex;
         gap: 1rem;

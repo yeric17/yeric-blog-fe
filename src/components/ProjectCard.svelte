@@ -38,7 +38,7 @@
         grid-template-columns: 1fr;
         grid-template-rows: 250px 1fr 1fr;
         justify-items: center;
-        background-color: var(--color-white);
+        background-color: var(--color-tertiary-light);
         align-items: start;
         box-sizing: border-box;
         border-radius: 5px;
@@ -74,11 +74,18 @@
         font-weight: 400;
         color: var(--color-white);
     }
+    .card_tags{
+        width: 100%;
+    }
     .card_tag_list{
         display: flex;
-        padding-bottom: .5rem;
-        padding-top: .5rem;
+        background-color: var(--color-white);
+        padding-bottom: .8rem;
+        padding-top: .8rem;
+        padding-left: .5rem;
+        padding-right: .5rem;
         gap: .5rem;
+        width: 100%;
     }
 
 </style>

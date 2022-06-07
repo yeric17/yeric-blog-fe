@@ -5,7 +5,7 @@ const projects = [
         description: 'Space limits es un proyecto personal en desarrollo, que trata de sobrevivir en el espacio, con el fin de alcanzar nuevos limites para alcanzar nuevos retos cada vez mas desafiantes',
         poster: '/space_limits_banner.png',
         link: '/projects/1',
-        tags: ['game', 'vfx', 'AI'],
+        tags: ['game', 'VFX', 'AI'],
         createdAt: '2020-01-01',
         sections:[
             {

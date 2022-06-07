@@ -18,8 +18,8 @@
 
 <style>
 .btn-primary, .btn-secondary{
-    font-size: 1.2rem;
     letter-spacing: 1px;
+    font-size: inherit;
 }
 .btn-primary{
     background-color: var(--color-primary);

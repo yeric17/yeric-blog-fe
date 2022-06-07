@@ -96,20 +96,23 @@
         max-width: 600px;
         margin: 0 auto;
         padding-top: var(--spacing-xl);
+        padding-bottom: var(--spacing-xl);
     }
     .contact-form {
         background-color: var(--color-tertiary);
         
         padding: var(--spacing-xl) var(--spacing-xxl);
-        border-radius: 5px;   
+        border-radius: 10px;   
     }
     .contact-form_button {
         padding-top: var(--spacing-lg);
     }
     .contact-form_title, .contact-form_info {
         color: var(--color-primary-text);
-        font-size: var(--font-size-lg);
         font-weight: var(--font-weight-bold);
+    }
+    .contact-form_info{
+        padding-top: var(--spacing-md);
     }
     .error{
         color: var(--color-danger);

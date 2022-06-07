@@ -9,7 +9,7 @@ class:game={tag === 'game'}
 class:web={tag === 'web'}
 class:frontend={tag === 'frontend'}
 class:backend={tag === 'backend'}
-class:vfx={tag === 'vfx'}
+class:vfx={tag === 'VFX'}
 class:ai={tag === 'AI'}
 class:all={tag === 'all'}
 ><a href="{tag != 'all'?'/projects?filter-tag='+tag:'/projects'}">{tag}</a></li>
@@ -25,6 +25,8 @@ class:all={tag === 'all'}
         color: var(--color-white);
         overflow: hidden;
         width: auto;
+        text-transform: capitalize;
+        border: 2px solid var(--color-gray-dark);
     }
     .card_tag_item a{
         display: block;
@@ -33,7 +35,7 @@ class:all={tag === 'all'}
         padding: .5rem 1rem;
     }
 
-    .card_tag_item.game, .card_tag_item.vfx, .card_tag_item.ai{
+    /* .card_tag_item.game, .card_tag_item.vfx, .card_tag_item.ai{
         background-color: var(--color-secondary);
     }
     .card_tag_item.web, .card_tag_item.frontend{
@@ -41,5 +43,14 @@ class:all={tag === 'all'}
     }
     .card_tag_item.backend{
         background-color: var(--color-tertiary);
+    } */
+    .card_tag_item.game, .card_tag_item.vfx, .card_tag_item.ai{
+        border: 2px solid var(--color-secondary);
+    }
+    .card_tag_item.web, .card_tag_item.frontend{
+        border: 2px solid var(--color-primary);
+    }
+    .card_tag_item.backend{
+        border: 2px solid var(--color-tertiary-light);
     }
 </style>

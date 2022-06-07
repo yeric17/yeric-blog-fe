@@ -63,3 +63,6 @@
 .icon-close-circle:before {
     content: "\e908";
 }
+.icon-trash:before {
+    content: "\e921";
+}

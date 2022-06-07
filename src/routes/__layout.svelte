@@ -42,29 +42,34 @@
     <footer class="footer">
         <div class="footer_container">
             <div class="footer_header">
-
+                <div class="footer_logo">
+                      <img class="footer_logo_img" src={`/yeric_dev_white_logo.svg`} alt="logo" />
+                </div>
                 <div class="footer_contact">
-                    <div class="footer_logo">
-                          <img class="footer_logo_img" src={`/yeric_dev_white_logo.svg`} alt="logo" />
-                    </div>
                     <div class="footer_social">
-                     <div class="social-section_list">
-                         <SocialLink
-                           type="linkedin"
-                           color="white"
-                         />
-                         <SocialLink
-                           type="twitter"
-                           color="white"
-                         />
-                         <SocialLink
-                           type="github"
-                           color="white"
-                           />
-                     </div>
-                    </div>
-                    <div class="footer_contact-info">
-                        <span>yeric17@gmail.com</span>
+                        <span class="footer_social_title">
+                            Sigueme en:
+                        </span>
+                        <div class="social-section_list">
+                            <SocialLink
+                            type="linkedin"
+                            color="white"
+                            size="2.5rem"
+                            />
+                            <SocialLink
+                            type="twitter"
+                            color="white"
+                            size="2.5rem"
+                            />
+                            <SocialLink
+                            type="github"
+                            color="white"
+                            size="2.5rem"
+                            />
+                        </div>
+                        <div class="footer_contact-info">
+                            <span>yeric17@gmail.com</span>
+                        </div>
                     </div>
                 </div>
                  <div class="footer_nav">
@@ -131,7 +136,7 @@
     }
     .footer_header{
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
         padding-top: 2rem;
         padding-bottom: 2rem;
     }
@@ -149,21 +154,20 @@
         width: 6rem;
     }
     .footer_copyright{
-        border-top: 1px solid var(--color-gray-dark);
+        border-top: 1px solid var(--color-secondary-dark);
         padding-top: 1rem;
         padding-bottom: 1rem;
         text-align: center;
     }
-    .footer_nav{
+    .footer_nav, .footer_social{
         display: flex;
         flex-direction: column;
         justify-content: start;
         gap: 1rem;
     }
-    .footer_nav_title{
+    .footer_nav_title, .footer_social_title{
         font-size: 1.2rem;
         font-weight: 600;
-        flex-grow: 1;
     }
     .footer_nav_list{
         display: flex;
