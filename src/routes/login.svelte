@@ -2,11 +2,13 @@
     import {Auth} from "../stores/user";
     export const load = async function({session}){
         if(session.user && session.user.authenticated){
+            console.log("has session")
             return {
                 status: 302,
                 redirect: "/"
             }
         }
+        console.log("has not session")
         return {
             status: 200,
         }
@@ -24,8 +26,9 @@
         password: ''
     }
 
-    function handleLogin(){
-        fetch('/api/login', {
+    async function handleLogin(){
+        console.log({userLogin})
+        await fetch('/api/login', {
             method: 'POST',
             body: JSON.stringify(userLogin),
             headers: {
@@ -34,7 +37,6 @@
         }).then(res => {
             if(res.ok){
                 goto('/')
-                window.location.reload()
             }
         }).catch(err => {
             console.log(err)

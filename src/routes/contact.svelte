@@ -4,6 +4,7 @@
     import TextArea from '$components/forms/TextArea.svelte'
     import Button from '$components/Button.svelte'
     import {addNotification} from '$stores/notifications'
+    import {API_HOST} from "$stores/config";
 
     let formData = {
         email: '',
@@ -19,15 +20,15 @@
 
     let errorMessage = false
     async function handleSubmit(){
-        console.log({formSuccess})
+
         if(!formSuccess.email || !formSuccess.name || !formSuccess.message){
             errorMessage = 'Por favor llene todos los campos'
             return
         }
-        
+        console.log(formData)
         errorMessage = false
 
-        let response = await fetch(`${API_HOST}/contact`, {
+        let response = await fetch(`api/contact`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -80,7 +81,7 @@
             <TextArea id="contactMessage" bind:success={formSuccess.message} bind:value={formData.message}>Mensaje</TextArea>
         </div>
         <div class="contact-form_button">
-            <Button>Enviar</Button>
+            <Button on:click={handleSubmit}>Enviar</Button>
         </div>
         <div class="contact-form_footer">
             {#if errorMessage}

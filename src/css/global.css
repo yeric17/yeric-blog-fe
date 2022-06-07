@@ -49,6 +49,11 @@ html, body{
 a{
 	text-decoration: none;
 	color: inherit;
+	max-width: 100%;
+}
+
+a img{
+	max-width: 100%;
 }
 
 li{
@@ -67,4 +72,10 @@ h1, h2, h3, h4, h5, h6{
 textarea{
 	resize:none;
 	overflow: hidden;
+}
+
+.link{
+	text-decoration: none;
+	color: var(--color-accent);
+	font-weight: 700;
 }

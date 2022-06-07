@@ -32,7 +32,7 @@
 {#if user.authenticated === true || user.authenticated === false}
 
 
-<Header></Header>
+<Header user={user}></Header>
 
 <main class="main">
     <div class="main_section">

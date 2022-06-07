@@ -11,7 +11,7 @@ export const handle = async function({ event, resolve }) {
 		cookie = ParseCookie(cookie);
 		let token = cookie.token;
 		if (token) {
-			await fetch(`${API_HOST}/users/auth`, {
+			await fetch(`https://yeric-blog-api.herokuapp.com/users/auth`, {
 				method: "GET",
 				headers: {
 					"Content-Type": "application/json",
