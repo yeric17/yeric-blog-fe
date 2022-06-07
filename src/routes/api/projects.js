@@ -43,6 +43,24 @@ const projects = [
                 ]
             },
         ]
+    },
+    {
+        id: "3",
+        title: 'Pokedex creado con Vue',
+        description: '',
+        poster: '/project_pokedex.png',
+        link: '/projects/3',
+        tags: ['frontend','web'],
+        createdAt: '2020-01-01',
+        sections:[
+            {
+                title: 'Información del proyecto',
+                items: [
+                    {type: 'text', value: 'Es una practica de desarrollo de una pagina de productos utilizando React, para crear una vista de producto con un carrusel de imagenes y carrito de compras. Se utilizo Vite como herramienta de frontend. <a class="link" target="_blank" href="https://vue-pokedex-rho.vercel.app/">Ir al sitio del proyecto</a>'},
+                    {type: 'text', value: '<a  target="_blank" href="https://vue-pokedex-rho.vercel.app/"><img src="/project_pokedex.png" alt="page_link"/></a>'},  
+                ]
+            },
+        ]
     }
 
 

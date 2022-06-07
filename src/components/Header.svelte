@@ -11,23 +11,31 @@
   import NavItem from "$components/NavItem.svelte";
 
   let showNav = false;
-
+  export let user = null;
 
 
 
   const pages = [
 	{
 	  name: "Acerca de mi",
-	  url: "/"
+	  url: "/",
+	  protected: false
 	},
 	{
 	  name: "Proyectos",
-	  url: "/projects"
+	  url: "/projects",
+	  protected: false
 	},
 	{
 	  name: "Contacto",
-	  url: "/contact"
+	  url: "/contact",
+	  protected: false
 	},
+	{
+	  name: "Mensajes",
+	  url: "/messages",
+	  protected: true
+	}
   ];
 
   function toggleNav() {
@@ -183,7 +191,9 @@
         <nav class="desk-nav">
           <ul class="desk-nav_list">
 			{#each pages as page}
-				<NavItem name={page.name} url={page.url} />
+				{#if page.protected && user || page.protected === false}
+					<NavItem name={page.name} url={page.url} />
+				{/if}
 			{/each}
           </ul>
         </nav>

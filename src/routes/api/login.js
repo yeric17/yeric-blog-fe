@@ -1,14 +1,13 @@
-import {API_HOST} from '$stores/config';
-
 export async function post({request}){
     let body = await request.json();
-    let response = await fetch(`${API_HOST}/users/login`, {
+    let response = await fetch(`https://yeric-blog-api.herokuapp.com/users/login`, {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify(body)
     });
+    console.log({response})
     if(response.status === 200){
         let data = await response.json();
 

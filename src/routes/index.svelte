@@ -229,7 +229,7 @@
   </IndexSection>
   <IndexSection title="Especialidades" color="secondary">
     <Container>    
-      <Gallery>
+      <Gallery maxwidth="1fr">
         <TopicCard topic="games"></TopicCard>
         <TopicCard topic="frontend"></TopicCard>
         <TopicCard topic="backend"></TopicCard>
@@ -239,7 +239,7 @@
   <IndexSection title="Proyectos" color="tertiary">
     <Container>    
       {#if projects.length > 0}
-      <Gallery minwidth="200px">
+      <Gallery minwidth="300px" maxwidth="1fr">
         {#each projects as project}
           <ProjectCard project={project}></ProjectCard>
         {/each}
