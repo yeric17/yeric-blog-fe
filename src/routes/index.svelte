@@ -27,7 +27,7 @@
 
 <style>
   .about_banner_container {
-    --spaceship-size: 350px;
+    --spaceship-size: 300px;
     background-color: var(--color-tertiary-dark);
 
     background-image: url("/banner_home_bg.png");
@@ -96,7 +96,7 @@
     position: absolute;
     left: 0;
     top: 0;
-    width: 150%;
+    width: 90%;
     display: block;
     transform: translateX(-30%);
     z-index: 2;

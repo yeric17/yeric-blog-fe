@@ -11,9 +11,9 @@
         position: relative;
     }
 
-    @media screen and (min-width: 1200px){
+    @media screen and (min-width: 768px){
         .container{
-            padding:0;
+            padding: 1rem;
         }
     }
 </style>

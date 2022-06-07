@@ -97,8 +97,10 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         align-items: end;
-        padding-top: var(--spacing-md);
-        padding-bottom: var(--spacing-md);
+        padding-top: var(--spacing-lg);
+        padding-bottom: var(--spacing-lg);
+        padding-left: 2rem;
+        
     }
 
     .info_text {
@@ -172,6 +174,9 @@
     @media  (min-width: 768px){
         .section_items{
             grid-template-columns: 1fr 1fr;
+        }
+        .project_info{
+            padding-left: 0;
         }
     }
 </style>
