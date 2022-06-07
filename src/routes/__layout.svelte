@@ -48,23 +48,23 @@
                 <div class="footer_contact">
                     <div class="footer_social">
                         <span class="footer_social_title">
-                            Sigueme en:
+                            Sígueme en:
                         </span>
                         <div class="social-section_list">
                             <SocialLink
                             type="linkedin"
                             color="white"
-                            size="2.5rem"
+                            size="2rem"
                             />
                             <SocialLink
                             type="twitter"
                             color="white"
-                            size="2.5rem"
+                            size="2rem"
                             />
                             <SocialLink
                             type="github"
                             color="white"
-                            size="2.5rem"
+                            size="2rem"
                             />
                         </div>
                         <div class="footer_contact-info">

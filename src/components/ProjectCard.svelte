@@ -67,12 +67,13 @@
         padding: 1rem;
         
         text-align: center;
-        background-color: var(--color-tertiary-dark);
+        background-color: var(--color-white);
+        
         
     }
     .card_title h3 {
         font-weight: 400;
-        color: var(--color-white);
+        color: var(--color-black);
     }
     .card_tags{
         width: 100%;
@@ -81,7 +82,7 @@
         display: flex;
         background-color: var(--color-white);
         padding-bottom: .8rem;
-        padding-top: .8rem;
+        padding-top: .5rem;
         padding-left: .5rem;
         padding-right: .5rem;
         gap: .5rem;

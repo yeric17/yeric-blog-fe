@@ -160,11 +160,12 @@
     }
     .section_item{
         max-width: 75ch;
+        display: flex;
+        justify-content: center;
     }
     .section_item img{
-        height: 100%;
-        max-height: 200px;
         width: 100%;
+        max-width: 350px;
         display: block;
         object-fit: cover;
     }

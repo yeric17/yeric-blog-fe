@@ -18,7 +18,7 @@ class:all={tag === 'all'}
     .card_tag_item{
         width: 100%;
         text-align: center;
-        background-color: var(--color-tertiary-dark);
+        background-color: var(--color-tertiary);
         border-radius: 100px;
         position: relative;
         cursor: pointer;
