@@ -42,9 +42,6 @@
     <footer class="footer">
         <div class="footer_container">
             <div class="footer_header">
-                <div class="footer_logo">
-                      <img class="footer_logo_img" src={`/yeric_dev_white_logo.svg`} alt="logo" />
-                </div>
                 <div class="footer_contact">
                     <div class="footer_social">
                         <span class="footer_social_title">
@@ -68,7 +65,7 @@
                             />
                         </div>
                         <div class="footer_contact-info">
-                            <span>yeric17@gmail.com</span>
+                            <span>yeric.dev@gmail.com</span>
                         </div>
                     </div>
                 </div>
@@ -86,6 +83,9 @@
                          {/each}
                      </ul>
                  </div>
+                <div class="footer_logo">
+                      <img class="footer_logo_img" src={`/yeric_dev_white_logo.svg`} alt="logo" />
+                </div>
             </div>
             <div class="footer_copyright">
                 <span>&copy; 2022 Carlos Yeric Fonseca Rios. All Rights Reserved</span>
@@ -150,6 +150,9 @@
         display: flex;
         gap: 2rem;
     }
+    .footer_logo{
+        justify-self: end;
+    }
     .footer_logo_img{
         width: 6rem;
     }
@@ -158,6 +161,7 @@
         padding-top: 1rem;
         padding-bottom: 1rem;
         text-align: center;
+        font-weight: 200;
     }
     .footer_nav, .footer_social{
         display: flex;
@@ -178,5 +182,8 @@
     .footer_nav_list_item.active{
         
         text-decoration: underline;
+    }
+    .footer_contact-info{
+        font-weight: 200;
     }
 </style>

@@ -6,7 +6,7 @@
 </script>
 
 {#if type==="twitter"}
-<a class="social-icon" href="https://twitter.com/yeric17" target="_blank"><span class="icon-twitter" class:icon-color={color != null} style="--icon-color: {color}; --icon-size: {size}" class:icon-resize={size !== null}></span></a>
+<a class="social-icon" href="https://twitter.com/yericdev" target="_blank"><span class="icon-twitter" class:icon-color={color != null} style="--icon-color: {color}; --icon-size: {size}" class:icon-resize={size !== null}></span></a>
 {:else if type==="linkedin"}
 <a class="social-icon" href="https://www.linkedin.com/in/yericfonseca" target="_blank"><span class="icon-linkedin" class:icon-color={color != null} style="--icon-color: {color}; --icon-size: {size}" class:icon-resize={size !== null}></span></a>
 {:else if type==="github"}
