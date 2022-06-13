@@ -1,8 +1,7 @@
 // import cookie from 'cookie';
 // import { v4 as uuid } from '@lukeed/uuid';
-import {ParseCookie,ParseJwt} from '$lib/utils';
+import {ParseCookie} from '$lib/utils';
 import jwt_decode from 'jwt-decode';
-import {API_HOST} from '$stores/config';
 
 export const handle = async function({ event, resolve }) {
 	
