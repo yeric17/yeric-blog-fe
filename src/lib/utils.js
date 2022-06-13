@@ -17,3 +17,4 @@ export const TransformCookie = function(obj){
     }
     return result.join(";");
 }
+

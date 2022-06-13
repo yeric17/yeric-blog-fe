@@ -45,21 +45,28 @@
                     <div class="section_items">
                         {#each section.items as item, idx}
                             <div class="section_item">
-                                {#if idx%2== 0}
-                                    {#if item.type == "image"}
-                                        <img  src="{item.value}" alt="{item.value}">
-                                    {/if}
-                                    {#if item.type == "text"}
-                                        <p >{@html item.value}</p>
-                                    {/if}
-                                {:else}
-                                    {#if item.type == "image"}
-                                    <img src="{item.value}" alt="{item.value}">
-                                    {/if}
-                                    {#if item.type == "text"}
-                                        <p>{@html item.value}</p>
-                                    {/if}
+                                {#if item.type == "image"}
+                                    <img class="section_item_image"  src="{item.value}" alt="{item.value}">
                                 {/if}
+                                {#if item.type == "text"}
+                                    <p class="section_item_text" >{@html item.value}</p>
+                                {/if}
+                                {#if item.type == "list"}
+                                    <ul class="section_item_list">
+                                        {#each item.value as listItem}
+                                            <li class="section_item_list_item">{listItem}</li>
+                                        {/each}
+                                    </ul>
+                                {/if}
+                                {#if item.type == "video"}
+                                    <div class="section_item_video">
+                                        <iframe title="video_gameplay" width="560" height="315" src="{item.value}" frameborder="0" allow="accelerometer; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                                    </div>
+                                {/if}
+                                {#if item.type == "subtitle"}
+                                    <h4 class="section_item_subtitle">{item.value}</h4>
+                                {/if}
+
                             </div>
                         {/each}
                     </div>
@@ -89,13 +96,13 @@
     }
 
     .project_info{
-        max-width: var(--max-width);
+        max-width: 75ch;
         margin: 0 auto;
         position: relative;
         z-index: 100;
         height: 100%;
         display: grid;
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: 1fr;
         align-items: end;
         padding-top: var(--spacing-lg);
         padding-bottom: var(--spacing-lg);
@@ -156,26 +163,48 @@
     .section_items{
         display: grid;
         grid-template-columns: 1fr;
-        gap: 4rem;
+        justify-items: center;
+        gap: 2rem;
     }
     .section_item{
         max-width: 75ch;
+        width: 100%;
         display: flex;
+        justify-content: flex-start;
+    }
+    .section_item_image{
+        width: 100%;
+        display: block;
+    }
+    .section_item_text{
+        width: 100%;
+    }
+    .section_item_list{
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-self: flex-start;
+        gap: 1rem;
+    }
+    .section_item_list_item{
+        display: flex;
+        align-items: center;
+    }
+    .section_item_list_item::before{
+        content: "";
+        width: 1rem;
+        height: 1rem;
+        border: 2px solid var(--color-primary-dark);
+        box-sizing: border-box;
+        margin-right: 1rem;
+        background-color: var(--color-primary);
+        display: inline-flex;
+        align-content: center;
         justify-content: center;
     }
-    .section_item img{
-        width: 100%;
-        max-width: 350px;
-        display: block;
-        object-fit: cover;
-    }
-    .section_item p{
-        width: 100%;
-    }
-
     @media  (min-width: 768px){
         .section_items{
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1fr;
         }
         .project_info{
             padding-left: 0;

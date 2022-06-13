@@ -1,6 +1,7 @@
 // import cookie from 'cookie';
 // import { v4 as uuid } from '@lukeed/uuid';
-import {ParseCookie} from '$lib/utils';
+import {ParseCookie,ParseJwt} from '$lib/utils';
+import jwt_decode from 'jwt-decode';
 import {API_HOST} from '$stores/config';
 
 export const handle = async function({ event, resolve }) {
@@ -38,11 +39,13 @@ export const handle = async function({ event, resolve }) {
 	}
 	
 
-	if (cookie && method === 'POST') {
-		let user = ParseCookie(cookie).user;
+	if (cookie && method === 'POST' || method === 'DELETE' || method === 'PUT') {
+		const token = ParseCookie(cookie).token;
+		let user = jwt_decode(token);
 		if (user) {
-			let localUser = JSON.parse(user);
-			localUser.authenticated = true;
+			let localUser = user;
+			localUser["authenticated"] = true;
+			localUser["token"] = token;
 			event.locals.user = localUser;
 		}
 	}
