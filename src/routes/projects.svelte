@@ -52,7 +52,7 @@
     </div>
     <div class="gallery_container">
         <Container>
-            <Gallery minwidth="200px" maxwidth="1fr">
+            <Gallery minwidth="200px" maxwidth="350px">
                 {#each projects as project}
                     <ProjectCard project={project} />
                 {/each}

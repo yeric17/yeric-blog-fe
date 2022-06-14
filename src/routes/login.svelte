@@ -77,14 +77,14 @@
         gap: var(--spacing-sm);
         justify-items: center;
         max-width: 360px;
-
+        color: white;
         margin: 0 auto;
         border-radius: 5px;
         padding: var(--spacing-md);
         padding-bottom: var(--spacing-xl);
         padding-left : var(--spacing-xl);
         padding-right : var(--spacing-xl);
-        background-color: rgb(248, 248, 248);
+        background-color: var(--color-tertiary);
         box-shadow: 0 2px 0 0 rgba(0, 0, 0, 0.1),
                    0 2px 0 0 rgb(248, 248, 248),
                    inset 0 0 1px 2px rgba(255, 255, 255, 0.8);
@@ -111,16 +111,16 @@
         position: absolute;
         width: 1rem;
         height: 1rem;
-        border-right: 1px solid var(--color-gray-light);
-        border-bottom: 1px solid var(--color-gray-light);
-        background-color: var(--color-gray-light);
+        border-right: 1px solid var(--color-primary-dark);
+        border-bottom: 1px solid var(--color-primary-light);
+        background-color: var(--color-primary);
         margin-top: var(--spacing-md);
         left: 50%;
         bottom: 0;
         transform: translate(-50%, calc(50% + .5px)) rotate(45deg);
         transform-origin: center;
         box-shadow: .5px .5px 0 1px rgba(0, 0, 0, 0.1),
-                    .5px .5px 0 1px var(--color-gray-light),
+                    .5px .5px 0 1px var(--color-primary),
                     inset 0 0 1px 1px rgba(255, 255, 255, 0.8);
 
     }
