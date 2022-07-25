@@ -82,9 +82,9 @@ const projects = [
     },
     {
         id: "2",
-        title: 'Página de productos con React',
-        description: 'Diseño de una vista de producto con React',
-        poster: '/project_product_page.png',
+        title: 'Chat con Svelte',
+        description: 'App para crear conversaciones privadas y chatear con usuarios agregados',
+        poster: '/project_chat-svelte.png',
         link: '/projects/2',
         tags: ['backend', 'web','frontend'],
         createdAt: '2020-01-01',
@@ -92,55 +92,23 @@ const projects = [
             {
                 title: 'Información del proyecto',
                 items: [
-                    {type: 'text', value: 'Es un practica de desarrollo fronted, creada en el framework React y Vite como empaquetador de archivos <a class="link" target="_blank" href="https://react-product-page-ecru.vercel.app/">Ir al sitio del proyecto</a>'},
-                    {type: 'image', value: '/project_product_page_2.png'},
-                    {type: 'text', value: 'Dentro del proyecto se implementaron cosas como: un carrusel para las imágenes detalladas del producto y un carrito de compra que es dinámico de acuerdo con la cantidad de productos que se asignen.'},
-                ]
-            },
-        ]
-    },
-    {
-        id: "3",
-        title: 'Pokedex creado con Vue',
-        description: 'Es un pokedex creado con Vue utilizando la API de pokeapi',
-        poster: '/project_pokedex.png',
-        link: '/projects/3',
-        tags: ['frontend','web'],
-        createdAt: '2020-01-01',
-        sections:[
-            {
-                title: 'Información del proyecto',
-                items: [
-                    {type: 'text', value: 'Este es un proyecto de practica en donde se utilizó VUE un framework para el frontend. <a class="link" target="_blank" href="https://vue-pokedex-rho.vercel.app/">Ir al sitio del proyecto</a>'},
-                    {type: 'image', value: '/project_pokedex_2.png'}, 
+                    {type: 'text', value: 'Este Proyecto se realizo para un hackaton, la cual tuvo un lapso de tiempo de dos semanas. En la aplicación es posible registrarse, crear conversaciones y chatear con invitados <a class="link" target="_blank" href="https://squad-meeting.vercel.app/">Ir al sitio del proyecto</a>'},
+                    {type: 'image', value: '/project_chat-svelte_2.png'},
                 ]
             },
             {
-                title: 'Consumo de API',
+                title: 'Tecnologias',
                 items: [
-                    {type: 'text', value: 'Se consumió una API publica de Pokemon llamada <a class="link" target="_blank" href="https://pokeapi.co/">pokeapi</a>, que contiene toda su información, incluyendo imágenes y estadísticas en formato JSON. Este recurso es usado dinámicamente, con filtros básicos'},
+                    {type: 'subtitle', value: 'Twilio'},
+                    {type: 'text', value: 'En el proyect se utilizo <a class="link" target="_blank" href="https://www.twilio.com/">Twilio</a>: es una API que ofrese soluciones de comunicacions como SMS. Para este desarrollo se uso el servicio de conversaciones, que permite organizar conversaciones de varias fuentes como SMS, WhatsApp y MMS'},
+                    {type: 'subtitle', value: 'Sveltekit'},
+                    {type: 'text', value: 'Para el trabajo de fue usado <a class="link" target="_blank" href="https://kit.svelte.dev/">SvelteKit</a>  que es una herramienta del framework <a class="link" target="_blank" href="https://svelte.dev/">Svelte</a>, es un nuevo framework parecido a React o Vue que sirve para construir aplicaciones web'},
+                    {type: 'subtitle', value: 'Supabase'},
+                    {type: 'text', value: 'Para el control de registro, inicio de sesión y autenticación se utilizo <a class="link" target="_blank" href="https://supabase.com/">Supabase</a>: una alternativa a Firebase, que cuenta con APIs de autenticación y almacenamiento'},
                 ]
             }
         ]
-    },
-    {
-        id: "4",
-        title: 'Clone de Twitter con React',
-        description: 'Un clone de Twitter creado con react que se vincula a la API de Twitter',
-        poster: '/project_twitter_1.png',
-        link: '/projects/4',
-        tags: ['frontend','web'],
-        createdAt: '2020-01-01',
-        sections:[
-            {
-                title: 'Información del proyecto',
-                items: [
-                    {type: 'text', value: 'Este es un proyecto de practica en donde se utilizó React para el frontend. <a class="link" target="_blank" href="https://twiiter-clone-react.vercel.app">Ir al sitio del proyecto</a>'},
-                    {type: 'image', value: '/project_twitter.png'},
-                ]
-            }
-        ]
-    },
+    }
 ]   
 
 

@@ -164,17 +164,23 @@
         display: grid;
         grid-template-columns: 1fr;
         justify-items: center;
-        gap: 2rem;
+        gap: 1rem;
     }
     .section_item{
         max-width: 75ch;
         width: 100%;
         display: flex;
         justify-content: flex-start;
+        font-size: 1rem;
     }
     .section_item_image{
         width: 100%;
         display: block;
+        border: 1px solid var(--color-gray);
+        border-radius: 8px;
+        max-height: 400px;
+        object-fit: cover;
+        object-position: top;
     }
     .section_item_text{
         width: 100%;
@@ -201,6 +207,13 @@
         display: inline-flex;
         align-content: center;
         justify-content: center;
+    }
+    p{
+        margin: 0;
+    }
+    .section_item_subtitle{
+        font-size: 1.3rem;
+        color:rgba(0, 0, 0,.6)
     }
     @media  (min-width: 768px){
         .section_items{
