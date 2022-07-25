@@ -192,7 +192,7 @@
       <div class="about_banner_text">
         <h1>Hola, soy</h1>
         <h2>YERIC</h2>
-        <span>Web y Game Developer</span>
+        <span>Desarrollador de videojuegos y web</span>
       </div>
     </div>
   </div>
